@@ -6,31 +6,9 @@ xyz.tmlh.security
 
 - tmlh-security-core 通用层
 
-- tmlh-security-app 手机端
-
 - tmlh-security-browser 浏览器端 
 
-- tmlh-meblog 业务层
-  ​
-
-
-
-## Download 
-
-```shell
-#ssh
-git clone git@github.com:tmlh98/tmlh-meblog.git
-
-#http
-git clone https://github.com/tmlh98/tmlh-meblog.git
-```
-
-### Start
-
-```java
-tmlh-meblog   xyz.tmlh.security.Application.Main()
-```
-
+- tmlh-meblog 业务​
 
 
 

@@ -35,6 +35,11 @@ public class ResultBean {
         this.message = CODE_SUCCESS;
     }
     
+    public ResultBean(String message) {
+        this.code = 1;
+        this.message = message;
+    }
+    
     public ResultBean(String message,Integer code) {
         super();
         this.message = message;

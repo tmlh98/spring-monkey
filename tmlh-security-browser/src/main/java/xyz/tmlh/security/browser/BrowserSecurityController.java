@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.browser.suport.SimpleResponse;
+import xyz.tmlh.security.browser.suport.ResultBean;
 import xyz.tmlh.security.browser.suport.SocialUserInfo;
 import xyz.tmlh.security.properties.SecurityProperties;
 
@@ -58,7 +58,7 @@ public class BrowserSecurityController {
      */
     @RequestMapping("/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public ResultBean requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
@@ -71,7 +71,7 @@ public class BrowserSecurityController {
             }
         }
 
-        return new SimpleResponse("访问的服务需要身份认证，请引导用户到登录页");
+        return new ResultBean("访问的服务需要身份认证，请引导用户到登录页");
     }
 
     
