@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
     
-    @GetMapping("/signUp")
+    @GetMapping("/sign-Up")
     public String sign(){
         return "demo-signUp";
     }

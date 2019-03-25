@@ -1,5 +1,4 @@
-package xyz.tmlh.security.social.qq;
-
+package xyz.tmlh.security.social;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.social.connect.Connection;

@@ -5,9 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,24 +15,16 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.social.security.SpringSocialConfigurer;
 
-import xyz.tmlh.security.browser.authentication.TmlhAuthenticationFailureHandler;
-import xyz.tmlh.security.browser.authentication.TmlhAuthenticationSuccessHandler;
+import xyz.tmlh.security.authentication.AbstractChannelSecurityConfig;
 import xyz.tmlh.security.properties.SecurityProperties;
 import xyz.tmlh.security.validate.code.ValidateCodeFilter;
 
 
-@Order(2)
 @Configuration
-public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 
     @Autowired
     private SecurityProperties securityProperties;
-    
-    @Autowired
-    private TmlhAuthenticationSuccessHandler tmlhAuthenticationSuccessHandler;
-    
-    @Autowired
-    private TmlhAuthenticationFailureHandler tmlhAuthenticationFailureHandler;
     
     @Autowired
     private ValidateCodeFilter validateCodeFilter;
@@ -69,19 +59,14 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.httpBasic()//使用httpBasic登陆
+        http.apply(tmlhSpringSocialConfigurer);
+        applyPasswordAuthenticationConfig(http);
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                    .formLogin().loginPage("/authentication/require")//自定义登陆页
-                    .loginProcessingUrl("/authentication/form")//认证的url
-                    .successHandler(tmlhAuthenticationSuccessHandler)//登陆成功处理器
-                    .failureHandler(tmlhAuthenticationFailureHandler)//登陆失败处理器
-                        .and()
-                    .apply(tmlhSpringSocialConfigurer)
-                        .and()
-                .rememberMe()
-                    .userDetailsService(myUserDetailsService)
+                    .rememberMe()
                     .tokenRepository(persistentTokenRepository())
                     .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
-                   .and()
+                        .and()
+                    .userDetailsService(myUserDetailsService)
                     .logout().permitAll().invalidateHttpSession(true).logoutUrl("/admin/logout")
                     .deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler)
                 .and()

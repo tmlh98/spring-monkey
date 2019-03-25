@@ -29,24 +29,9 @@ import xyz.tmlh.security.properties.SecurityProperties;
 @EnableSocial
 public class SocialConfig extends SocialConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
     
     @Autowired
     private SecurityProperties securityProperties;
-    
-    @Autowired
-    private ConnectionSignUp myConnectionSignUp;
-    
-    @Override
-    public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-        JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
-        repository.setTablePrefix("tbl_");
-        if(myConnectionSignUp != null) {
-            repository.setConnectionSignUp(myConnectionSignUp);
-        }
-        return repository;
-    }
     
     @Bean
     public SpringSocialConfigurer tmlhSpringSocialConfigurer() {
@@ -67,4 +52,5 @@ public class SocialConfig extends SocialConfigurerAdapter {
         return new ProviderSignInUtils(connectionFactoryLocator,
                 getUsersConnectionRepository(connectionFactoryLocator));
     }
+
 }
