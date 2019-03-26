@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.web.config;
+package xyz.tmlh.forum.security;
 
 import java.io.IOException;
 
@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
  * Created by TianXin on 2019年1月21日下午5:33:27.
  */
 @Component
-public class MyLogoutSuccessHandler implements org.springframework.security.web.authentication.logout.LogoutSuccessHandler {
+public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(MyLogoutSuccessHandler.class);
 

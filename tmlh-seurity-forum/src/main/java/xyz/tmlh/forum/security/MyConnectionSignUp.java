@@ -13,16 +13,17 @@ import org.springframework.stereotype.Component;
  * @author TianXin
  * @since 2019年3月23日下午9:27:43
  */
-//@Component 
+@Component 
 public class MyConnectionSignUp implements ConnectionSignUp {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(MyConnectionSignUp.class);
 
 	@Override
 	public String execute(Connection<?> connection) {
+	    
 	    LOGGER.info("QQ用户:{} , 登陆" ,  connection.getDisplayName());
 		//根据社交用户信息默认创建用户并返回用户唯一标识
-		return connection.getDisplayName();
+		return connection.getKey().toString();
 	}
 
 }

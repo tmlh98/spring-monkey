@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.support.validate;
+package xyz.tmlh.forum.security.validate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

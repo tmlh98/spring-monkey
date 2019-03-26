@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.social.SocialAutoConfigurerAdapter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.connect.ConnectionFactory;
@@ -14,6 +15,7 @@ import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
+import org.springframework.social.connect.web.ProviderSignInUtils;
 
 import xyz.tmlh.security.properties.QQProperties;
 import xyz.tmlh.security.properties.SecurityProperties;
@@ -56,7 +58,7 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     
-    @Autowired
+    @Autowired(required = false)
     private ConnectionSignUp myConnectionSignUp;
 
 	@Override
@@ -76,5 +78,17 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
         }
         return repository;
     }
+    
+    /**
+     * 处理注册流程的工具类
+     * @param factoryLocator
+     * @return
+     */
+    @Bean
+    public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
+        return new ProviderSignInUtils(connectionFactoryLocator, getUsersConnectionRepository(connectionFactoryLocator));
+    }
+    
+
 
 }

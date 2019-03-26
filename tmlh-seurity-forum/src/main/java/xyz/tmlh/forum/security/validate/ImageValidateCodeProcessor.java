@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.support.validate;
+package xyz.tmlh.forum.security.validate;
 
 import java.io.IOException;
 
