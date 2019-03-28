@@ -5,16 +5,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * <p>
- * Title: ReflectionToStringUtil
+ *  打印bean的工具类   
  * </p>
- * <p>
- * Description: 打印bean的工具类
- * </p>
- * 
+ *
  * @author TianXin
- * @created 2019年3月5日 下午12:13:43
- * @modified [who date description]
- * @check [who date description]
+ * @since 2019年3月26日下午4:30:48
  */
 public class PrintUtil {
     

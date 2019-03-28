@@ -20,7 +20,10 @@ import xyz.tmlh.security.properties.LoginType;
 import xyz.tmlh.security.properties.SecurityProperties;
 
 /**
- * 自定义的登陆失败处理 implements AuthenticationFailureHandler Override onAuthenticationFailure()
+ * 自定义的登陆失败处理 implements 
+ *          AuthenticationFailureHandler 
+ *  Override 
+ *          onAuthenticationFailure()
  * 
  * @CreateInformation Created by TianXin on 2018年12月29日.
  */

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  * 获取IP地址
  */
 public class IPUtils {
+    
 	private static Logger logger = LoggerFactory.getLogger(IPUtils.class);
 
 	/**

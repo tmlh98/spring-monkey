@@ -22,7 +22,11 @@ import xyz.tmlh.security.properties.LoginType;
 import xyz.tmlh.security.properties.SecurityProperties;
 
 /**  
- * 自定义的登陆成功处理 implements AuthenticationSuccessHandler Override onAuthenticationSuccess()
+ * 自定义的登陆成功处理 
+ *      implements 
+ *  AuthenticationSuccessHandler 
+ *      Override 
+ *  onAuthenticationSuccess()
  * @CreateInformation Created by TianXin on 2018年12月29日. 
  */
 @Component
