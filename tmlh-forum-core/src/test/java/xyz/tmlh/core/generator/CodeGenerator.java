@@ -20,7 +20,7 @@ import xyz.tmlh.core.generator.util.PropertiesHandler;
 public class CodeGenerator {
     
     public static void main(String[] args) {
-        String file = "com/github/ckwen/generator/code-generator.properties";
+        String file = "xyz/tmlh/core/generator/code-generator.properties";
         PropertiesHandler propertiesHandler = new PropertiesHandler(file);
         CodeGeneratorProcessor codeGeneratorProcessor = 
             new VelocityCodeGeneratorProcessor(propertiesHandler.load());

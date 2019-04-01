@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
+import xyz.tmlh.core.CoreApplication;
 import xyz.tmlh.forum.util.validate.Captcha;
 import xyz.tmlh.forum.util.validate.GifCaptcha;
 import xyz.tmlh.security.SecurityCoreConfig;
@@ -15,7 +16,7 @@ import xyz.tmlh.security.properties.SecurityProperties;
 /**  
  * Created by TianXin on 2019年1月18日下午6:10:27. 
  */
-@ComponentScan(basePackageClasses = {BrowserSecurityConfig.class ,SecurityCoreConfig.class})
+@ComponentScan(basePackageClasses = {BrowserSecurityConfig.class ,SecurityCoreConfig.class , CoreApplication.class})
 @Configuration
 public class WebConfiguration {
 

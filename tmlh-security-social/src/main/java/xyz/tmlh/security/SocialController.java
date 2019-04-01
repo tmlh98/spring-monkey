@@ -30,7 +30,6 @@ public class SocialController {
     public SocialUserInfo getSocialUserInfo(HttpServletRequest request) {
         SocialUserInfo userInfo = new SocialUserInfo();
         Connection<?> connection = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(request));
-        System.out.println(connection);
         userInfo.setProviderId(connection.getKey().getProviderId());
         userInfo.setProviderUserId(connection.getKey().getProviderUserId());
         userInfo.setNickname(connection.getDisplayName());

@@ -14,8 +14,14 @@ public class SocialUserInfo {
 	
 	private String providerUserId;
 	
+	/**
+	 * 用户名
+	 */
 	private String nickname;
 	
+	/**
+	 * 头像
+	 */
 	private String headimg;
 
 	public String getProviderId() {

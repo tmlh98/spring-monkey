@@ -39,6 +39,13 @@
 			<version>3.0.7.1</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 
 		<!-- 阿里系的Druid依赖包 -->
 		<dependency>

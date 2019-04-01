@@ -3,8 +3,8 @@ package xyz.tmlh.core.generator.util;
 import java.io.InputStream;
 import java.util.Properties;
 
+import xyz.tmlh.core.generator.config.CodeGeneratorPropertes;
 import xyz.tmlh.core.generator.config.VnelCodeGenerator;
-import xyz.tmlh.generator.config.CodeGeneratorPropertes;
 
 /**
  * <p>
@@ -59,9 +59,9 @@ public class PropertiesHandler {
         codeGeneratorPropertes.setPageController(propertes.getProperty(VnelCodeGenerator.PAGE_CONTROLLER));
         codeGeneratorPropertes.setPageMapper(propertes.getProperty(VnelCodeGenerator.PAGE_MAPPER));
 
+        System.out.println(propertes.getProperty(VnelCodeGenerator.DRIVER_NAME));
         codeGeneratorPropertes.setIncludeTableName(propertes.getProperty(VnelCodeGenerator.INCLUDE_TABLE_NAME).length() == 0 ? null : propertes.getProperty(
             VnelCodeGenerator.INCLUDE_TABLE_NAME));
-        System.out.println();
         codeGeneratorPropertes.setExcludeTableName(propertes.getProperty(VnelCodeGenerator.EXCLUDE_TABLE_NAME).length() == 0 ? null : propertes.getProperty(
             VnelCodeGenerator.EXCLUDE_TABLE_NAME));
 

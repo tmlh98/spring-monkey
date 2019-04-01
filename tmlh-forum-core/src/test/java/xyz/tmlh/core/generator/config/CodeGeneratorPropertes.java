@@ -1,4 +1,4 @@
-package xyz.tmlh.generator.config;
+package xyz.tmlh.core.generator.config;
 
 /**
  * <p>

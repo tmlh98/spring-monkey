@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
-import xyz.tmlh.generator.config.CodeGeneratorPropertes;
+import xyz.tmlh.core.generator.config.CodeGeneratorPropertes;
 
 /**
  * <p>

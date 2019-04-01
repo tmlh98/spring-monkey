@@ -1,8 +1,15 @@
 package xyz.tmlh.security.social.qq.connet;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
+import org.springframework.social.connect.web.HttpSessionSessionStrategy;
+import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import xyz.tmlh.security.social.qq.api.QQ;
 import xyz.tmlh.security.social.qq.api.QQUserInfo;
@@ -33,6 +40,8 @@ public class QQAdapter implements ApiAdapter<QQ> {
         values.setImageUrl(userInfo.getFigureurl_1());
         values.setProfileUrl(null);//主页地址
         values.setProviderUserId(userInfo.getOpenId());
+        setUser(userInfo);
+        
     }
 
     /**
@@ -46,7 +55,15 @@ public class QQAdapter implements ApiAdapter<QQ> {
     @Override
     public void updateStatus(QQ api, String message) {
         //do nothing
+        
     }
  
+    private void setUser(QQUserInfo userInfo) {
+        SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        ServletWebRequest servletWebRequest = new ServletWebRequest(request);
+        String key = userInfo.getOpenId();
+        sessionStrategy.setAttribute(servletWebRequest, key , userInfo);
+    }
 
 }

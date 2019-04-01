@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 
-import xyz.tmlh.generator.config.CodeGeneratorPropertes;
+import xyz.tmlh.core.generator.config.CodeGeneratorPropertes;
 
 /**
  * <p>

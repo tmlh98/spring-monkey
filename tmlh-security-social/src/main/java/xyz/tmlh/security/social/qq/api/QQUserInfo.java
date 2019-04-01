@@ -55,7 +55,6 @@ public class QQUserInfo {
 	 */
 	private String figureurl_2;
 	
-	
 	/**
 	 * 	大小为40×40像素的QQ头像URL。
 	 */
