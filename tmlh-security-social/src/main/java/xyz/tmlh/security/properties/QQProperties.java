@@ -1,6 +1,5 @@
 package xyz.tmlh.security.properties;
 
-import org.springframework.boot.autoconfigure.social.SocialProperties;
 
 /**
  * <p>
@@ -10,9 +9,11 @@ import org.springframework.boot.autoconfigure.social.SocialProperties;
  * @author TianXin
  * @since 2019年3月22日上午11:38:28
  */
-public class QQProperties extends SocialProperties {
+public class QQProperties{
 	
 	private String providerId = "qq";
+	private String appId;
+	private String appSecret;
 
 	public String getProviderId() {
 		return providerId;
@@ -21,5 +22,21 @@ public class QQProperties extends SocialProperties {
 	public void setProviderId(String providerId) {
 		this.providerId = providerId;
 	}
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+    public void setAppSecret(String appSecret) {
+        this.appSecret = appSecret;
+    }
+	
 	
 }

@@ -4,7 +4,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,11 +15,11 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.authentication.AbstractChannelSecurityConfig;
+import xyz.tmlh.security.properties.SecurityConstants;
 import xyz.tmlh.security.properties.SecurityProperties;
 import xyz.tmlh.security.validate.code.ValidateCodeFilter;
 
 
-@Configuration
 public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 
     @Autowired
@@ -71,9 +70,9 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                     .deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler)
                 .and()
             .authorizeRequests()
-            .antMatchers("/authentication/require" ,
-                "/code/*",
-                "/" , "/index.html","/static/**","/user/regist",
+            .antMatchers(
+                SecurityConstants.DEFAULT_UNAUTHENTICATION_URL ,
+                SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*" ,
                 securityProperties.getBrowser().getLoginPage(),
                 securityProperties.getBrowser().getSignUpUrl()
                 ).permitAll()//不拦截请求

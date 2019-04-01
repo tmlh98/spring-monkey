@@ -48,7 +48,7 @@ import xyz.tmlh.security.social.qq.connet.QQConnectionFactory;
  */
 @Configuration
 @ConditionalOnProperty(prefix = "tmlh.security.social.qq", name = "appId")
-public class QQAutoConfig extends SocialAutoConfigurerAdapter {
+public class QQAutoConfig extends SocialAutoConfigurerAdapter   {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(QQAutoConfig.class);
     
@@ -61,12 +61,13 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
     @Autowired(required = false)
     private ConnectionSignUp myConnectionSignUp;
 
-	@Override
-	protected ConnectionFactory<?> createConnectionFactory() {
+    @Override
+    protected  ConnectionFactory<?> createConnectionFactory() {
 	    LOGGER.info("QQ登陆配置生效!");
 	    QQProperties qqConfig = securityProperties.getSocial().getQq();
         return new QQConnectionFactory(qqConfig.getProviderId(), qqConfig.getAppId(), qqConfig.getAppSecret());
 	}
+	
 	
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
@@ -88,7 +89,6 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
     public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
         return new ProviderSignInUtils(connectionFactoryLocator, getUsersConnectionRepository(connectionFactoryLocator));
     }
-    
 
 
 }

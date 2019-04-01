@@ -14,14 +14,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
     
-    @GetMapping("/sign-Up")
-    public String sign(){
-        return "demo-signUp";
+    @GetMapping({"/" , "/index.html"})
+    public String index() {
+        return "index";
     }
     
-    @GetMapping("/admin/login")
-    public String login(){
-        return "login";
+    @GetMapping({"/login" , "/user/login"})
+    public String login() {
+        return "user/login";
+    }
+    
+    @GetMapping({"/user/article/publish" , "/user/question/publish"})
+    public String addArticle() {
+        return "user/article-add";
+    }
+    
+    @GetMapping({"/user"})
+    public String user() {
+        return "user/user";
     }
     
 }

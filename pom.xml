@@ -6,8 +6,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+
 	<properties>
 		<tmlh.security.version>0.0.1-SNAPSHOT</tmlh.security.version>
+		<java.version>1.8</java.version>
+		<!-- 覆盖thymeleaf版本依赖 -->
+		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+		<thymeleaf-extras-java8time.version>3.0.0.RELEASE</thymeleaf-extras-java8time.version>
+		<thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
 	</properties>
 
 	<dependencyManagement>
@@ -19,6 +25,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -27,7 +35,7 @@
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
-		
+
 	</dependencyManagement>
 
 	<build>
@@ -51,5 +59,5 @@
 		<module>tmlh-forum-core</module>
 		<module>tmlh-forum-web</module>
 	</modules>
-	
+
 </project>
