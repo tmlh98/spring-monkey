@@ -1,14 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>xyz.tmlh.security</groupId>
-    <artifactId>tmlh-security</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../tmlh-security</relativePath>
-  </parent>
-  <artifactId>tmlh-seurity-forum</artifactId>
-  
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>xyz.tmlh.security</groupId>
+		<artifactId>tmlh-security</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../tmlh-security</relativePath>
+	</parent>
+	<artifactId>tmlh-forum-web</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>xyz.tmlh.forum</groupId>
+			<artifactId>tmlh-forum-core</artifactId>
+			<version>${tmlh.security.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -16,22 +22,12 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>xyz.tmlh.security</groupId>
-			<artifactId>tmlh-security-browser</artifactId>
-			<version>${tmlh.security.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-generator</artifactId>
-			<version>3.0.7.1</version>
-			<scope>test</scope>
-		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -42,20 +38,8 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>
-		
-		<!-- mybatis-plus-boot-starter -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.0.7.1</version>
-		</dependency>
-		
-				<!-- 阿里系的Druid依赖包 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.9</version>
-		</dependency>
+
+
 	</dependencies>
 
 	<build>

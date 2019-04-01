@@ -46,9 +46,10 @@
 	</build>
 
 	<modules>
-		<module>tmlh-security-core</module>
 		<module>tmlh-security-browser</module>
-		<module>tmlh-seurity-forum</module>
+		<module>tmlh-security-social</module>
+		<module>tmlh-forum-core</module>
+		<module>tmlh-forum-web</module>
 	</modules>
 	
 </project>

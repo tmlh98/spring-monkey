@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
-			<artifactId>tmlh-secuity-core</artifactId>
+			<artifactId>tmlh-secuity-social</artifactId>
 			<version>${tmlh.security.version}</version>
 		</dependency>
 		<dependency>
