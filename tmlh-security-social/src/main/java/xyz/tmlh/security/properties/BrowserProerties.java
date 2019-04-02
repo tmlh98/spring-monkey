@@ -9,6 +9,8 @@ public class BrowserProerties {
     
     private String signUpUrl = "/sign-up.html";
     
+    private String logout = "/logout";
+    
     /**
      * 登陆类型,默认使用json
      */
@@ -48,6 +50,15 @@ public class BrowserProerties {
         this.signUpUrl = signUpUrl;
     }
 
+    public String getLogout() {
+        return logout;
+    }
+
+    public void setLogout(String logout) {
+        this.logout = logout;
+    }
+
+    
 
     
 }

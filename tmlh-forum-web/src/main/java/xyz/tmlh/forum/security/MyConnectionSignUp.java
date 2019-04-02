@@ -1,4 +1,6 @@
 package xyz.tmlh.forum.security;
+import java.time.LocalDateTime;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +9,7 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.stereotype.Component;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
@@ -34,21 +36,24 @@ public class MyConnectionSignUp implements ConnectionSignUp {
 	public String execute(Connection<?> connection) {
 	    
 	    String userId = connection.getKey().toString();
+	    //切割出 source 和 openId
 	    String[] strings = StringUtils.splitByWholeSeparatorPreserveAllTokens(userId, ":");
 	    
 	    QQUserInfo userInfo = (QQUserInfo)SessionUtil.getAttribute(strings[1]);
 	    if(userInfo != null) {
-	        UserModel user = userSrvice.getOne(new QueryWrapper<UserModel>().eq("user_Id", strings[1]));
+	        UserModel user = userSrvice.getOne(new LambdaQueryWrapper<UserModel>().eq(UserModel::getUserconnectionId , userId));
 	        if(user == null) {
-	            user = new UserModel();
-	            user.setUserId(userId);
-	            user.setDetail(userInfo.getYear() + " " + userInfo.getProvince() + " " + userInfo.getCity());
-	            user.setSource(strings[0]);
-	            user.setImageUrl(userInfo.getFigureurl_qq_2());
-	            user.setGender(userInfo.getGender());
+	            user = new UserModel(userId, 
+        	                userInfo.getNickname(), 
+        	                userInfo.getFigureurl_qq_2(), 
+        	                LocalDateTime.now(), 
+        	                strings[0], 
+        	                userInfo.getYear() + " " + userInfo.getProvince() + " " + userInfo.getCity(),
+        	                userInfo.getGender());
+	            
 	            userSrvice.save(user);
 	            SessionUtil.remove(strings[1]);
-	            LOGGER.info("QQ用户:{} , 注册" ,  connection.getDisplayName());
+	            LOGGER.info("QQ用户:{} , 注册成功  !" ,  connection.getDisplayName());
 	        }
 	    }
 	    

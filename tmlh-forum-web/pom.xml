@@ -15,7 +15,7 @@
 			<artifactId>tmlh-forum-core</artifactId>
 			<version>${tmlh.security.version}</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

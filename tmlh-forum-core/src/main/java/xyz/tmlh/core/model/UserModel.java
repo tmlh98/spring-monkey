@@ -1,7 +1,9 @@
 package xyz.tmlh.core.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
@@ -28,7 +30,7 @@ public class UserModel implements Serializable {
     /**
      * 社交账户userId
      */
-    private String userId;
+    private String userconnectionId;
 
     /**
      * 用户名
@@ -48,6 +50,7 @@ public class UserModel implements Serializable {
     /**
      * 注册时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
@@ -56,7 +59,7 @@ public class UserModel implements Serializable {
     private LocalDateTime lastLogin;
 
     /**
-     * 用户状态 0:未激活 1:正常 2:停用 3:注销
+     * 用户状态  0:正常 1:冻结 2:注销
      */
     private Integer state;
 
@@ -79,6 +82,38 @@ public class UserModel implements Serializable {
      */
     private String gender;
 
+    public UserModel() {
+        super();
+    }
+
+    
+    
+    public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String signature,
+        String gender) {
+        super();
+        this.userconnectionId = userconnectionId;
+        this.username = username;
+        this.imageUrl = imageUrl;
+        this.lastLogin = lastLogin;
+        this.source = source;
+        this.detail = detail;
+        this.signature = signature;
+        this.gender = gender;
+    }
+
+    public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String gender) {
+        super();
+        this.userconnectionId = userconnectionId;
+        this.username = username;
+        this.imageUrl = imageUrl;
+        this.lastLogin = lastLogin;
+        this.source = source;
+        this.detail = detail;
+        this.gender = gender;
+    }
+
+
+
     public Long getId() {
         return id;
     }
@@ -87,12 +122,13 @@ public class UserModel implements Serializable {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+
+    public String getUserconnectionId() {
+        return userconnectionId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserconnectionId(String userconnectionId) {
+        this.userconnectionId = userconnectionId;
     }
 
     public String getUsername() {
@@ -184,18 +220,9 @@ public class UserModel implements Serializable {
 
     @Override
     public String toString() {
-        return "UserModel{" +
-        "id=" + id +
-        ", userId=" + userId +
-        ", username=" + username +
-        ", email=" + email +
-        ", imageUrl=" + imageUrl +
-        ", createTime=" + createTime +
-        ", lastLogin=" + lastLogin +
-        ", state=" + state +
-        ", source=" + source +
-        ", detail=" + detail +
-        ", signature=" + signature +
-        "}";
+        return "UserModel [id=" + id + ", userconnectionId=" + userconnectionId + ", username=" + username + ", email=" + email + ", imageUrl=" + imageUrl
+            + ", createTime=" + createTime + ", lastLogin=" + lastLogin + ", state=" + state + ", source=" + source + ", detail=" + detail + ", signature="
+            + signature + ", gender=" + gender + "]";
     }
+
 }
