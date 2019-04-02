@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(~{::title},~{},~{})">
-<title>首页</title>
-<style type="text/css">
-</style>
+<head th:replace="commons/head::head(title = '${session.loginUser.username}')">
 </head>
 
 <body>

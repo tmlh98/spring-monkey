@@ -13,6 +13,12 @@ import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Component;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+
+import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.util.CurrentUserUtils;
+
 /**
  * <p>
  *    MyUserDetailsService
@@ -25,7 +31,10 @@ import org.springframework.stereotype.Component;
 public class MyUserDetailsService implements UserDetailsService, SocialUserDetailsService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MyUserDetailsService.class);
-
+    
+    @Autowired
+    private UserService userService;
+    
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -37,8 +46,13 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
-        LOGGER.info("社交登录用户Id:" + userId);
-        return buildUser(userId);
+        UserModel user = userService.getOne(new LambdaQueryWrapper<UserModel>()
+            .eq(UserModel::getUserconnectionId, userId));
+        CurrentUserUtils.setUser(user);
+        LOGGER.info("社交登录用户 : {} 登陆成功" , user.getUsername());
+        return new SocialUser(userId, "0",
+            true, true, true, true,
+            AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
     }
 
     private SocialUserDetails buildUser(String userId) {

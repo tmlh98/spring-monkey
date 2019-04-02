@@ -1,7 +1,7 @@
 package xyz.tmlh.forum.util;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.security.exception.UserNotFoundException;
 
 /**
  * <p>
@@ -12,28 +12,51 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @since 2019年3月26日下午4:25:21
  */
 public class CurrentUserUtils {
-
+    
+    private static final String CURR_LOGIN_USER = "loginUser";
+    
     /**
      * 获取当前系统用户名
-      *
-      * @param @return    参数
-      * @return String    返回类型
-      * @throws
+     *
+     * @param @return    参数
+     * @return String    返回类型
+     * @throws
      */
-    public String getUserName() {
-        return getUserDetails().getUsername();
+    public static String getUserName() {
+        return getUser().getUsername();
     }
     
     /**
-     * 获取 UserDetails
+     * 获取 UserModel
       *
       * @param @return    参数
-      * @return UserDetails    返回类型
+      * @return UserModel    返回类型
       * @throws
      */
-    public UserDetails getUserDetails() {
-        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();  
+    public static UserModel getUser() {
+        Object user = SessionUtil.getAttribute(CURR_LOGIN_USER);
+        if(null == user) {
+            throw new UserNotFoundException("user not found ！");
+        }
+        return (UserModel)user;  
     }
     
+    /**
+     * 向session 中设置用户
+     *
+     * @throws
+     */
+    public static void setUser(UserModel user) {
+        SessionUtil.setAttribute(CURR_LOGIN_USER, user);
+    }
+    
+    /**
+     * 从session 中删除
+     * 
+     * @throws
+     */
+    public static void removeUser() {
+        SessionUtil.remove(CURR_LOGIN_USER);
+    }
     
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <nav class="row clearfix" th:fragment="topbar(active)">
 	<div class="col-md-12 column" >
 		<nav class="navbar navbar-default navbar-inverse navbar-static-top"
@@ -46,8 +46,13 @@
 								<li><a href="/user/article/publish">文章</a></li>
 								<li><a href="/user/question/publish">问答</a></li>
 							</ul></li>
-						<li>
-							 <img class=" img-responsive img-circle rounded-circle float-left mr-2 border border-warning mw-100" style="vertical-align:middle;width: 40px; height: 40px" src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=cmgSRiaqWIkxHJUEzZnBibzQ&amp;s=100" id="user-avatar" />
+						<li th:if="${session.loginUser ne null}">
+							<a th:href="/user">
+							 	<img th:src="${session.loginUser.imageUrl}"  class=" img-responsive img-circle rounded-circle float-left mr-2 border border-warning mw-100" style="vertical-align:middle;width: 40px; height: 40px" id="user-avatar" />
+							</a>
+						</li>
+						<li th:if="${session.loginUser eq null}">
+							<a href="/user/login" style="color: white;">登陆</a>
 						</li>
 					</ul>
 				</div>

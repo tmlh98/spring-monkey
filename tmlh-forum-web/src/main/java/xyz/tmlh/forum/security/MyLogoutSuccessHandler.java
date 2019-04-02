@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import xyz.tmlh.forum.util.CurrentUserUtils;
+
 /**
  * 自定义登出处理
  * Created by TianXin on 2019年1月21日下午5:33:27.
@@ -28,11 +30,14 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
         
         try {
             UserDetails user = (UserDetails)authentication.getPrincipal();
+            
+            //删除session
+            CurrentUserUtils.removeUser();
             LOGGER.info("USER : " + user.getUsername() + " LOGOUT SUCCESS !  ");
         } catch (Exception e) {
             LOGGER.info("LOGOUT EXCEPTION , e : {} ", e);
         }
-        response.sendRedirect("/admin/login");
+        response.sendRedirect("/user/login");
 
     }
 

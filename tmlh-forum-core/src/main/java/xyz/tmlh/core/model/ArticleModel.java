@@ -1,7 +1,9 @@
 package xyz.tmlh.core.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
@@ -27,6 +29,9 @@ public class ArticleModel implements Serializable {
      */
     private Integer userId;
 
+    /**
+     * 文章分类
+     */
     private Integer catalogId;
 
     /**
@@ -55,10 +60,15 @@ public class ArticleModel implements Serializable {
     private Integer clickNum;
 
     /**
-     * 发表日期
+     * 发表时间
      */
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
+    /**
+     * 修改时间
+     */
+    @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
 
