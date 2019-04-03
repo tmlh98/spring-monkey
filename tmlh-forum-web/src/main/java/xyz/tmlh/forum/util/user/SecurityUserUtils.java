@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.util;
+package xyz.tmlh.forum.util.user;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

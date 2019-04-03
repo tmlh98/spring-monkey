@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -31,14 +30,13 @@ public class ArticleController {
     public String list(int currPage , int pageSize , Model model) {
         
         IPage<ArticleModel> page = new Page<>(currPage, pageSize);
-        LambdaQueryWrapper<ArticleModel> wapper = new LambdaQueryWrapper<ArticleModel>();
-        wapper.orderByDesc(ArticleModel::getUpdateTime);
-        IPage<ArticleModel> articlePage = articleService.page(page ,wapper );
+        QueryWrapper<ArticleModel> wapper = new QueryWrapper<ArticleModel>();
+        wapper.orderByDesc("update_time");
+        IPage<ArticleModel> articlePage = articleService.page(page ,wapper);
         
-        model.addAttribute("articlePage", articlePage);
+        model.addAttribute("articleList", articlePage.getRecords());
         return "index";
     }
-    
     
     
     

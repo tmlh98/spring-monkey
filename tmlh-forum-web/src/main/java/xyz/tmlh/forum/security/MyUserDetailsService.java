@@ -17,7 +17,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.util.CurrentUserUtils;
+import xyz.tmlh.forum.util.user.CurrentUserUtils;
 
 /**
  * <p>

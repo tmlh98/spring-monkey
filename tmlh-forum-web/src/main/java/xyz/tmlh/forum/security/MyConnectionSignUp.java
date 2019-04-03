@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.util.SessionUtil;
+import xyz.tmlh.forum.util.scope.SessionUtil;
 import xyz.tmlh.security.social.qq.api.QQUserInfo;
 
 /**

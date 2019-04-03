@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.util;
+package xyz.tmlh.forum.util.scope;
 
 import javax.servlet.http.HttpServletRequest;
 

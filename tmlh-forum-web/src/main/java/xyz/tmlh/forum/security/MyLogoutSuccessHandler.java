@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import xyz.tmlh.forum.util.CurrentUserUtils;
+import xyz.tmlh.forum.util.user.CurrentUserUtils;
 
 /**
  * 自定义登出处理

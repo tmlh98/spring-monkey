@@ -19,6 +19,12 @@ import xyz.tmlh.forum.web.controller.IndexController;
  */
 public class GetMapperUtil {
 
+    /**
+     * 获取类方法所以@GetMapper 的value值
+     * @author TianXin
+     * @created 2019年4月2日 上午9:58:34
+     * @return
+     */
     public static List<String> getGetMapperValue() {
         List<String> urls = new ArrayList<>();
         Class<IndexController> clazz = IndexController.class;

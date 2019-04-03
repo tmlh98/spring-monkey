@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.util;
+package xyz.tmlh.forum.util.scope;
 
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
