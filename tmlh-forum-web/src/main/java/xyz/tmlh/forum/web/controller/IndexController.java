@@ -29,9 +29,4 @@ public class IndexController {
         return "user/article-add";
     }
     
-    @GetMapping({"/user"})
-    public String user() {
-        return "user/user";
-    }
-    
 }
