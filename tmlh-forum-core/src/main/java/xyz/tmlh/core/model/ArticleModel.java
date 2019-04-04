@@ -28,6 +28,9 @@ public class ArticleModel implements Serializable {
      * 用户id，外键
      */
     private Integer userId;
+    
+    @TableField(exist = false)
+    private UserModel user;
 
     /**
      * 文章分类

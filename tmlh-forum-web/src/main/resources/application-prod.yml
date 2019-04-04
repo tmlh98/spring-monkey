@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://tmlh.xyz:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://123.207.5.177:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
     username: tx
     password: tx666
 
@@ -35,3 +35,9 @@ tmlh:
         app-id: 101559281
         app-secret: c8b086c46dae6ba951e07bcf00d7a662
         provider-id: qq
+        
+mybatis-plus:
+    typeEnumsPackage: xyz.tmlh.core.enums    
+    global-config:
+      banner: false
+        

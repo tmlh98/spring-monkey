@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.web.controller;
+package xyz.tmlh.forum.web.controller.user;
 
 import javax.servlet.http.HttpServletRequest;
 

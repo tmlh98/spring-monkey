@@ -1,7 +1,8 @@
 package xyz.tmlh.core.mapper;
 
-import xyz.tmlh.core.model.UserModel;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import xyz.tmlh.core.model.UserModel;
 
 /**
  * <p>

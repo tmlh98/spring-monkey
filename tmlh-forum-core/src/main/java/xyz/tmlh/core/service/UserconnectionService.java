@@ -1,7 +1,8 @@
 package xyz.tmlh.core.service;
 
-import xyz.tmlh.core.model.UserconnectionModel;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import xyz.tmlh.core.model.UserconnectionModel;
 
 /**
  * <p>

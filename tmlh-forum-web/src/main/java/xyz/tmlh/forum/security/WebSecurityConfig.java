@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import xyz.tmlh.forum.util.GetMapperUtil;
 import xyz.tmlh.security.browser.BrowserSecurityConfig;
@@ -17,6 +19,8 @@ import xyz.tmlh.security.browser.BrowserSecurityConfig;
  * @author TianXin
  * @since 2019年4月1日下午6:19:37
  */
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableWebSecurity
 @Configuration
 public class WebSecurityConfig extends BrowserSecurityConfig {
 
@@ -30,9 +34,12 @@ public class WebSecurityConfig extends BrowserSecurityConfig {
         super.configure(http);
     }
     
+
     private List<String> getUrlList(){
         List<String> urls = new ArrayList<>();
+        urls.add("/webjars/**");
         urls.add("/asserts/**");
+        urls.add("/images/**");
         return urls;
     }
     

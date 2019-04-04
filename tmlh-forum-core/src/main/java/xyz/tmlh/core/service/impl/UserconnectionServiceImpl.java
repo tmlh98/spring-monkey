@@ -1,7 +1,7 @@
 package xyz.tmlh.core.service.impl;
 
-import xyz.tmlh.core.model.UserconnectionModel;
 import xyz.tmlh.core.mapper.UserconnectionMapper;
+import xyz.tmlh.core.model.UserconnectionModel;
 import xyz.tmlh.core.service.UserconnectionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

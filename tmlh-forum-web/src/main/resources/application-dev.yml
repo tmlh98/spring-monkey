@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://tmlh.xyz:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://123.207.5.177:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
     username: tx
     password: tx666
 
@@ -37,7 +37,9 @@ tmlh:
 
         
 mybatis-plus:
-    typeEnumsPackage: xyz.tmlh.core.enums        
+    typeEnumsPackage: xyz.tmlh.core.enums    
+    global-config:
+      banner: false
         
         
         
