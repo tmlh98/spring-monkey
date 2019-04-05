@@ -18,6 +18,36 @@
 	font-style: inherit;	
 	color: black;
 }
+
+.color-title{
+ 	background-color: #34a40; 
+}
+.color-bff{
+ 	color:#007bff;
+}
+
+.img-size-50{
+	width: 50px; 
+	height: 50px;
+}
+
 .magin-top{
 	margin-top: 10px;
 }
+.magin-left-20{
+	margin-left: 20px;
+}
+.padding-top{
+	padding-top: 10px;
+}
+.padding-bottom{
+	padding-bottom: 10px;
+}
+.magin-top-40{
+	margin-top: 40px;
+}
+.pointer{
+	cursor:pointer;
+}
+
+

@@ -60,4 +60,15 @@ public class CurrentUserUtils {
         SessionUtil.remove(CURR_LOGIN_USER);
     }
     
+    /**
+     * 用户是否为null
+      *
+      * @param @return    参数
+      * @return boolean    返回类型
+      * @throws
+     */
+    public static boolean isExistUser() {
+        return SessionUtil.getAttribute(CURR_LOGIN_USER) != null;
+    }
+    
 }

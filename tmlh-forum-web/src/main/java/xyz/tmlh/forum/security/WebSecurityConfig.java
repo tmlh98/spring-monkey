@@ -45,7 +45,10 @@ public class WebSecurityConfig extends BrowserSecurityConfig {
     
     private String[] getUrls() {
         List<String> urls = getUrlList();
-        urls.addAll(GetMapperUtil.getGetMapperValue());
+        urls.addAll(GetMapperUtil.getMapperValue());
+        for (String string : urls) {
+            System.err.println(string);
+        }
         return urls.stream().toArray(String[]::new);
     }
     

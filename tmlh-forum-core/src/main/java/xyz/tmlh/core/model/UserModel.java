@@ -25,7 +25,7 @@ public class UserModel implements Serializable {
      * 用户id
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private Integer id;
 
     /**
      * 社交账户userId
@@ -114,11 +114,11 @@ public class UserModel implements Serializable {
 
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

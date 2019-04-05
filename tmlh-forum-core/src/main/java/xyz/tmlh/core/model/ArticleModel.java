@@ -1,6 +1,9 @@
 package xyz.tmlh.core.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import xyz.tmlh.core.enums.PublishType;
+
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -35,7 +38,12 @@ public class ArticleModel implements Serializable {
     /**
      * 文章分类
      */
-    private Integer catalogId;
+    private CatalogModel catalog;
+    
+    /**
+     * 文章分类
+     */
+    private PublishType publishType;
 
     /**
      * 标题
@@ -74,6 +82,15 @@ public class ArticleModel implements Serializable {
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
+    public ArticleModel() {
+        super();
+    }
+    
+    public ArticleModel(Integer id, Integer clickNum) {
+        super();
+        this.id = id;
+        this.clickNum = clickNum;
+    }
 
     public Integer getId() {
         return id;
@@ -90,13 +107,13 @@ public class ArticleModel implements Serializable {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-
-    public Integer getCatalogId() {
-        return catalogId;
+ 
+    public CatalogModel getCatalog() {
+        return catalog;
     }
 
-    public void setCatalogId(Integer catalogId) {
-        this.catalogId = catalogId;
+    public void setCatalog(CatalogModel catalog) {
+        this.catalog = catalog;
     }
 
     public String getTitle() {
@@ -154,20 +171,31 @@ public class ArticleModel implements Serializable {
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
     }
+    
+    
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
+    }
+
+    public PublishType getPublishType() {
+        return publishType;
+    }
+
+    public void setPublishType(PublishType publishType) {
+        this.publishType = publishType;
+    }
 
     @Override
     public String toString() {
-        return "ArticleModel{" +
-        "id=" + id +
-        ", userId=" + userId +
-        ", catalogId=" + catalogId +
-        ", title=" + title +
-        ", keywords=" + keywords +
-        ", description=" + description +
-        ", content=" + content +
-        ", clickNum=" + clickNum +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        "}";
+        return "ArticleModel [id=" + id + ", userId=" + userId + ", user=" + user + ", catalog=" + catalog + ", publishType=" + publishType + ", title=" + title
+            + ", keywords=" + keywords + ", description=" + description + ", content=" + content + ", clickNum=" + clickNum + ", createTime=" + createTime
+            + ", updateTime=" + updateTime + "]";
     }
+
+    
 }

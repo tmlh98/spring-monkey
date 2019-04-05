@@ -58,37 +58,16 @@
 		<div class="row clearfix" style="margin-top: 25px">
 			<div class="col-md-9 column">
 
-				<div class="list-group">
+				<div class="list-group"  id="article-list" >
 					<div class="list-group-item">
 						<span class="glyphicon glyphicon-th-list" aria-hidden="true" style="font-size: 17px">&nbsp;社区动态</span>
-					</div>
-					
-					<div class="list-group-item  hover py-4 pad">
-						
-						<a href="/common/user/8547"> <img
-							src="https://avatars2.githubusercontent.com/u/18159158?v=4"
-							class="img-thumbnail rounded float-left mr-2 border border-warning mw-100"
-							style="width: 50px; height: 50px;" />
-						</a>
-						 <a href="/article/6844" target="_blank"
-							class="text-dark font-weight-bold text-truncate"> 
-							&nbsp;译：SpringBoot中使用Hibernate  
-						</a>
-							
-						<div class="card-text text-dark magin-top">
-							<a href="/category/2" class="text-white badge font-weight-normal">Spring
-								Boot</a> <span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读
-								9 </span> · <span class="font-weight-light text-secondary ">评论
-								0 </span> · <span class="font-weight-light text-secondary ">喜欢
-								0 </span> · <span class="font-weight-light text-secondary ">1小时前</span>
-						</div>
 					</div>
 					
 				</div>
 
 
 
-				<button type="button" class="btn btn-default btn-primary btn-block">点击载入更多</button>
+				<button id="add-article" type="button" class="btn btn-default btn-primary btn-block">点击载入更多</button>
 			</div>
 
 			<div class="col-md-3 column">
@@ -179,6 +158,67 @@
 
 
 </body>
+<script type="text/javascript">
+	var current = 1; 
+	$(function(){
+		getArticlePage(current);
+		$('#add-article').click(function(){
+			getArticlePage(current);
+		});
+	});
+	
+	function getArticlePage(currPage){
+		$.ajax({
+  		  method: "GET",
+  		  url: '/article',
+  		  data: { 
+  			  currPage: currPage,
+  			  pageSize: 10,
+  			  },
+  		  success: function(data){
+  			  if(data.code == '0'){
+  				var articlePage = data.result.articlePage;
+  				$.each(articlePage.records, function(index, article) {
+  					show(article);
+  					current = articlePage.current + 1;
+  			    });
+  				  
+  			  }else{
+  				dangerNotify(data.message);
+  			  }
+  		  }
+  		});
+	}
+	
+	function show(article){
+		var content = '';
+		content +='<div class="list-group-item">';
+		content +='	<a href="/user/'+article.user.id+'"> ';
+		content +='		<img src="'+article.user.imageUrl+'" class="img-thumbnail img-size-50"/>';
+		content +='	</a>';
+		content +='	 <a href="/article/'+article.id+'" target="_blank" class="font-weight-bold "> ';
+		content +='		&nbsp;' + article.title;
+		content +='	</a>';
+		content +='	<div class="card-text text-dark magin-top">&nbsp;';
+		content +='		<a href="/category/2" class="text-white label label-info"> '+article.catalog.name +' </a> ';
+		content +='		<span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读  ' + article.clickNum;
+		content +='		</span> · <span>评论 0 ';
+		content +='		</span> · <span>喜欢 0 </span> · ';
+		content +='		<span>'+ timeJoin(article.updateTime)+'小时前</span> ';
+		content +='	</div> ';
+		content +='</div> ';
+		$('#article-list').append(content);
+	}
+	function timeJoin(time){
+		var year = time.year;
+		var monthValue = time.monthValue;
+		var dayOfMonth = time.dayOfMonth;
+		var hour = time.hour;
+		var minute = time.minute;
+		var second = time.second;
+		return diffTime(year + '/'+monthValue+'/'+dayOfMonth +' ' + hour+':'+''+minute+':'+second);
+	}
+</script>
 </html>
 
 

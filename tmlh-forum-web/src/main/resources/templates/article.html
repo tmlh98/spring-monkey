@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/head::head(title ='文章')"></head>
+<head>
+<link rel="stylesheet" href="/asserts/css/article-content.css" />
+</head>
+
+<body>
+	<nav th:replace="commons/bar::topbar(active='default')"></nav>
+
+	<div class="container">
+		<div class="row clearfix">
+
+			<div class="col-md-9 column">
+
+				<div class="list-group">
+					<div class="list-group-item active">
+						<p>
+							<span th:text="${article.title}">标题</span>
+						</p>
+					</div>
+					<div class="list-group-item">
+
+						<div class="card-body  padding-top  padding-bottom">
+							<b class="d-inline-block pull-left">
+								<span class="glyphicon glyphicon-time color-bff" aria-hidden="true"></span>
+								&nbsp;<span th:text="${#dates.format(article.createTime, 'yyyy-MM-dd hh:mm:ss')}"></span></b> 
+								
+							<b class="d-inline-block   magin-left-20">
+								<span class="glyphicon glyphicon-user color-bff" aria-hidden="true"></span>&nbsp;
+								<span th:text="${article.clickNum}"></span>
+							</b>
+								
+							<b class="d-inline-block ml-3 magin-left-20">
+								<span class="glyphicon glyphicon-envelope color-bff" aria-hidden="true"></span>
+								&nbsp;<span th:text="${article.clickNum}"></span></b> 
+							<b class="d-inline-block ml-3 magin-left-20">
+								<span class="glyphicon glyphicon-heart color-bff" aria-hidden="true"></span>
+								&nbsp;<span th:text="${article.clickNum}"></span></b>
+							<button class="btn  btn-danger btn-sm pull-right">添加至喜欢</button>
+						</div>
+
+
+					</div>
+
+					<div class="list-group-item  hover py-4 pad">
+						<div id="article-content" th:utext="${article.content}">
+						
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+			<div class="col-md-3 column">
+				<!-- 作者信息 -->
+				<div class="panel  panel-primary">
+					<div class="panel-heading">
+						<h4 class="magin-top-40" th:text="${article.username}">姓名</h4>
+						<a href="/common/user/8152"> <img class="img-circle" th:src="${article.imageUrl}"
+							style="position: absolute; width: 70px; height: 70px; right: 20px; top: 30px" />
+						</a>
+					</div>
+					<div class="row magin-top-40">
+						<div class="col-md-10 column col-md-offset-1">
+							<div class="col-md-4">
+								<div class="card-body">
+									<p class="text-center">
+										<strong>文章</strong>
+									</p>
+									<p class="text-center">1</p>
+								</div>
+							</div>
+							<div class="col-md-4 column">
+								<div class="card-body">
+									<p class="text-center">
+										<strong>问答</strong>
+									</p>
+									<p class="text-center">0</p>
+								</div>
+							</div>
+							<div class="col-md-4 column">
+								<div class="card-body">
+									<p class="text-center">
+										<strong>粉丝</strong>
+									</p>
+									<p class="text-center">0</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row magin-top padding-bottom">
+						<div class="col-md-10 column col-md-offset-1">
+							<div class="col-md-12 column">
+								<button class="btn btn-success btn-primary btn-block">
+									关注</button>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- 作者文章 -->
+				<div class="panel panel-default">
+				  <div class="panel-heading">
+				    <i class="fa fa-address-book" aria-hidden="true" style="color: #218838;">&nbsp;作者文章 </i>
+				  </div>
+				  <div class="panel-body">
+				  	<p  th:each="art,stat : ${articleList}" style="margin-top: 2px">
+				  		<a th:href="${art.id}" th:text="${art.title}" style="color: black;"></a>
+				  	</p>
+				  </div>
+				</div>
+				
+
+			</div>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div th:replace="commons/footer::footer"></div>
+
+</body>
+<script  th:inline="javascript">
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

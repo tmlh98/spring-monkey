@@ -1,7 +1,12 @@
 package xyz.tmlh.forum.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import xyz.tmlh.core.enums.PublishType;
+import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.security.exception.UserNotFoundException;
 
 /**
  * <p>
@@ -14,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
     
-    @GetMapping({"/" , "/index.html"})
+    @GetMapping({"/" ,"/index", "/index.html"})
     public String index() {
         return "index";
     }
@@ -24,9 +29,24 @@ public class IndexController {
         return "user/login";
     }
     
-    @GetMapping({"/user/article/publish" , "/user/question/publish"})
-    public String addArticle() {
-        return "user/article-add";
+    @GetMapping("/user/question/publish")
+    public String questionPublish(Model model) {
+        if (!CurrentUserUtils.isExistUser()) {
+            throw new UserNotFoundException("user not found ！");
+        }
+        
+        model.addAttribute("publishType", PublishType.QUESTION.toString());
+        return "user/article-publish";
+    }
+    
+    @GetMapping("/user/article/publish")
+    public String articlePublish(Model model) {
+        if (!CurrentUserUtils.isExistUser()) {
+            throw new UserNotFoundException("user not found ！");
+        }
+        
+        model.addAttribute("publishType", PublishType.ARTICLE.toString());
+        return "user/article-publish";
     }
     
 }

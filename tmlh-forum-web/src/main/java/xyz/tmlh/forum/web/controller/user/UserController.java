@@ -1,15 +1,18 @@
 package xyz.tmlh.forum.web.controller.user;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.ServletWebRequest;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import xyz.tmlh.core.model.ArticleModel;
+import xyz.tmlh.core.service.ArticleService;
+import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.security.browser.suport.ResultBean;
 
 /**
  * <p>
@@ -23,23 +26,26 @@ import org.springframework.web.context.request.ServletWebRequest;
 @RequestMapping("/user")
 @Controller
 public class UserController {
-
+    
     @Autowired
-    private ProviderSignInUtils providerSignInUtils;
+    private ArticleService articleService;
     
     @GetMapping
-    public String user() {
+    public String me() {
         return "user/user";
     }
-
-    @PostMapping("/regist")
-    public String regist(String username,String password ,  HttpServletRequest request) {
-        // 不管是注册用户还是绑定用户，都会拿到一个用户唯一标识。
-        String userId = username;
-        providerSignInUtils.doPostSignUp(userId, new ServletWebRequest(request));
-        System.out.println("regist");
-        return "XX";
+    
+    @GetMapping("/{id}")
+    public String user(@PathVariable("id")Integer id) {
+        return "user/user";
     }
     
+    @ResponseBody
+    @PostMapping("/article/publish")
+    public ResultBean questionArticle(ArticleModel article) {
+        article.setUserId(CurrentUserUtils.getUser().getId());
+        articleService.save(article );
+        return ResultBean.success().putResult("articleId", article.getId());
+    }
     
 }

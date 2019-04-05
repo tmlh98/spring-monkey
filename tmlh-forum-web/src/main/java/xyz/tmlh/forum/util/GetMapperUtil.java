@@ -2,11 +2,12 @@ package xyz.tmlh.forum.util;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import xyz.tmlh.forum.web.controller.ArticleController;
 import xyz.tmlh.forum.web.controller.IndexController;
 
 /**
@@ -20,21 +21,44 @@ import xyz.tmlh.forum.web.controller.IndexController;
 public class GetMapperUtil {
 
     /**
-     * 获取类方法所以@GetMapper 的value值
+     * 获取RequestMapper's url
      * @author TianXin
      * @created 2019年4月2日 上午9:58:34
      * @return
      */
-    public static List<String> getGetMapperValue() {
+    public static List<String> getMapperValue() {
+        List<String> urls = getMapperValue(IndexController.class);
+        urls.addAll(getMapperValue(ArticleController.class));
+        return urls;
+    }
+    
+    
+    /**
+     * 获取RequestMapper's url
+     * @author TianXin
+     * @created 2019年4月2日 上午9:58:34
+     * @return
+     */
+    public static List<String> getMapperValue(Class<?> clazz) {
         List<String> urls = new ArrayList<>();
-        Class<IndexController> clazz = IndexController.class;
+        RequestMapping requestMapping = clazz.getAnnotation(RequestMapping.class);
+        String  prefixUrl= "";
+        if(requestMapping != null) {
+            String[] typeUrls = requestMapping.value();
+            prefixUrl = typeUrls[0];
+        }
         Method[] methods = clazz.getMethods();
         for (Method method : methods) {
             GetMapping mapping = method.getAnnotation(GetMapping.class);
             if(mapping != null) {
-                urls.addAll(Arrays.asList(mapping.value()));
+                String[] methodUrls = mapping.value();
+                for (String methodUrl : methodUrls) {
+                    urls.add(prefixUrl + methodUrl);
+                }
             }
         }
         return urls;
     }
+    
+    
 }

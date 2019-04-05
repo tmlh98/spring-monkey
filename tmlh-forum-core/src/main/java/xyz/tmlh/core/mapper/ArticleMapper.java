@@ -1,16 +1,12 @@
 package xyz.tmlh.core.mapper;
 
 
-import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import xyz.tmlh.core.model.ArticleModel;
 
@@ -24,7 +20,6 @@ import xyz.tmlh.core.model.ArticleModel;
  */
 public interface ArticleMapper extends BaseMapper<ArticleModel> {
 
-    
-    Page<ArticleModel> selectPage(@Param(Constants.WRAPPER) Wrapper<ArticleModel> wrapper);
+    IPage<ArticleModel> selectUserPage(IPage<ArticleModel> page,@Param(Constants.WRAPPER)  Wrapper<ArticleModel> wapper);
 
 }

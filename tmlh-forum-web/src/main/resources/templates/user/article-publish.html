@@ -11,7 +11,7 @@
 		<div class="row clearfix" style="margin-top: 25px">
 			<div class="input-group">
 				<span class="input-group-btn"> 
-				<select class="selectpicker show-tick form-control" style=" width: 180px">
+				<select id="catalog-selected" class="selectpicker show-tick form-control" style=" width: 180px">
 						<option value="1">综合</option>
 						<option value="2">Boot</option>
 						<option value="3">Cloud</option>
@@ -21,9 +21,9 @@
 						<option value="7">Batch</option>
 						<option value="8">AMQP</option>
 				</select>
-				</span> <input type="text" class="form-control" placeholder="标题" /> <span
+				</span> <input id="title" type="text" class="form-control" placeholder="标题" /> <span
 					class="input-group-btn">
-					<button class="btn btn-default " type="button">发布</button>
+					<button class="btn btn-default " type="button" th:onclick="|save('${publishType}')|">发布</button>
 				</span>
 			</div>
 			    <!-- 文章编辑器组件 -->
@@ -41,7 +41,39 @@
         var E = window.wangEditor
         var editor = new E('#editor')
         // 或者 var editor = new E( document.getElementById('editor') )
-        editor.create()
+        editor.create();
+        
+        function save(publishType) {
+        	
+        	var catalogId = $('#catalog-selected').val();
+        	var title = $('#title').val();
+        	var content = editor.txt.html();
+        	$.ajax({
+        		  method: "POST",
+        		  url: '/user/article/publish',
+        		  data: { 
+        			  catalogId: catalogId,
+        			  title: title,
+        			  publishType: publishType,
+        			  content: content
+        			  },
+        		  success: function(data){
+        			  if(data.code == '0'){
+       				  	 $.notify({
+       				  		 message:'提交成功,点击查看',
+       				  			url: "/article/" + data.result.articleId,
+       				  			target :'_self'
+       				  	 	},
+       		        		{type: 'success'});
+        			  }else{
+       				  	 $.notify({message:'<strong>上传失败:</strong> ' + data.message},
+       		        		{type: 'danger'});
+
+        			  }
+        		  }
+        		});
+        }
+        
     </script>
 </html>
 

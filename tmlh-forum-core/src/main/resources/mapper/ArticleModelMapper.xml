@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.tmlh.core.mapper.ArticleMapper">
+
+	<!-- 通用查询结果列 -->
+	<sql id="Base_Column_List">
+		acl.id as id, 
+		acl.user_id as user_id, 
+		acl.catalog as catalog,
+		acl.title as title,
+		acl.keywords as keywords,
+		acl.description as description, 
+		acl.content as content, 
+		acl.click_num as click_num, 
+		acl.create_time as create_time, 
+		acl.update_time as update_time
+	</sql>
+
+
+	    <!-- 通用查询映射结果 -->
+    <resultMap id="userMap" type="xyz.tmlh.core.model.ArticleModel">
+        <id column="id" property="id" />
+        <id column="title" property="title" />
+        <id column="keywords" property="keywords" />
+        <id column="description" property="description" />
+        <id column="content" property="content" />
+        <id column="click_num" property="clickNum" />
+        <id column="create_time" property="createTime" />
+        <id column="update_time" property="updateTime" />
+        <association  column="user_id" property="user">
+        	<id column="user_id" property="id"/>
+        	<id column="image_url" property="imageUrl"/>
+        </association>
+        <association  column="catalog" property="catalog">
+        	<id column="catalog_id" property="id"/>
+        	<id column="catalog_name" property="name"/>
+        </association>
+    </resultMap>
+
+
+	<select id="selectUserPage" resultMap="userMap">
+		SELECT
+			<include refid="Base_Column_List"></include> ,u.image_url ,
+			 c.id as catalog_id , c.name as catalog_name
+		FROM
+			tbl_article acl
+		LEFT JOIN tbl_catalog c ON  catalog = c.id
+		LEFT JOIN tbl_user u ON acl.`user_id` = u.`id` 
+		${ew.customSqlSegment}
+	</select>
+
+
+
+
+</mapper>

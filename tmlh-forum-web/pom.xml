@@ -15,7 +15,7 @@
 			<artifactId>tmlh-forum-core</artifactId>
 			<version>${tmlh.security.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -61,6 +61,12 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>layer</artifactId>
 			<version>3.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap-notify</artifactId>
+			<version>3.1.3-1</version>
 		</dependency>
 
 	</dependencies>
