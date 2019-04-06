@@ -58,7 +58,10 @@
 		<module>tmlh-security-browser</module>
 		<module>tmlh-security-social</module>
 		<module>tmlh-forum-core</module>
+		
 		<module>tmlh-forum-web</module>
+
+		
 	</modules>
 
 </project>

@@ -37,7 +37,8 @@ tmlh:
         provider-id: qq
         
 mybatis-plus:
-    typeEnumsPackage: xyz.tmlh.core.enums    
+    typeEnumsPackage: xyz.tmlh.core.enums  
+    mapper-locations: classpath:mapper/*.xml  
     global-config:
       banner: false
         
