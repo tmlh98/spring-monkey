@@ -51,7 +51,41 @@
 
 				</div>
 
-
+				<div class="list-group">
+					<div class="list-group-item">
+					<!-- 	<span class="glyphicon glyphicon-comment color-bff" aria-hidden="true"></span> -->
+						<i class="fa fa-comments-o  color-bff" aria-hidden="true">&nbsp; 评论</i> 
+					</div>
+					
+					<div class="list-group-item"  th:each="comment ,stat :${commentList}">
+						<div class="row">
+							<div class="magin-left-20  pull-left" style="min-width: 50px;min-height: 50px">
+								<a href="#"><img  class="img-circle img-size-50 "  alt="" src="/images/default.jpg" th:src="${comment.userImageUrl}"/></a>
+							</div>
+							<div class=" pull-left magin-left-10">
+								<p><a href="#"  class="color-black"><strong th:text="${comment.username}">XXXXX</strong></a></p>
+								<p th:utext="${comment.content}"></p>
+							</div>
+						</div>
+						<div class="row">
+							<p class="pull-right" >
+								<a href="#" class=" color-hui magin-right-25" style="font-size: 13px">
+									<i class="fa fa-comment-o" aria-hidden="true"> 回复</i>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				
+				<div  id="editorBox" class="list-group-item">
+					<div>
+						<div id="comment-toolbar" class="toolbar pull-left" style="width: 90%">
+						</div>
+				    </div>
+				    <p ><button id="comment-save" class="btn btn-default btn-sm"  th:onclick="|saveComment(${article.id})|">提交评论</button> </p>
+				    <div id="comment-text" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+				    </div>
+				</div>
 
 			</div>
 
@@ -128,7 +162,67 @@
 	<div th:replace="commons/footer::footer"></div>
 
 </body>
-<script  th:inline="javascript">
+<script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor1 = new E('#comment-toolbar', '#comment-text')  // 两个参数也可以传入 elem 对象，class 选择器
+ 	// 自定义菜单配置
+    editor1.customConfig.menus = [
+        'head',
+        'bold',
+        'italic',
+        'underline',
+        'emoticon',  // 表情
+        'image',
+        'code'
+    ]
+    editor1.create();
+    
+    function saveComment(articleId) {
+    	var content = editor1.txt.html();
+    	$.ajax({
+    		  method: "POST",
+    		  url: '/user/comment/publish',
+    		  data: {
+    			  articleId : articleId,
+    			  content : content
+    		  },
+    		  success: function(data){
+    			  if(data.code == 0){
+   				  	successNotify("评论成功!");
+   				 	show(data.result.comment);
+   				 	editor1.txt.clear()
+    			  }else{
+    			  	dangerNotify('<strong>上传失败:</strong> ' + data.message);
+    			  }
+    		  },
+    		  error :function(data){
+    			  warningNotify(data.responseJSON.message , '/login');
+    		  }
+    		});
+    }
+    function show(comment){
+    	var content = '';
+    	content +=' <div class="list-group-item"> ';
+		content +=' 	<div class="row"> ';
+		content +=' 		<div class="magin-left-20  pull-left" style="min-width: 50px;min-height: 50px"> ';
+		content +=' 			<a href="/user/'+comment.userId +'"><img  class="img-circle img-size-50 "  alt="" src="'+comment.userImageUrl +'" /></a> ';
+		content +=' 		</div> ';
+		content +=' 		<div class=" pull-left magin-left-10"> ';
+		content +=' 			<p><a href="#"  class="color-black"><strong>'+comment.username +'</strong></a></p> ';
+		content +=' 			<p><span>'+comment.content +'</span></p> ';
+		content +=' 		</div> ';
+		content +=' 	</div> ';
+		content +=' 	<div class="row"> ';
+		content +=' 		<p class="pull-right" > ';
+		content +=' 			<a href="#" class=" color-hui magin-right-25" style="font-size: 13px"> ';
+		content +=' 				<i class="fa fa-comment-o" aria-hidden="true"> 回复</i> ';
+		content +=' 			</a> ';
+		content +=' 		</p> ';
+		content +=' 	</div> ';
+		content +=' </div> ';
+    	$('#editorBox').before(content);
+    }
 </script>
 </html>
 

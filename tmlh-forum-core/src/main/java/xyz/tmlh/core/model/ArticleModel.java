@@ -19,7 +19,7 @@ import java.io.Serializable;
  * @author TianXin
  * @since 2019-04-01
  */
-@TableName("tbl_article")
+@TableName(value="tbl_article" , resultMap="xyz.tmlh.core.mapper.ArticleMapper.articleMap")
 public class ArticleModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,14 +30,13 @@ public class ArticleModel implements Serializable {
     /**
      * 用户id，外键
      */
-    private Integer userId;
-    
-    @TableField(exist = false)
+    @TableField(el="user.id")
     private UserModel user;
 
     /**
      * 文章分类
      */
+    @TableField(el="catalog.id")
     private CatalogModel catalog;
     
     /**
@@ -100,13 +99,6 @@ public class ArticleModel implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
  
     public CatalogModel getCatalog() {
         return catalog;
@@ -192,7 +184,7 @@ public class ArticleModel implements Serializable {
 
     @Override
     public String toString() {
-        return "ArticleModel [id=" + id + ", userId=" + userId + ", user=" + user + ", catalog=" + catalog + ", publishType=" + publishType + ", title=" + title
+        return "ArticleModel [id=" + id + ", user=" + user + ", catalog=" + catalog + ", publishType=" + publishType + ", title=" + title
             + ", keywords=" + keywords + ", description=" + description + ", content=" + content + ", clickNum=" + clickNum + ", createTime=" + createTime
             + ", updateTime=" + updateTime + "]";
     }

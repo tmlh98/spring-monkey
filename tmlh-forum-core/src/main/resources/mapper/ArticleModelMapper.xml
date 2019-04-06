@@ -5,7 +5,7 @@
 	<!-- 通用查询结果列 -->
 	<sql id="Base_Column_List">
 		acl.id as id, 
-		acl.user_id as user_id, 
+		acl.user as user, 
 		acl.catalog as catalog,
 		acl.title as title,
 		acl.keywords as keywords,
@@ -18,7 +18,7 @@
 
 
 	    <!-- 通用查询映射结果 -->
-    <resultMap id="userMap" type="xyz.tmlh.core.model.ArticleModel">
+    <resultMap id="articleMap" type="xyz.tmlh.core.model.ArticleModel">
         <id column="id" property="id" />
         <id column="title" property="title" />
         <id column="keywords" property="keywords" />
@@ -27,8 +27,8 @@
         <id column="click_num" property="clickNum" />
         <id column="create_time" property="createTime" />
         <id column="update_time" property="updateTime" />
-        <association  column="user_id" property="user">
-        	<id column="user_id" property="id"/>
+        <association  column="user" property="user">
+        	<id column="user" property="id"/>
         	<id column="image_url" property="imageUrl"/>
         </association>
         <association  column="catalog" property="catalog">
@@ -38,14 +38,14 @@
     </resultMap>
 
 
-	<select id="selectUserPage" resultMap="userMap">
+	<select id="selectUserPage" resultMap="articleMap">
 		SELECT
 			<include refid="Base_Column_List"></include> ,u.image_url ,
 			 c.id as catalog_id , c.name as catalog_name
 		FROM
 			tbl_article acl
 		LEFT JOIN tbl_catalog c ON  catalog = c.id
-		LEFT JOIN tbl_user u ON acl.`user_id` = u.`id` 
+		LEFT JOIN tbl_user u ON acl.`user` = u.`id` 
 		${ew.customSqlSegment}
 	</select>
 

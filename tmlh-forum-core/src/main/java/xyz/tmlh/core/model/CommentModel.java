@@ -10,40 +10,48 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *  用户评论表
  * </p>
  *
  * @author TianXin
  * @since 2019-04-06
  */
-@TableName("tbl_catalog")
-public class CatalogModel implements Serializable {
+@TableName("tbl_comment")
+public class CommentModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键
+     */
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 栏目名称
+     * 用户id，外键
      */
-    private String name;
+    private Integer userId;
 
     /**
-     * 栏目关键词
+     * 文章id
      */
-    private String keywords;
+    private Integer articleId;
 
     /**
-     * 栏目描述
+     * 评论内容
      */
-    private String description;
+    private String content;
 
     /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
+
+    /**
+     * 评论id
+     */
+    private Integer commontId;
 
 
     public Integer getId() {
@@ -54,28 +62,30 @@ public class CatalogModel implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    
+
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getKeywords() {
-        return keywords;
+    public Integer getArticleId() {
+        return articleId;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
-    public String getDescription() {
-        return description;
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public LocalDateTime getCreateTime() {
@@ -86,14 +96,12 @@ public class CatalogModel implements Serializable {
         this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        return "CatalogModel{" +
-        "id=" + id +
-        ", name=" + name +
-        ", keywords=" + keywords +
-        ", description=" + description +
-        ", createTime=" + createTime +
-        "}";
+    public Integer getCommontId() {
+        return commontId;
     }
+
+    public void setCommontId(Integer commontId) {
+        this.commontId = commontId;
+    }
+
 }

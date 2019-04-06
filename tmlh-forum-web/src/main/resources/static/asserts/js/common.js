@@ -13,10 +13,7 @@ function toDateTime(time){
 function diffTime(startDate) { 
     startDate= new Date(startDate);
     var endDate= new Date();
-    var diff=endDate.getTime() - startDate.getTime();//时间差的毫秒数 
-   
-    //计算出相差天数 
-    var days=Math.floor(diff/(24*3600*1000)); 
+    var diff=endDate.getTime() + (3600*1000 * 20) - startDate.getTime();//时间差的毫秒数 
         
     //计算出小时数 
     var leave1=diff%(24*3600*1000);    //计算天数后剩余的毫秒数 
@@ -36,6 +33,13 @@ function warningNotify(msg){
 				{type: 'warning'}
 	);
 }
+function warningNotify(msg ,url){
+	$.notify({
+	 message:msg,
+		url: url,
+ 	},
+{type: 'warning'});
+}
 			
 function infoNotify(msg){
 	$.notify(
@@ -49,4 +53,7 @@ function dangerNotify(msg){
 		{message:msg},
 		{type: 'danger'}
 	);
+}
+function errorHandler(message){
+	dangerNotify(message);
 }

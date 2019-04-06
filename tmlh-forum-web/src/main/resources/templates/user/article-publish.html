@@ -48,17 +48,22 @@
         	var catalogId = $('#catalog-selected').val();
         	var title = $('#title').val();
         	var content = editor.txt.html();
+        	var data = { 
+      			  "catalog": {
+    				  "id" : catalogId
+    			  },
+    			  "title": title,
+    			  "publishType": publishType,
+    			  "content": content
+    			  };
         	$.ajax({
         		  method: "POST",
         		  url: '/user/article/publish',
-        		  data: { 
-        			  catalogId: catalogId,
-        			  title: title,
-        			  publishType: publishType,
-        			  content: content
-        			  },
+        		  data: {
+        			  articleStr : JSON.stringify(data)
+        		  },
         		  success: function(data){
-        			  if(data.code == '0'){
+        			  if(data.code == 0){
        				  	 $.notify({
        				  		 message:'提交成功,点击查看',
        				  			url: "/article/" + data.result.articleId,
@@ -70,6 +75,9 @@
        		        		{type: 'danger'});
 
         			  }
+        		  },
+        		  error :function(){
+        			  dangerNotify('服务器异常!');
         		  }
         		});
         }

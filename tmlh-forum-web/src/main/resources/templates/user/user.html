@@ -1,48 +1,132 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(title = ${session.loginUser.username})">
+<head
+	th:replace="commons/head::head(title = ${user.username})">
 </head>
-
 <body>
 	<nav th:replace="commons/bar::topbar(active='default')"></nav>
 
 	<div class="container">
 
-		<div class="row clearfix" style="margin-top: 25px">
-			<div class="col-md-2 column">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							个人信息
-						</h3>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="tab-pane fade in active" id="bulletin">
+					<!-- 作者信息 -->
+					<div class="panel  panel-primary">
+						<div class="panel-heading">
+							<h4 class="magin-top-40" th:text="${user.username}">姓名</h4>
+							<p class="pull-right">
+								<button class="btn  btn-success sty">+关注</button>
+							</p>
+							<a href="#"> <img
+								class="img-circle img-size-70"
+								th:src="${user.imageUrl}"
+								style="position: absolute; z-index: 1000; right: 50%; left: 47%; top: 50px;" />
+							</a>
+						</div>
+						<div class="panel-body"  style="width: 100%">
+							<p class="text-center magin-top-50 color-hui-2" style="font-weight: 700 !important;"> 
+								<span th:text="${user.detail}">描述</span> <span th:text="${user.source}">qq用户</span>
+							</p>
+							<p class="text-center magin-top-20"  style="font-weight: 700 !important;">
+								<span th:text="${user.signature}">签名</span> 
+							</p>
+						</div>
+						
+						<div  class="panel-body" >
+							<div class="row">
+								<div class="col-md-4 col-md-offset-5">
+													
+									<ul id="myTab" class="nav nav-pills" role="tablist">
+									    <li  class="active"><a href="#art-list" role="tab" data-toggle="pill">文章</a></li>
+									    <li><a href="#forum" role="tab" data-toggle="pill">问答</a></li>
+									    <li><a href="#security" role="tab" data-toggle="pill">社交</a></li>
+									</ul>
+								
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="panel-body">
-						我的文章
-					</div>
-					<div class="panel-body">
-						我的提问
-					</div>
-					<div class="panel-body">
-						喜欢的内容
-					</div>
-					<div class="panel-body">
-						消息通知
+
+				</div>
+				
+				
+				<div>
+				
+				
+					<!-- 选项卡面板 -->
+					<div id="myTabContent" class="tab-content">
+					    <div class="tab-pane fade in active" id="art-list">
+					    	<p id="art-box"></p>
+							<button id="add-article" type="button" class="btn btn-default btn-primary btn-block">点击载入</button>
+						</div>
+					    <div class="tab-pane fade" id="forum">
+					    	<p id="question-box"></p>
+							<button id="add-question" type="button" class="btn btn-default btn-primary btn-block">点击载入</button>
+					    </div>
+					    <div class="tab-pane fade" id="security">敬请期待!</div>
 					</div>
 				</div>
 
-				 
-			</div>
 
-			<div class="col-md-10 column">
-					
-					
-				 
+				
 			</div>
 
 
 
 		</div>
 	</div>
+
+
+
+
+
 </body>
+<script src="/asserts/js/apple-data.js"></script>
+<script th:inline="javascript">
+	var id = [[${user.id}]];
+</script>
+<script type="text/javascript" >
+	var current = 1; 
+	$(function(){
+		getArticlePage(current  ,'ARTICLE');
+		$('#add-article').click(function(){
+			getArticlePage(current ,'ARTICLE');
+		});
+		$('#add-question').click(function(){
+			getArticlePage(current ,'QUESTION');
+		});
+	});
+	
+	function getArticlePage(currPage , publishType){
+		$.ajax({
+  		  method: "GET",
+  		  url: '/article',
+  		  data: { 
+  			  currPage: currPage,
+  			  pageSize: 10,
+  			  id : id ,
+  			  publishType : publishType
+  			  },
+  		  success: function(data){
+  			  if(data.code == '0'){
+  				var articlePage = data.result.articlePage;
+  				if(articlePage.records == 0){
+  					infoNotify('没有更多了!');
+  				}
+  				$.each(articlePage.records, function(index, article) {
+  					showArts(article,$('#art-box'));
+  					current = articlePage.current + 1;
+  			    });
+  				  
+  			  }else{
+  				dangerNotify(data.message);
+  			  }
+  		  }
+  		});
+	}
+	
+
+</script>
 </html>
 
