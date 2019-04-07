@@ -15,8 +15,8 @@
 				    <li class="active">
 				    	<a href="#bulletin" role="tab" data-toggle="pill"> 个人信息    </a>
 				     </li>
-				    <li><a href="#rule" role="tab" data-toggle="pill">我的文章</a></li>
-				    <li><a href="#forum" role="tab" data-toggle="pill">我的提问</a></li>
+				    <li><a id="me-arts" href="#art-list" role="tab" data-toggle="pill">我的文章</a></li>
+				    <li><a id="me-question" href="#question-list" role="tab" data-toggle="pill">我的提问</a></li>
 				    <li><a href="#security" role="tab" data-toggle="pill">喜欢的内容</a></li>
 				    <li><a href="#welfare" role="tab" data-toggle="pill">消息通知</a></li>
 				</ul>
@@ -77,7 +77,7 @@
 									<div class="col-md-4 column">
 										<div class="card-body">
 											<p class="text-center">
-												<strong>粉丝</strong>
+												<strong>回复</strong>
 											</p>
 											<p class="text-center">0</p>
 										</div>
@@ -92,13 +92,13 @@
 								 <div class="col-md-6">
 								 	<div style="border-bottom: 1px solid #28a745;">
 									    <span class="magin-left-30">我的关注</span> 
-									    <span class="magin-left-20">0</span> 
+									    <span class="magin-left-20" th:text="${followCount}">0</span> 
 								 	</div>
 								 </div>
 								 <div class="col-md-6">
 								 <div style="border-bottom: 1px solid #28a745;">
 								   <span  class="magin-left-30">我的粉丝</span> 
-								   <span  class="magin-left-20">0</span> 
+								   <span  class="magin-left-20" th:text="${fansCount}">0</span> 
 								   </div>
 								 </div>
 							</div>
@@ -116,8 +116,24 @@
 						</div>
 				    	
 				    </div>
-				    <div class="tab-pane fade" id="rule">敬请期待！</div>
-				    <div class="tab-pane fade" id="forum">敬请期待！</div>
+				    <div class="tab-pane fade" id="art-list">
+				    	<div class="panel panel-default">
+						  <div class="panel-heading" >
+						    <i class="fa fa-book  fa-1x font-sty" aria-hidden="true">&nbsp;文章</i>
+						  </div>
+						 
+						</div>
+				    </div>
+				    <div class="tab-pane fade" id="question-list">
+				    	<div class="panel panel-default">
+						  <div class="panel-heading" >
+						    <i class="fa fa-book  fa-1x font-sty" aria-hidden="true">&nbsp;问答</i>
+						  </div>
+						  <div class="panel-body">
+						  	
+						  </div>
+						</div>
+				    </div>
 				    <div class="tab-pane fade" id="security">敬请期待！</div>
 				    <div class="tab-pane fade" id="welfare">敬请期待！</div>
 				</div>
@@ -163,8 +179,48 @@
 </div>
 
 </body>
+<script src="/asserts/js/apple-data.js"></script>
+<script th:inline="javascript">
+	var id = [[${session.loginUser.id}]];
+</script>
+<script src="/webjars/layer/3.1.1/dist/layer.js"></script>
 <script type="text/javascript">
+$(function(){
+	$('#me-arts').click(function(){
+		getArticlePage(1 ,'ARTICLE' , $('#art-list .panel-default'));
+	});
+	$('#me-question').click(function(){
+		getArticlePage(1 ,'QUESTION' , $('#art-list .panel-default'));
+	});
+	
+});
 
+function getArticlePage(currPage , publishType , contentBox){
+	$.ajax({
+		  method: "GET",
+		  url: '/article',
+		  data: { 
+			  currPage: currPage,
+			  pageSize: 100,
+			  id : id ,
+			  publishType : publishType
+			  },
+		  success: function(data){
+			  if(data.code == '0'){
+				var articlePage = data.result.articlePage;
+				if(articlePage.records == 0){
+					infoNotify('没有更多了!');
+				}
+				$.each(articlePage.records, function(index, article) {
+					meShowArts(article,contentBox);
+			    });
+				  
+			  }else{
+				dangerNotify(data.message);
+			  }
+		  }
+		});
+}
 
 function update(){
 	var email = $('#exampleInputEmail1').val();
@@ -192,8 +248,33 @@ function update(){
 		});
 }
 
-
-
+function deleteArt(artId , obj){
+	var del = layer.confirm("是否删除", {icon:5, shift:5}, function(){
+		$.ajax({
+			  method: "DELETE",
+			  url: '/user/article/'+artId,
+			  success: function(data){
+				  if(data.code == 0){
+					  layer.close(del);
+					  var ii = layer.load();
+					  obj.parentNode.parentNode.remove();
+					  layer.close(ii);
+					  successNotify(data.message);
+				  }else{
+				  	dangerNotify('<strong>删除失败:</strong> ' + data.message);
+				  }
+			  },
+			  error :function(data){
+				  warningNotify(data.responseJSON.message);
+			  }
+			});
+	});
+	
+	
+}
+function editArt(id){
+	window.location.href="/user/article/"+id;
+}
 </script>
 </html>
 

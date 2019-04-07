@@ -32,8 +32,17 @@
 	font-style: inherit;	
 	color: black;
 }
+.font-weight-bold-15{
+	font-size : 15px;
+	font-style: inherit;	
+	color: black;
+}
 .font-size-13{
 	font-size : 13px;
+}
+.font-sty{
+	font-size : 16px !important;
+	color: #918bca;
 }
 .text-center{
 	text-align: center;
@@ -118,4 +127,6 @@
 .border-none{
 	border:none;
 }
-
+.border-bootom{
+	border-bottom: 1px solid #F5F5F5;
+}

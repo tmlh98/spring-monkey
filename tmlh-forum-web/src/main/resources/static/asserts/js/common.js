@@ -24,7 +24,7 @@ function diffTime(startDate) {
 function successNotify(msg){
 	$.notify(
 		{message:msg},
-   		{type: 'success'}
+   		{type: 'success', spacing: 110}
 	);
 }
 function warningNotify(msg){
@@ -44,7 +44,7 @@ function warningNotify(msg ,url){
 function infoNotify(msg){
 	$.notify(
 		{message:msg},
-		{type: 'info'}
+		{type: 'info' , offset: 60}
 	);
 }
 			

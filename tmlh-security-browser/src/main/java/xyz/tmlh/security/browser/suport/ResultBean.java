@@ -11,6 +11,8 @@ package xyz.tmlh.security.browser.suport;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.bytebuddy.asm.Advice.This;
+
 /** 
  * 结果bean 
  * Created by TianXin on 2018年12月27日. 
@@ -36,7 +38,7 @@ public class ResultBean {
     }
     
     public ResultBean(String message) {
-        this.code = 1;
+        this.code = 0;
         this.message = message;
     }
     
@@ -74,6 +76,10 @@ public class ResultBean {
         return new ResultBean();
     }
     
+    public static ResultBean success(String message) {
+        return new ResultBean(message);
+    }
+    
     public static ResultBean fail() {
         return new ResultBean(CODE_FAIL , 1);
     }
@@ -90,6 +96,11 @@ public class ResultBean {
     public ResultBean putResult(String key, Object value) {
         this.result.put(key, value);
         return this;
+    }
+
+    public ResultBean msg(String message) {
+       this.message = message;
+       return this;
     }
     
 }

@@ -75,7 +75,7 @@ public class ArticleController {
         model.addAttribute("article", new ArticleVo(article, user));
         
         QueryWrapper<CommentModel> qWrapper = new QueryWrapper<>();
-        qWrapper.eq("com.article_id" , article.getId());
+        qWrapper.eq("com.article_id" , id);
         model.addAttribute("commentList", commentService.findAll(qWrapper));
         
         LambdaQueryWrapper<ArticleModel> wapper = new LambdaQueryWrapper<ArticleModel>()

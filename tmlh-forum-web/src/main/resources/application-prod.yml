@@ -2,12 +2,6 @@ server:
   port: 80
   
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://123.207.5.177:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false
-    username: tx
-    password: tx666
-
 #去除thymeleaf标签验证
   thymeleaf:
     content-type: text/html  

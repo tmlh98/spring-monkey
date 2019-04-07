@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.util.user.CurrentUserUtils;
 
 /**
  * <p>
@@ -25,10 +27,18 @@ public class UserDataController {
     @Autowired
     private UserService userService;
     
+    @Autowired
+    private SocialService socialService;
+    
     @GetMapping("/{id}")
     public String user(@PathVariable("id")Integer id , Model model) {
         UserModel user = userService.getById(id);
         model.addAttribute("user", user);
+        boolean isFollow = false;
+        if(CurrentUserUtils.isExistUser()) {
+            isFollow = socialService.selectFollow(CurrentUserUtils.getUser().getId() , id);
+        }
+        model.addAttribute("isFollow", isFollow);
         return "user/user";
     }
     

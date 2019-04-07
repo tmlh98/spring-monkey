@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/head::head(title = '发布')">
+</head>
+
+<body>
+	<nav th:replace="commons/bar::topbar(active='article')"></nav>
+
+	<div class="container">
+
+		<div class="row clearfix" style="margin-top: 25px">
+			<div class="input-group">
+				<span class="input-group-btn"> 
+				<select id="catalog-selected" class="selectpicker show-tick form-control" style=" width: 180px">
+						<option value="1">综合</option>
+						<option value="2">Boot</option>
+						<option value="3">Cloud</option>
+						<option value="4">Framework</option>
+						<option value="5">Security</option>
+						<option value="6">Data</option>
+						<option value="7">Batch</option>
+						<option value="8">AMQP</option>
+				</select>
+				</span> <input id="title" type="text" class="form-control" placeholder="标题" th:value="${article.title}"/> <span
+					class="input-group-btn">
+					<button class="btn btn-default " type="button" th:onclick="|save('${article.publishType}')|">发布</button>
+				</span>
+			</div>
+			    <!-- 文章编辑器组件 -->
+		    <div>
+		        <p class="text-success">友情提示：编辑器支持图片拖动上传或者复制粘贴上传~</p>
+		        <div id="editor" th:utext="${article.content}">
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+<script th:inline="javascript">
+	var artId = [[${article.id}]];
+</script>
+ <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+ <script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        // 或者 var editor = new E( document.getElementById('editor') )
+        editor.create();
+        
+        function save(publishType) {
+        	
+        	var catalogId = $('#catalog-selected').val();
+        	var title = $('#title').val();
+        	var content = editor.txt.html();
+        	var data = { 
+        		 
+      			  "catalog": {
+    				  "id" : catalogId
+    			  },
+    			  "id" : artId,
+    			  "title": title,
+    			  "publishType": publishType,
+    			  "content": content
+    			  };
+        	$.ajax({
+        		  method: "PUT",
+        		  url: '/user/article/edit',
+        		  data: {
+        			  articleStr : JSON.stringify(data)
+        		  },
+        		  success: function(data){
+        			  if(data.code == 0){
+       				  	 $.notify({
+       				  		 message:'提交成功,点击查看',
+       				  			url: "/article/" + data.result.articleId,
+       				  			target :'_self'
+       				  	 	},
+       		        		{type: 'success'});
+        			  }else{
+       				  	 $.notify({message:'<strong>上传失败:</strong> ' + data.message},
+       		        		{type: 'danger'});
+
+        			  }
+        		  },
+        		  error :function(){
+        			  dangerNotify('服务器异常!');
+        		  }
+        		});
+        }
+        
+    </script>
+</html>
+

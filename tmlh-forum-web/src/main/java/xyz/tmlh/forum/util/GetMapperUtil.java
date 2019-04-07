@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import xyz.tmlh.forum.web.controller.ArticleController;
 import xyz.tmlh.forum.web.controller.IndexController;
+import xyz.tmlh.forum.web.controller.user.UserDataController;
 
 /**
  * <p>
@@ -29,6 +30,7 @@ public class GetMapperUtil {
     public static List<String> getMapperValue() {
         List<String> urls = getMapperValue(IndexController.class);
         urls.addAll(getMapperValue(ArticleController.class));
+        urls.addAll(getMapperValue(UserDataController.class));
         return urls;
     }
     

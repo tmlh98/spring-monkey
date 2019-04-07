@@ -37,6 +37,7 @@ public class WebSecurityConfig extends BrowserSecurityConfig {
 
     private List<String> getUrlList(){
         List<String> urls = new ArrayList<>();
+        urls.add("/favicon.ico");
         urls.add("/webjars/**");
         urls.add("/asserts/**");
         urls.add("/images/**");
@@ -46,9 +47,6 @@ public class WebSecurityConfig extends BrowserSecurityConfig {
     private String[] getUrls() {
         List<String> urls = getUrlList();
         urls.addAll(GetMapperUtil.getMapperValue());
-        for (String string : urls) {
-            System.err.println(string);
-        }
         return urls.stream().toArray(String[]::new);
     }
     

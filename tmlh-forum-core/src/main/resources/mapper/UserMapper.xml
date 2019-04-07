@@ -3,7 +3,7 @@
 <mapper namespace="xyz.tmlh.core.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="xyz.tmlh.core.model.UserModel">
+    <resultMap id="userMap" type="xyz.tmlh.core.model.UserModel">
         <id column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="username" property="username" />
@@ -14,7 +14,7 @@
         <result column="state" property="state" />
         <result column="source" property="source" />
         <result column="detail" property="detail" />
-        <result column=" signature" property=" signature" />
+        <result column="signature" property=" signature" />
     </resultMap>
 
     <!-- 通用查询结果列 -->

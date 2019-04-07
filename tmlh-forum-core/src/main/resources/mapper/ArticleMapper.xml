@@ -20,20 +20,22 @@
 	    <!-- 通用查询映射结果 -->
     <resultMap id="articleMap" type="xyz.tmlh.core.model.ArticleModel">
         <id column="id" property="id" />
-        <id column="title" property="title" />
-        <id column="keywords" property="keywords" />
-        <id column="description" property="description" />
-        <id column="content" property="content" />
-        <id column="click_num" property="clickNum" />
-        <id column="create_time" property="createTime" />
-        <id column="update_time" property="updateTime" />
+        
+        <result column="title" property="title" />
+        <result column="keywords" property="keywords" />
+        <result column="description" property="description" />
+        <result column="content" property="content" />
+        <result column="click_num" property="clickNum" />
+        <result column="publish_type" property="publishType" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
         <association  column="user" property="user">
         	<id column="user" property="id"/>
-        	<id column="image_url" property="imageUrl"/>
+        	<result column="image_url" property="imageUrl"/>
         </association>
         <association  column="catalog" property="catalog">
         	<id column="catalog_id" property="id"/>
-        	<id column="catalog_name" property="name"/>
+        	<result column="catalog_name" property="name"/>
         </association>
     </resultMap>
 

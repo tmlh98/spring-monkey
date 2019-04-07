@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import xyz.tmlh.core.exception.ServiceException;
 import xyz.tmlh.forum.web.WebConstans;
 import xyz.tmlh.security.browser.suport.ResultBean;
 import xyz.tmlh.security.exception.UserNotFoundException;
@@ -44,6 +45,16 @@ public class ControllerExceptionHandler {
     public String userNotFoundException(UserNotFoundException ex ) {
         LOGGER.error(ex.getMessage());
         return WebConstans.REDIRECT_PREFIX + "login";
+    }
+    
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(ServiceException.class)
+    public ResultBean serviceException(ServiceException ex ) {
+        if(LOGGER.isWarnEnabled()) {
+            LOGGER.warn(ex.getMessage());
+        }
+        return ResultBean.fail(ex.getMessage());
     }
     
 }

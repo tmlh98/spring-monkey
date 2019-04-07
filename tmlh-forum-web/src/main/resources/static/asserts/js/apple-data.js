@@ -29,3 +29,43 @@
 		var second = time.second;
 		return diffTime(year + '/'+monthValue+'/'+dayOfMonth +' ' + hour+':'+''+minute+':'+second);
 	}
+	
+	
+	
+	
+	
+	
+function meShowArts(article , showBox){
+	var content = '';
+	content +='<div class="panel-body border-bootom">'
+	content +='	 <div class="pull-right"> ';
+	content +='	 <button type="button" class="btn btn-info" onclick=editArt('+article.id+')> 编辑 </button>';
+	content +='	 <button type="button" class="btn btn-danger" onclick=deleteArt('+article.id+ ',this)> 删除 </button>';
+	content +='	 </div> ';
+	content +='	 <a href="/article/'+article.id+'" target="_blank" class="font-weight-bold-15 "> ';
+	content +='		&nbsp;' + article.title;
+	content +='	</a>';
+	content +='	<div class="card-text text-dark magin-top">&nbsp;';
+	content +='		<a href="#" class="text-white label label-info"> '+article.catalog.name +' </a> ';
+	content +='		<span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读  ' + article.clickNum;
+	content +='		</span> · <span>评论 0 ';
+	content +='		</span> · <span>喜欢 0 </span> · ';
+	content +='		<span>'+ timeJoin(article.updateTime)+'小时前</span> ';
+	content +='	 </div> ';
+
+	content +='	</div> ';
+	showBox.append(content);
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

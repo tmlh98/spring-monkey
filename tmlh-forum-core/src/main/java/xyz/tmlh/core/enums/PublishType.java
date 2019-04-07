@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
  * @author TianXin
  * @since 2019-04-02
  */
-public enum PublishType {
+public enum PublishType{
 
     ARTICLE("article", "文章"),
     QUESTION("question" , "问答 ");
@@ -31,6 +31,8 @@ public enum PublishType {
     public String getDesc() {
         return desc;
     }
+    
+    
     
     
 }

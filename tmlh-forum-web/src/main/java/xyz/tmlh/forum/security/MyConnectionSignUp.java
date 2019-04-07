@@ -53,7 +53,7 @@ public class MyConnectionSignUp implements ConnectionSignUp {
 	            
 	            userSrvice.save(user);
 	            SessionUtil.remove(strings[1]);
-	            LOGGER.info("QQ用户:{} , 注册成功  !" ,  connection.getDisplayName());
+	            LOGGER.info("QQ用户:{} , 注册成功  ! \n {}" ,  connection.getDisplayName(),userInfo);
 	        }
 	    }
 	    

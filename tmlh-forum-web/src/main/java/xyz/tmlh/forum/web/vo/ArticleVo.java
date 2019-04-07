@@ -86,10 +86,10 @@ public class ArticleVo {
     private String imageUrl;
 
     public ArticleVo(ArticleModel article, UserModel user) {
+        BeanUtils.copyProperties(user, this);
         BeanUtils.copyProperties(article, this);
         this.createTime = LocalDateTimeUtil.toTimestamp(article.getCreateTime());
         this.updateTime = LocalDateTimeUtil.toTimestamp(article.getUpdateTime());
-        BeanUtils.copyProperties(user, this);
     }
 
     public Integer getId() {

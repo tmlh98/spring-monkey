@@ -2,14 +2,17 @@ package xyz.tmlh.forum.web.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.util.scope.RequestUtils;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 import xyz.tmlh.security.exception.UserNotFoundException;
 
@@ -39,23 +42,18 @@ public class IndexController {
         return "user/login";
     }
     
-    @GetMapping("/user/question/publish")
-    public String questionPublish(Model model) {
+    @GetMapping({"/user/question/publish" ,"/user/article/publish"})
+    public String questionPublish(@RequestParam(required=false) Integer id,Model model) {
         if (!CurrentUserUtils.isExistUser()) {
             throw new UserNotFoundException("user not found ！");
         }
         
-        model.addAttribute("publishType", PublishType.QUESTION.toString());
-        return "user/article-publish";
-    }
-    
-    @GetMapping("/user/article/publish")
-    public String articlePublish(Model model) {
-        if (!CurrentUserUtils.isExistUser()) {
-            throw new UserNotFoundException("user not found ！");
+        String url = RequestUtils.getHttpServletRequest().getRequestURI();
+        if(StringUtils.contains("/user/article/publish", url)) {
+            model.addAttribute("publishType", PublishType.ARTICLE.toString());
+        }else {
+            model.addAttribute("publishType", PublishType.QUESTION.toString());
         }
-        
-        model.addAttribute("publishType", PublishType.ARTICLE.toString());
         return "user/article-publish";
     }
     

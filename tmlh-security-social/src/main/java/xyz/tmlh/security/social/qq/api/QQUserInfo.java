@@ -231,9 +231,7 @@ public class QQUserInfo {
     public String getFigureurl_qq() {
         return figureurl_qq;
     }
-    /**
-     * @param figureurl_qq the figureurl_qq to set
-     */
+    
     public void setFigureurl_qq(String figureurl_qq) {
         this.figureurl_qq = figureurl_qq;
     }
@@ -243,7 +241,14 @@ public class QQUserInfo {
     public void setFigureurl_type(String figureurl_type) {
         this.figureurl_type = figureurl_type;
     }
+     
+    @Override
+    public String toString() {
+        return "QQUserInfo [ret=" + ret + ", msg=" + msg + ", openId=" + openId + ", is_lost=" + is_lost + ", province=" + province + ", city=" + city
+            + ", year=" + year + ", nickname=" + nickname + ", figureurl=" + figureurl + ", figureurl_1=" + figureurl_1 + ", figureurl_2=" + figureurl_2
+            + ", figureurl_qq=" + figureurl_qq + ", figureurl_qq_1=" + figureurl_qq_1 + ", figureurl_qq_2=" + figureurl_qq_2 + ", gender=" + gender
+            + ", is_yellow_vip=" + is_yellow_vip + ", vip=" + vip + ", yellow_vip_level=" + yellow_vip_level + ", level=" + level + ", is_yellow_year_vip="
+            + is_yellow_year_vip + ", constellation=" + constellation + ", figureurl_type=" + figureurl_type + "]";
+    }
 	
-	
-
 }

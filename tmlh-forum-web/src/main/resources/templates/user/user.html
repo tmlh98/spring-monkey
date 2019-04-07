@@ -15,8 +15,9 @@
 					<div class="panel  panel-primary">
 						<div class="panel-heading">
 							<h4 class="magin-top-40" th:text="${user.username}">姓名</h4>
-							<p class="pull-right">
-								<button class="btn  btn-success sty">+关注</button>
+							<p class="pull-right" id= "relation">
+								<button id="folwer" class="btn  btn-success sty" th:unless="${isFollow}">+关注</button>
+								<button id="unfolwer" class="btn  btn-success sty" th:if="${isFollow}">取消关注</button>
 							</p>
 							<a href="#"> <img
 								class="img-circle img-size-70"
@@ -77,6 +78,7 @@
 		</div>
 	</div>
 
+	<div th:replace="commons/footer::footer"></div>
 
 
 
@@ -96,6 +98,13 @@
 		$('#add-question').click(function(){
 			getArticlePage(current ,'QUESTION');
 		});
+		$("#relation").on("click"," #folwer",function(){
+			folwer();
+		}); 
+		$("#relation").on("click"," #unfolwer",function(){
+			unfolwer();
+		}); 
+		
 	});
 	
 	function getArticlePage(currPage , publishType){
@@ -119,6 +128,36 @@
   					current = articlePage.current + 1;
   			    });
   				  
+  			  }else{
+  				dangerNotify(data.message);
+  			  }
+  		  }
+  		});
+	}
+	function folwer(){
+		$.ajax({
+  		  method: "POST",
+  		  url: '/user/social/' + id,
+  		  success: function(data){
+  			  if(data.code == '0'){
+  				infoNotify(data.message);
+  				$('#relation').html('<button id="unfolwer" class="btn  btn-success sty">取消关注</button>');
+  			  }else{
+  				dangerNotify(data.message);
+  			  }
+  		  },error:function(data){
+  			dangerNotify(data.responseJSON.message );
+  		  }
+  		});
+	}
+	function unfolwer(){
+		$.ajax({
+  		  method: "DELETE",
+  		  url: '/user/social/' + id,
+  		  success: function(data){
+  			  if(data.code == '0'){
+  				infoNotify(data.message);
+  				$('#relation').html('<button id="folwer" class="btn  btn-success sty">+关注</button>');
   			  }else{
   				dangerNotify(data.message);
   			  }

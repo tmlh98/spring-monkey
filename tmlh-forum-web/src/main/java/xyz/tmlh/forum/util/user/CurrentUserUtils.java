@@ -61,7 +61,7 @@ public class CurrentUserUtils {
     }
     
     /**
-     * 用户是否为null
+     * 用户是否存在
       *
       * @param @return    参数
       * @return boolean    返回类型
