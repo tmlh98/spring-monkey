@@ -20,8 +20,10 @@ import xyz.tmlh.core.model.CommentModel;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.ArticleService;
 import xyz.tmlh.core.service.CommentService;
+import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
 import xyz.tmlh.core.suport.SqlPrefix;
+import xyz.tmlh.forum.util.user.CurrentUserUtils;
 import xyz.tmlh.forum.web.vo.ArticleVo;
 import xyz.tmlh.security.browser.suport.ResultBean;
 
@@ -45,6 +47,9 @@ public class ArticleController {
     
     @Autowired
     private CommentService commentService;
+    
+    @Autowired
+    private SocialService socialService;
     
     @ResponseBody
     @GetMapping({"/",""})
@@ -84,6 +89,11 @@ public class ArticleController {
             .orderByDesc(ArticleModel::getUpdateTime)
             .last(SqlPrefix.LIMIT + 10);
         model.addAttribute("articleList", articleService.list(wapper));
+        boolean isFollow = false;
+        if(CurrentUserUtils.isExistUser()) {
+            isFollow = socialService.selectFollow(CurrentUserUtils.getUser().getId() , user.getId());
+        }
+        model.addAttribute("isFollow", isFollow);
         return "article";
     }
     

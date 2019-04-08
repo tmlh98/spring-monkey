@@ -24,13 +24,19 @@ function diffTime(startDate) {
 function successNotify(msg){
 	$.notify(
 		{message:msg},
-   		{type: 'success', spacing: 110}
+   		{type: 'success', offset: {
+			x : 20 ,
+			y : 70
+		}}
 	);
 }
 function warningNotify(msg){
 	$.notify(
 			{message:msg},
-				{type: 'warning'}
+				{type: 'warning',offset: {
+					x : 20 ,
+					y : 70
+				}}
 	);
 }
 function warningNotify(msg ,url){
@@ -38,20 +44,32 @@ function warningNotify(msg ,url){
 	 message:msg,
 		url: url,
  	},
-{type: 'warning'});
+{type: 'warning',offset: {
+	x : 20 ,
+	y : 70
+}});
 }
 			
 function infoNotify(msg){
 	$.notify(
 		{message:msg},
-		{type: 'info' , offset: 60}
+		{
+			type: 'info' ,
+			offset: {
+				x : 20 ,
+				y : 70
+			}
+		}
 	);
 }
 			
 function dangerNotify(msg){
 	$.notify(
 		{message:msg},
-		{type: 'danger'}
+		{type: 'danger',offset: {
+			x : 20 ,
+			y : 70
+		}}
 	);
 }
 function errorHandler(message){

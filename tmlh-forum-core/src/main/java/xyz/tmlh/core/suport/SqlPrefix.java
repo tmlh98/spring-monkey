@@ -10,5 +10,5 @@ package xyz.tmlh.core.suport;
  */
 public interface SqlPrefix {
 
-    String LIMIT = "limit ";
+    String LIMIT = "LIMIT ";
 }

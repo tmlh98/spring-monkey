@@ -87,6 +87,7 @@ public class ArticleVo {
 
     public ArticleVo(ArticleModel article, UserModel user) {
         BeanUtils.copyProperties(user, this);
+        this.userId = user.getId();
         BeanUtils.copyProperties(article, this);
         this.createTime = LocalDateTimeUtil.toTimestamp(article.getCreateTime());
         this.updateTime = LocalDateTimeUtil.toTimestamp(article.getUpdateTime());

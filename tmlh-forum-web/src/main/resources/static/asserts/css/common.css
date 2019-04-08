@@ -1,3 +1,8 @@
+body, html { 
+    overflow-x: hidden; 
+    overflow-y: auto;
+}
+
 .img-left{
 	width: 70xp;
 	height: 70px;
