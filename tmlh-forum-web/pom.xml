@@ -9,6 +9,15 @@
 	</parent>
 	<artifactId>tmlh-forum-web</artifactId>
 
+
+	<properties>
+
+		<!-- 覆盖thymeleaf版本依赖 -->
+		<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
+		<thymeleaf-extras-java8time.version>3.0.0.RELEASE</thymeleaf-extras-java8time.version>
+		<thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
@@ -74,49 +83,82 @@
 			<version>3.1.3-1</version>
 		</dependency>
 
+
+
+		<!--Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>${thymeleaf.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring4</artifactId>
+			<version>${thymeleaf.version}</version>
+		</dependency>
+		
+		<!--对Thymeleaf添加Spring Security标签支持 -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>${thymeleaf-layout-dialect.version}</version>
+		</dependency>
+
+
 	</dependencies>
 
-	
-  <!-- Package as an executable jar -->
-    <build>
-		  <resources>
-		   <resource>
-		       <directory>src/main/java</directory>
-		       <includes>
-		           <include>**/*.xml</include>
-		       </includes>
-		   </resource>
-		   <resource>
-		       <directory>src/main/resources</directory>
-		       <includes>
-		           <include>**.*</include>
-		           <include>**/*.*</include><!-- i18n能读取到 -->
-		            <include>**/*/*.*</include>
-		       </includes>
-		   </resource>
-		 </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-           
-            <configuration>
-	             <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
-	            <!-- 指定该Main Class为全局的唯一入口 -->
-	            <mainClass>xyz.tmlh.forum.Application</mainClass>
-	            <layout>ZIP</layout>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
-              </goals>
-            </execution>
-          </executions>
-          </plugin>
-        </plugins>
-        <finalName>forum</finalName>
-    </build>
- 
+
+	<!-- Package as an executable jar -->
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**.*</include>
+					<include>**/*.*</include><!-- i18n能读取到 -->
+					<include>**/*/*.*</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+
+				<configuration>
+					<fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+					<!-- 指定该Main Class为全局的唯一入口 -->
+					<mainClass>xyz.tmlh.forum.Application</mainClass>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中 -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<finalName>forum</finalName>
+	</build>
+
 </project>
  

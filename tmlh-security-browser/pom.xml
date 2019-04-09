@@ -48,18 +48,5 @@
 			<scope>test</scope>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-				 <!--对Thymeleaf添加Spring Security标签支持-->
-		<dependency>
-		    <groupId>org.thymeleaf.extras</groupId>
-		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-		    <version>3.0.4.RELEASE</version>
-		</dependency>
-
-		
 	</dependencies>
 </project>
