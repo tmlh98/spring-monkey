@@ -13,10 +13,11 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<dependency>
 				<groupId>io.spring.platform</groupId>
 				<artifactId>platform-bom</artifactId>
+				<!-- <version>Cairo-SR7</version> -->
 				<version>Brussels-SR4</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -27,6 +28,7 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>Dalston.SR2</version>
+				<!-- <version>Finchley.SR3</version> -->
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -53,10 +55,10 @@
 		<module>tmlh-security-browser</module>
 		<module>tmlh-security-social</module>
 		<module>tmlh-forum-core</module>
-		
+
 		<module>tmlh-forum-web</module>
 
-		
+
 	</modules>
 
 </project>

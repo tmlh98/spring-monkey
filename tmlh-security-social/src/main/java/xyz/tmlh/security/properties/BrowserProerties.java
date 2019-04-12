@@ -5,9 +5,9 @@ package xyz.tmlh.security.properties;
  */
 public class BrowserProerties {
 
-    private String loginPage = "/sign-in.html";
+    private String loginPage = "/signin";
     
-    private String signUpUrl = "/sign-up.html";
+    private String signUpUrl = "/signup";
     
     private String logout = "/logout";
     

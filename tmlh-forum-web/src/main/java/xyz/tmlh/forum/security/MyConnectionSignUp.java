@@ -34,7 +34,7 @@ public class MyConnectionSignUp implements ConnectionSignUp {
     
 	@Override
 	public String execute(Connection<?> connection) {
-	    
+	    LOGGER.info("执行注册流程！");
 	    String userId = connection.getKey().toString();
 	    //切割出 source 和 openId
 	    String[] strings = StringUtils.splitByWholeSeparatorPreserveAllTokens(userId, ":");

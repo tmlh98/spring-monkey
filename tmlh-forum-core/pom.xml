@@ -17,15 +17,6 @@
 			<version>${tmlh.security.version}</version>
 		</dependency>
 		
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
 		<!-- mybatis-plus-boot-starter -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
@@ -42,6 +33,7 @@
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
+			<version>1.7</version>
 			<scope>test</scope>
 		</dependency>
 

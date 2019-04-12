@@ -13,6 +13,8 @@ public class SocialProperties {
 	private String filterProcessesUrl = "/auth";
 
 	private QQProperties qq = new QQProperties();
+	
+	private GitHubProperties github = new GitHubProperties();
 
 	public QQProperties getQq() {
 		return qq;
@@ -29,5 +31,14 @@ public class SocialProperties {
 	public void setFilterProcessesUrl(String filterProcessesUrl) {
 		this.filterProcessesUrl = filterProcessesUrl;
 	}
+
+    public GitHubProperties getGithub() {
+        return github;
+    }
+
+    public void setGithub(GitHubProperties github) {
+        this.github = github;
+    }
+	
 
 }
