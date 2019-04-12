@@ -86,20 +86,6 @@ public class UserModel implements Serializable {
         super();
     }
 
-    
-    
-    public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String signature,
-        String gender) {
-        super();
-        this.userconnectionId = userconnectionId;
-        this.username = username;
-        this.imageUrl = imageUrl;
-        this.lastLogin = lastLogin;
-        this.source = source;
-        this.detail = detail;
-        this.signature = signature;
-        this.gender = gender;
-    }
 
     public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String gender) {
         super();
@@ -110,6 +96,17 @@ public class UserModel implements Serializable {
         this.source = source;
         this.detail = detail;
         this.gender = gender;
+    }
+    public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String gender, String email) {
+        super();
+        this.userconnectionId = userconnectionId;
+        this.username = username;
+        this.imageUrl = imageUrl;
+        this.lastLogin = lastLogin;
+        this.source = source;
+        this.detail = detail;
+        this.detail = detail;
+        this.email = email;
     }
 
 
