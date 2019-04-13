@@ -10,13 +10,22 @@
 		content +='	<div class="card-text text-dark magin-top">&nbsp;';
 		content +='		<a href="/category/2" class="text-white label label-info"> '+article.catalog.name +' </a> ';
 		content +='		<span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读  ' + article.clickNum;
-		content +='		</span> · <span>评论 0 ';
-		content +='		</span> · <span>喜欢 0 </span> · ';
-		content +='		<span>'+ timeJoin(article.updateTime)+'小时前</span> ';
+		content +='		</span> · <span>评论 0 &nbsp; · ';
+		content +='		<span>'+ getInervalHour(article.createTime)+'小时前</span> ';
 		content +='	</div> ';
 		content +='</div> ';
 		showBox.append(content);
 	}
+	
+	function getInervalHour( date) {
+		var startDate = new Date();
+		var endDate = new Date(date.replace(/-/g,"/"));
+		console.log(endDate)
+        var ms = startDate.getTime() - endDate.getTime();
+        if (ms < 0) return 0;
+        return Math.floor(ms/1000/60/60);
+    }
+	
 	function timeJoin(time){
 		if(time == null | time == ''){
 			return '';

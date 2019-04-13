@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(title ='Spring Monkey')"></head>
+<head th:replace="commons/head::head(~{::title},~{},~{})">
+<title>首页</title>
+</head>
 
 <body>
 	<nav th:replace="commons/bar::topbar(active='default')"></nav>
@@ -141,6 +143,9 @@
   		  success: function(data){
   			  if(data.code == '0'){
   				var articlePage = data.result.articlePage;
+  				if(articlePage.records == 0){
+					infoNotify('没有更多了!');
+				}
   				$.each(articlePage.records, function(index, article) {
   					showArts(article,$('#article-list'));
   					current = articlePage.current + 1;

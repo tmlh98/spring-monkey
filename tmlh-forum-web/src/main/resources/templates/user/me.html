@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(title = ${session.loginUser.username})">
+<head th:replace="commons/head::head(~{::title},~{},~{})">
+<title>[[${session.loginUser.username}]]</title>
 </head>
 
 <body>
@@ -63,7 +64,7 @@
 											<p class="text-center">
 												<strong>文章</strong>
 											</p>
-											<p class="text-center">1</p>
+											<p class="text-center" th:text="${articleCount}">0</p>
 										</div>
 									</div>
 									<div class="col-md-4 column">
@@ -71,7 +72,7 @@
 											<p class="text-center">
 												<strong>问答</strong>
 											</p>
-											<p class="text-center">0</p>
+											<p class="text-center"  th:text="${questionCount}">0</p>
 										</div>
 									</div>
 									<div class="col-md-4 column">
@@ -79,7 +80,7 @@
 											<p class="text-center">
 												<strong>回复</strong>
 											</p>
-											<p class="text-center">0</p>
+											<p class="text-center" th:text="${commentCount}">0</p>
 										</div>
 									</div>
 								 	
@@ -104,11 +105,11 @@
 							</div>
 							<div class="row magin-top-10 padding-bottom-20">
 								 <div class="col-md-6">
-								 	<button class="btn btn-default btn-sm pull-right sty"  data-toggle="modal" data-target="#myModal">编辑资料</button>
+								 	<button class="btn btn-info btn-sm pull-right sty"  data-toggle="modal" data-target="#myModal">编辑资料</button>
 								 </div>
 								 <div class="col-md-6">
 								 <div>
-								  	<button class="btn btn-default btn-sm sty" onclick="javascript:window.location.href='/logout'">退出登陆</button>
+								  	<button class="btn btn-danger btn-sm sty" onclick="javascript:window.location.href='/logout'">退出登陆</button>
 								  </div>
 								 </div>
 							</div>
@@ -183,7 +184,8 @@
 <script th:inline="javascript">
 	var id = [[${session.loginUser.id}]];
 </script>
-<script src="/webjars/layer/3.1.1/dist/layer.js"></script>
+<script src="/webjars/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="/asserts/admin/js/swal-common.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#me-arts').click(function(){
@@ -249,27 +251,31 @@ function update(){
 }
 
 function deleteArt(artId , obj){
-	var del = layer.confirm("是否删除", {icon:5, shift:5}, function(){
-		$.ajax({
-			  method: "DELETE",
-			  url: '/user/article/'+artId,
-			  success: function(data){
-				  if(data.code == 0){
-					  layer.close(del);
-					  var ii = layer.load();
-					  obj.parentNode.parentNode.remove();
-					  layer.close(ii);
-					  successNotify(data.message);
-				  }else{
-				  	dangerNotify('<strong>删除失败:</strong> ' + data.message);
+	swal({
+		  title: "是否删除",
+		  icon: "error",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			  $.ajax({
+				  method: "DELETE",
+				  url: '/user/article/'+artId,
+				  success: function(data){
+					  if(data.code == 0){
+						  operSuccess(data.message);
+						  obj.parentNode.parentNode.remove();
+					  }else{
+						  operFail('<strong>删除失败:</strong> ' + data.message);
+					  }
+				  },
+				  error :function(data){
+					  operFail(data.responseJSON.message);
 				  }
-			  },
-			  error :function(data){
-				  warningNotify(data.responseJSON.message);
-			  }
-			});
-	});
-	
+				});
+		  } 
+		});
 	
 }
 function editArt(id){

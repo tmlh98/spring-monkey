@@ -1,6 +1,9 @@
 package xyz.tmlh.core.model;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import xyz.tmlh.core.enums.StatusEnum;
+
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -61,7 +64,7 @@ public class UserModel implements Serializable {
     /**
      * 用户状态  0:正常 1:冻结 2:注销
      */
-    private Integer state;
+    private StatusEnum state;
 
     /**
      * 来源
@@ -81,12 +84,17 @@ public class UserModel implements Serializable {
      *  性别。 如果获取不到则默认返回”男”
      */
     private String gender;
-
+    public UserModel(Integer id) {
+        this.id = id;
+    } 
     public UserModel() {
+    } 
+    
+    public UserModel(Integer id, LocalDateTime lastLogin) {
         super();
+        this.id = id;
+        this.lastLogin = lastLogin;
     }
-
-
     public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String gender) {
         super();
         this.userconnectionId = userconnectionId;
@@ -108,7 +116,6 @@ public class UserModel implements Serializable {
         this.detail = detail;
         this.email = email;
     }
-
 
 
     public Integer getId() {
@@ -167,14 +174,17 @@ public class UserModel implements Serializable {
     public void setLastLogin(LocalDateTime lastLogin) {
         this.lastLogin = lastLogin;
     }
+ 
 
-    public Integer getState() {
+    public StatusEnum getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+
+    public void setState(StatusEnum state) {
         this.state = state;
     }
+
 
     public String getSource() {
         return source;
@@ -213,13 +223,6 @@ public class UserModel implements Serializable {
      */
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    @Override
-    public String toString() {
-        return "UserModel [id=" + id + ", userconnectionId=" + userconnectionId + ", username=" + username + ", email=" + email + ", imageUrl=" + imageUrl
-            + ", createTime=" + createTime + ", lastLogin=" + lastLogin + ", state=" + state + ", source=" + source + ", detail=" + detail + ", signature="
-            + signature + ", gender=" + gender + "]";
     }
 
 }

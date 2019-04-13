@@ -26,5 +26,13 @@
 		FROM tbl_comment com LEFT JOIN tbl_user u ON com.user_id = u.id 
 		${ew.customSqlSegment}
     </select>
+    
+    <select id="selectCommentDoPage" resultMap="commentMap">
+		SELECT 
+			<include refid="Base_Column_List"></include>  
+			,image_url,username
+		FROM tbl_comment com LEFT JOIN tbl_user u ON com.user_id = u.id 
+		${ew.customSqlSegment}
+    </select>
 
 </mapper>

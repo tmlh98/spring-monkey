@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(title = '发布')">
+<head th:replace="commons/head::head(~{::title},~{},~{})">
+<title>发布</title>
 </head>
 
 <body>

@@ -7,6 +7,10 @@ body, html {
 	width: 70xp;
 	height: 70px;
 }
+.img-user{
+	width: 25xp;
+	height: 25px;
+}
 .tag{
 	padding: 0.5rem !important;
 	 line-height:120%;

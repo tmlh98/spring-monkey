@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(title =${article.title})"></head>
-<head>
+
+<head th:replace="commons/head::head(~{::title},~{::link},~{})">
+<title th:text="${article.title}"></title>
 <link rel="stylesheet" href="/asserts/css/article-content.css" />
 </head>
+
 
 <body>
 	<nav th:replace="commons/bar::topbar(active='default')"></nav>
@@ -31,13 +33,13 @@
 								<span th:text="${article.clickNum}"></span>
 							</b>
 								
-							<b class="d-inline-block ml-3 magin-left-20">
+							<!-- <b class="d-inline-block ml-3 magin-left-20">
 								<span class="glyphicon glyphicon-envelope color-bff" aria-hidden="true"></span>
 								&nbsp;<span th:text="${article.clickNum}"></span></b> 
 							<b class="d-inline-block ml-3 magin-left-20">
 								<span class="glyphicon glyphicon-heart color-bff" aria-hidden="true"></span>
 								&nbsp;<span th:text="${article.clickNum}"></span></b>
-							<button class="btn  btn-danger btn-sm pull-right">添加至喜欢</button>
+							<button class="btn  btn-danger btn-sm pull-right">添加至喜欢</button> -->
 						</div>
 
 
@@ -105,7 +107,7 @@
 									<p class="text-center">
 										<strong>文章</strong>
 									</p>
-									<p class="text-center">1</p>
+									<p class="text-center" th:text="${articleCount}">0</p>
 								</div>
 							</div>
 							<div class="col-md-4 column">
@@ -113,7 +115,7 @@
 									<p class="text-center">
 										<strong>问答</strong>
 									</p>
-									<p class="text-center">0</p>
+									<p class="text-center" th:text="${questionCount}">0</p>
 								</div>
 							</div>
 							<div class="col-md-4 column">

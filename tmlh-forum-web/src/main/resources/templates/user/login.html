@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(title='授权登陆')">
+<head th:replace="commons/head::head(~{::title},~{},~{})">
+<title>授权登陆</title>
 </head>
-
 <body>
 	<nav th:replace="commons/bar::topbar(active='default')"></nav>
 

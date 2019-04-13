@@ -31,6 +31,9 @@
         <result column="update_time" property="updateTime" />
         <association  column="user" property="user">
         	<id column="user" property="id"/>
+        	<result column="username" property="username"/>
+        	<result column="email" property="email"/>
+        	<result column="source" property="source"/>
         	<result column="image_url" property="imageUrl"/>
         </association>
         <association  column="catalog" property="catalog">
@@ -42,7 +45,7 @@
 
 	<select id="selectUserPage" resultMap="articleMap">
 		SELECT
-			<include refid="Base_Column_List"></include> ,u.image_url ,
+			<include refid="Base_Column_List"></include> ,u.image_url ,u.source,u.username,u.email,
 			 c.id as catalog_id , c.name as catalog_name
 		FROM
 			tbl_article acl

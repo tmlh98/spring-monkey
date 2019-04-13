@@ -1,6 +1,7 @@
 package xyz.tmlh.core.mapper;
 
 import xyz.tmlh.core.model.CommentModel;
+import xyz.tmlh.core.model.data.CommentDo;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 
 /**
@@ -22,4 +24,7 @@ public interface CommentMapper extends BaseMapper<CommentModel> {
 
     List<CommentModel> findAll(@Param(Constants.WRAPPER) Wrapper<CommentModel> wrapper);
 
+    IPage<CommentDo> selectCommentDoPage(IPage<CommentModel> page, @Param(Constants.WRAPPER) Wrapper<CommentModel> wapper);
+
+    
 }

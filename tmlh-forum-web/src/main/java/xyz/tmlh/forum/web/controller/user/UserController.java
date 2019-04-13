@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.ArticleModel;
 import xyz.tmlh.core.model.CommentModel;
 import xyz.tmlh.core.model.UserModel;
@@ -53,6 +54,9 @@ public class UserController {
     public String me(Model model) {
         model.addAttribute("fansCount", socialService.selectFansCount(CurrentUserUtils.getUser().getId()));
         model.addAttribute("followCount", socialService.selectFollowCount(CurrentUserUtils.getUser().getId()));
+        model.addAttribute("articleCount" , articleService.selectByUser(CurrentUserUtils.getUser().getId(), PublishType.ARTICLE));
+        model.addAttribute("questionCount" , articleService.selectByUser(CurrentUserUtils.getUser().getId(), PublishType.QUESTION));
+        model.addAttribute("commentCount" , commentService.selectByUser(CurrentUserUtils.getUser().getId()));
         return "user/me";
     }
     
@@ -77,6 +81,10 @@ public class UserController {
     public ResultBean editArticle(String articleStr) {
         ArticleModel article = JsonUtils.jsonToPojo(articleStr, ArticleModel.class);
         article.setUser(CurrentUserUtils.getUser());
+        ArticleModel articleModel = articleService.getById(article.getId());
+        if(articleModel.getUser().getId() != CurrentUserUtils.getUser().getId()) {
+            return ResultBean.fail("只能修改自己的文章!");
+        }
         articleService.updateById(article );
         return ResultBean.success().putResult("articleId", article.getId());
     }
@@ -84,6 +92,10 @@ public class UserController {
     @ResponseBody
     @DeleteMapping("/article/{id}")
     public ResultBean deleteArticle(@PathVariable("id") Integer id) {
+        ArticleModel articleModel = articleService.getById(id);
+        if(articleModel.getUser().getId() != CurrentUserUtils.getUser().getId()) {
+            return ResultBean.fail("只能删除自己的文章!");
+        }
         articleService.removeById(id);
         return ResultBean.success("删除成功!");
     }

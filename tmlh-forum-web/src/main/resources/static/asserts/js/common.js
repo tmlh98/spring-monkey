@@ -25,7 +25,7 @@ function successNotify(msg){
 	$.notify(
 		{message:msg},
    		{type: 'success', offset: {
-			x : 20 ,
+			x :  0 ,
 			y : 70
 		}}
 	);
@@ -34,7 +34,7 @@ function warningNotify(msg){
 	$.notify(
 			{message:msg},
 				{type: 'warning',offset: {
-					x : 20 ,
+					x :  0 ,
 					y : 70
 				}}
 	);
@@ -45,7 +45,7 @@ function warningNotify(msg ,url){
 		url: url,
  	},
 {type: 'warning',offset: {
-	x : 20 ,
+	x :  0 ,
 	y : 70
 }});
 }
@@ -56,7 +56,7 @@ function infoNotify(msg){
 		{
 			type: 'info' ,
 			offset: {
-				x : 20 ,
+				x : 0 ,
 				y : 70
 			}
 		}
@@ -67,7 +67,7 @@ function dangerNotify(msg){
 	$.notify(
 		{message:msg},
 		{type: 'danger',offset: {
-			x : 20 ,
+			x :  0 ,
 			y : 70
 		}}
 	);

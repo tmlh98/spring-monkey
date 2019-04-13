@@ -11,8 +11,6 @@ package xyz.tmlh.security.browser.suport;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.bytebuddy.asm.Advice.This;
-
 /** 
  * 结果bean 
  * Created by TianXin on 2018年12月27日. 
@@ -23,7 +21,7 @@ public class ResultBean {
 
     private static final String CODE_FAIL = "fail";
     
-    private String message;
+    private String message = CODE_SUCCESS;
     
     /**
      * 0√  1×

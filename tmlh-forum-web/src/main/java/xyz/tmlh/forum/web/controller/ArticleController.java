@@ -94,6 +94,11 @@ public class ArticleController {
             isFollow = socialService.selectFollow(CurrentUserUtils.getUser().getId() , user.getId());
         }
         model.addAttribute("isFollow", isFollow);
+        
+        //文章和问答数量粉丝数量
+        model.addAttribute("articleCount" , articleService.selectByUser(id, PublishType.ARTICLE));
+        model.addAttribute("questionCount" , articleService.selectByUser(id, PublishType.QUESTION));
+        
         return "article";
     }
     

@@ -41,6 +41,10 @@ public class IndexController {
     public String login() {
         return "user/login";
     }
+    @GetMapping({"/admin" , "/admin/login"})
+    public String adminLogin() {
+        return "admin/login";
+    }
     
     @GetMapping({"/user/question/publish" ,"/user/article/publish"})
     public String questionPublish(@RequestParam(required=false) Integer id,Model model) {

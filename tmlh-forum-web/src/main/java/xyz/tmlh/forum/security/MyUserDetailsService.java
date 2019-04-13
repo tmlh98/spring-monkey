@@ -1,13 +1,16 @@
 package xyz.tmlh.forum.security;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
@@ -15,7 +18,10 @@ import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
+import xyz.tmlh.core.enums.StatusEnum;
+import xyz.tmlh.core.model.AdminModel;
 import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.core.service.AdminService;
 import xyz.tmlh.core.service.UserService;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 
@@ -36,33 +42,41 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
     private UserService userService;
     
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private AdminService adminService;
+    
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.info("表单登录用户名:" + username);
-        return buildUser(username);
+        AdminModel loginAdmin = adminService.getOne(new LambdaQueryWrapper<AdminModel>().eq(AdminModel::getUsername, username));
+        if(loginAdmin == null) {
+            throw new UsernameNotFoundException("找不到该账户信息！");//抛出异常，会根据配置跳到登录失败页面
+        }
+        
+        LOGGER.info("username: {} , password :{}" , username , loginAdmin.getPassword());
+        
+        Collection<? extends GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN");
+        return new User(username, loginAdmin.getPassword(), true,true,true,true,authorities);
     }
 
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
         UserModel user = userService.getOne(new LambdaQueryWrapper<UserModel>()
             .eq(UserModel::getUserconnectionId, userId));
+        if(StatusEnum.NORMAL != user.getState()) {
+            throw new UsernameNotFoundException("该用户已被冻结!");
+        }
         CurrentUserUtils.setUser(user);
+        
+        userService.updateById(new UserModel(user.getId() , user.getLastLogin()));
+        
         LOGGER.info("社交登录用户 : {} 登陆成功" , user.getUsername());
         return new SocialUser(userId, "0",
             true, true, true, true,
             AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER"));
     }
 
-    private SocialUserDetails buildUser(String userId) {
-        // 根据用户名查找用户信息
-        //根据查找到的用户信息判断用户是否被冻结
-        String password = passwordEncoder.encode("123456");
-        LOGGER.info("数据库密码是:"+password);
-        return new SocialUser(userId, password,
-                true, true, true, true,
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
-    }
 
 }

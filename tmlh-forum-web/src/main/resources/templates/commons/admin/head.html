@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title ,links , styles)">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" href="/favicon.ico" />
+
+<title th:replace="${title}">The awesome application</title>
+
+
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<link rel="stylesheet"
+	href="/webjars/AdminLTE/2.3.8/dist/css/AdminLTE.min.css" />
+<link rel="stylesheet"
+	href="/webjars/AdminLTE/2.3.8/dist/css/skins/_all-skins.min.css"/>
+	
+	
+<link rel="stylesheet"
+	href="/webjars/bootstrap-table/1.14.2/dist/bootstrap-table.min.css"/>
+	
+	
+<link rel="stylesheet" href="/asserts/css/animate.css" />
+<link rel="stylesheet" href="/asserts/css/common.css" />
+<link rel="stylesheet" href="/asserts/admin/css/docs.css">
+
+
+
+<!--/* Per-page placeholder for additional links */-->
+<th:block th:replace="${links}" />
+<!--/* Per-page placeholder for additional styles */-->
+<th:block th:replace="${styles}" />
+</head>
+
+
+</html>

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.BeanUtils;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import xyz.tmlh.core.model.CommentModel;
 import xyz.tmlh.core.model.UserModel;
 
@@ -35,6 +37,7 @@ public class CommentDo {
     /**
      * 创建时间
      */
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
     /**

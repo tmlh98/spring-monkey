@@ -41,6 +41,7 @@ public class WebSecurityConfig extends BrowserSecurityConfig {
         urls.add("/webjars/**");
         urls.add("/asserts/**");
         urls.add("/images/**");
+//        urls.add("/admin/**");
         return urls;
     }
     
