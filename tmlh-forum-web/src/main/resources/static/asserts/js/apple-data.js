@@ -10,7 +10,7 @@
 		content +='	<div class="card-text text-dark magin-top">&nbsp;';
 		content +='		<a href="/category/2" class="text-white label label-info"> '+article.catalog.name +' </a> ';
 		content +='		<span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读  ' + article.clickNum;
-		content +='		</span> · <span>评论 0 &nbsp; · ';
+		content +='		</span> · <span>评论 '+article.commentCount+' &nbsp; · ';
 		content +='		<span>'+ getInervalHour(article.createTime)+'小时前</span> ';
 		content +='	</div> ';
 		content +='</div> ';
@@ -46,7 +46,14 @@
 	
 function meShowArts(article , showBox){
 	var content = '';
-	content +='<div class="panel-body border-bootom">'
+	content +='<div class="panel-heading" >';
+	if(showBox.attr("title") == 'art'){
+		content +='	<i class="fa fa-book  fa-1x font-sty" aria-hidden="true">&nbsp;文章</i>';
+	}else{
+		content +='	<i class="fa fa-book  fa-1x font-sty" aria-hidden="true">&nbsp;问答</i>';
+	}
+	content +='</div>';
+	content +='<div class="panel-body border-bootom">';
 	content +='	 <div class="pull-right"> ';
 	content +='	 <button type="button" class="btn btn-info" onclick=editArt('+article.id+')> 编辑 </button>';
 	content +='	 <button type="button" class="btn btn-danger" onclick=deleteArt('+article.id+ ',this)> 删除 </button>';
@@ -57,12 +64,12 @@ function meShowArts(article , showBox){
 	content +='	<div class="card-text text-dark magin-top">&nbsp;';
 	content +='		<a href="#" class="text-white label label-info"> '+article.catalog.name +' </a> ';
 	content +='		<span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读  ' + article.clickNum;
-	content +='		</span> · <span>评论 0 ';
-	content +='		</span> · <span>喜欢 0 </span> · ';
-	content +='		<span>'+ timeJoin(article.updateTime)+'小时前</span> ';
+	content +='		</span> · <span>评论 '+ article.commentCount;
+	content +='		· <span>'+ getInervalHour(article.updateTime)+'小时前</span> ';
 	content +='	 </div> ';
 
 	content +='	</div> ';
+	showBox.empty();
 	showBox.append(content);
 }
 	

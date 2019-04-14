@@ -1,5 +1,6 @@
 package xyz.tmlh.forum.web.controller.user;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.ArticleModel;
 import xyz.tmlh.core.model.CommentModel;
@@ -21,6 +24,7 @@ import xyz.tmlh.core.service.ArticleService;
 import xyz.tmlh.core.service.CommentService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.JsonUtils;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 import xyz.tmlh.security.browser.suport.ResultBean;
@@ -33,6 +37,7 @@ import xyz.tmlh.security.browser.suport.ResultBean;
  * @author TianXin
  * @since 2019年3月23日下午10:37:59
  */
+@Api("用户自我管理")
 @PreAuthorize("hasRole('ROLE_USER')")
 @RequestMapping("/user")
 @Controller
@@ -66,7 +71,8 @@ public class UserController {
         return "user/article-edit";
     }
     
-    
+    @SysLog("发布文章及提问")
+    @ApiOperation("发布文章及提问")
     @ResponseBody
     @PostMapping("/article/publish")
     public ResultBean questionArticle(String articleStr) {
@@ -76,6 +82,8 @@ public class UserController {
         return ResultBean.success().putResult("articleId", article.getId());
     }
     
+    @SysLog("修改文章")
+    @ApiOperation("修改文章")
     @ResponseBody
     @PutMapping("/article/edit")
     public ResultBean editArticle(String articleStr) {
@@ -89,6 +97,8 @@ public class UserController {
         return ResultBean.success().putResult("articleId", article.getId());
     }
     
+    @SysLog("删除文章")
+    @ApiOperation("删除文章")
     @ResponseBody
     @DeleteMapping("/article/{id}")
     public ResultBean deleteArticle(@PathVariable("id") Integer id) {
@@ -100,15 +110,8 @@ public class UserController {
         return ResultBean.success("删除成功!");
     }
     
-    @ResponseBody
-    @PostMapping("/comment/publish")
-    public ResultBean commentPublish(CommentModel comment) {
-        UserModel user = CurrentUserUtils.getUser();
-        comment.setUserId(user.getId());
-        commentService.save(comment);
-        return ResultBean.success().putResult("comment", new CommentDo(comment, user));
-    }
-    
+    @SysLog("修改用户信息")
+    @ApiOperation("修改用户信息")
     @ResponseBody
     @PutMapping("/update")
     public ResultBean updateMsg(String email , String signature) {
@@ -118,6 +121,30 @@ public class UserController {
         user.setSignature(signature);
         userService.updateById(user);
         return ResultBean.success();
+    }
+    
+    @SysLog("发布评论")
+    @ApiOperation("发布评论")
+    @ResponseBody
+    @PostMapping("/comment/publish")
+    public ResultBean commentPublish(CommentModel comment) {
+        UserModel user = CurrentUserUtils.getUser();
+        comment.setUserId(user.getId());
+        commentService.save(comment);
+        return ResultBean.success().putResult("comment", new CommentDo(comment, user));
+    }
+   
+    @SysLog("删除评论")
+    @ApiOperation("删除评论")
+    @ResponseBody
+    @DeleteMapping("/comment/{id}")
+    public ResultBean removeMsg(@PathVariable Integer id) {
+        if(CurrentUserUtils.getUserId() != commentService.getById(id).getUserId()) {
+            return ResultBean.fail("只能删除自己的评论!");
+            
+        }
+        commentService.removeCascadeById(id);
+        return ResultBean.success("删除成功！");
     }
     
 }

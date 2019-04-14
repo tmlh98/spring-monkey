@@ -1,5 +1,8 @@
 package xyz.tmlh.forum.web.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,16 +17,21 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.ArticleModel;
 import xyz.tmlh.core.model.CommentModel;
 import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.core.model.data.CommentDo;
 import xyz.tmlh.core.service.ArticleService;
 import xyz.tmlh.core.service.CommentService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
 import xyz.tmlh.core.suport.SqlPrefix;
+import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.forum.web.controller.vo.CommentVo;
 import xyz.tmlh.forum.web.vo.ArticleVo;
 import xyz.tmlh.security.browser.suport.ResultBean;
 
@@ -35,6 +43,7 @@ import xyz.tmlh.security.browser.suport.ResultBean;
  * @author TianXin
  * @since 2019年4月2日下午7:50:47
  */
+@Api("文章管理控制器")
 @RequestMapping("/article")
 @Controller
 public class ArticleController {
@@ -51,6 +60,8 @@ public class ArticleController {
     @Autowired
     private SocialService socialService;
     
+    @SysLog("文章列表分页-异步")
+    @ApiOperation("文章列表分页")
     @ResponseBody
     @GetMapping({"/",""})
     public ResultBean list(@RequestParam(defaultValue="1")int currPage ,@RequestParam(defaultValue="10") int pageSize,
@@ -66,10 +77,18 @@ public class ArticleController {
         }
         wapper.orderByDesc(ArticleModel::getUpdateTime);
         IPage<ArticleModel> articlePage = articleService.selectUserPage(page ,wapper);
+        articlePage.getRecords().stream().forEach(e -> {
+            int count = commentService.count(new LambdaQueryWrapper<CommentModel>().eq(CommentModel::getArticleId, e.getId()));
+            e.setCommentCount((long)count);
+        });
+        
+        
         resultBean.putResult("articlePage", articlePage);
         return resultBean;
     }
     
+    @SysLog("查看文章")
+    @ApiOperation("查看文章")
     @GetMapping("/{id}")
     public String article(@PathVariable("id")Integer id , Model model) {
         ArticleModel article = articleService.getById(id);
@@ -81,7 +100,12 @@ public class ArticleController {
         
         QueryWrapper<CommentModel> qWrapper = new QueryWrapper<>();
         qWrapper.eq("com.article_id" , id);
-        model.addAttribute("commentList", commentService.findAll(qWrapper));
+        qWrapper.isNull("com.comment_id");
+        List<CommentVo> CommentVos = commentService.findAll(qWrapper).stream().map(e ->{
+            List<CommentDo> commentChildList = commentService.findAll(new QueryWrapper<CommentModel>().eq("com.comment_id", e.getId()));
+            return new CommentVo(e, commentChildList);
+        }).collect(Collectors.toList());
+        model.addAttribute("commentList",CommentVos );
         
         LambdaQueryWrapper<ArticleModel> wapper = new LambdaQueryWrapper<ArticleModel>()
             .eq(ArticleModel::getUser, user.getId())

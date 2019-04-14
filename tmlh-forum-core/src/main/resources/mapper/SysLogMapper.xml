@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.tmlh.core.mapper.SysLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="sysLogMap" type="xyz.tmlh.core.model.SysLogModel">
+        <id column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="operation" property="operation" />
+        <result column="method" property="method" />
+        <result column="params" property="params" />
+        <result column="time" property="time" />
+        <result column="ip" property="ip" />
+        <result column="user_id" property="userId" />
+        <result column="url" property="url" />
+        <result column="username" property="username" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        log.id, log.create_time, log.operation, log.method, log.params, log.time, log.ip, log.user_id , log.url
+    </sql>
+	
+	<select id="findPage" resultMap="sysLogMap">
+		SELECT <include refid="Base_Column_List"></include> , u.username
+		FROM sys_log log LEFT JOIN tbl_user u ON log.user_id = u.id 
+		${ew.customSqlSegment}
+	</select>
+</mapper>

@@ -26,6 +26,16 @@ public class CurrentUserUtils {
     public static String getUserName() {
         return getUser().getUsername();
     }
+    /**
+     * 获取当前系统id
+     *
+     * @param @return    参数
+     * @return String    返回类型
+     * @throws
+     */
+    public static Integer getUserId() {
+        return getUser().getId();
+    }
     
     /**
      * 获取 UserModel

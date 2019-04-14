@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CommentService extends IService<CommentModel> {
 
-    List<CommentModel> findAll(Wrapper<CommentModel> wrapper);
+    List<CommentDo> findAll(Wrapper<CommentModel> wrapper);
     
     IPage<CommentDo> findPage(IPage<CommentModel> page, Wrapper<CommentModel> wapper);
 
@@ -32,5 +32,13 @@ public interface CommentService extends IService<CommentModel> {
       * @throws
       */
     long selectByUser(Integer userId);
+
+    /**
+      *删除评论及子评论
+      * @param @param id    参数
+      * @return void    返回类型
+      * @throws
+      */
+    void removeCascadeById(Integer id);
 
 }

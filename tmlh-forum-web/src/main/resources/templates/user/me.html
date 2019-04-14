@@ -118,7 +118,7 @@
 				    	
 				    </div>
 				    <div class="tab-pane fade" id="art-list">
-				    	<div class="panel panel-default">
+				    	<div class="panel panel-default"  title="art">
 						  <div class="panel-heading" >
 						    <i class="fa fa-book  fa-1x font-sty" aria-hidden="true">&nbsp;文章</i>
 						  </div>
@@ -126,12 +126,9 @@
 						</div>
 				    </div>
 				    <div class="tab-pane fade" id="question-list">
-				    	<div class="panel panel-default">
+				    	<div class="panel panel-default"  title="question">
 						  <div class="panel-heading" >
 						    <i class="fa fa-book  fa-1x font-sty" aria-hidden="true">&nbsp;问答</i>
-						  </div>
-						  <div class="panel-body">
-						  	
 						  </div>
 						</div>
 				    </div>
@@ -192,7 +189,7 @@ $(function(){
 		getArticlePage(1 ,'ARTICLE' , $('#art-list .panel-default'));
 	});
 	$('#me-question').click(function(){
-		getArticlePage(1 ,'QUESTION' , $('#art-list .panel-default'));
+		getArticlePage(1 ,'QUESTION' , $('#question-list .panel-default'));
 	});
 	
 });

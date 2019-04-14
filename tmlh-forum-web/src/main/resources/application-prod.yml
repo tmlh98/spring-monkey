@@ -17,7 +17,7 @@ tmlh:
   security:
     browser:
       login-page: /admin/login
-      sign-up-url: /sign-Up
+      sign-up-url: /signup
 #图片验证码
     code:
       image:

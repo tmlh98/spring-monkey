@@ -51,7 +51,7 @@ public class CommentModel implements Serializable {
     /**
      * 评论id
      */
-    private Integer commontId;
+    private Integer commentId;
 
 
     public Integer getId() {
@@ -96,12 +96,13 @@ public class CommentModel implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getCommontId() {
-        return commontId;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setCommontId(Integer commontId) {
-        this.commontId = commontId;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
+     
 }

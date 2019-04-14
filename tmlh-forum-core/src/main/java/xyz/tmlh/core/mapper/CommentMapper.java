@@ -22,7 +22,7 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
  */
 public interface CommentMapper extends BaseMapper<CommentModel> {
 
-    List<CommentModel> findAll(@Param(Constants.WRAPPER) Wrapper<CommentModel> wrapper);
+    List<CommentDo> findAll(@Param(Constants.WRAPPER) Wrapper<CommentModel> wrapper);
 
     IPage<CommentDo> selectCommentDoPage(IPage<CommentModel> page, @Param(Constants.WRAPPER) Wrapper<CommentModel> wapper);
 

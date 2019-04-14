@@ -53,7 +53,7 @@
 
 				</div>
 
-				<div class="list-group">
+				<div class="list-group" id= "comBox">
 					<div class="list-group-item">
 					<!-- 	<span class="glyphicon glyphicon-comment color-bff" aria-hidden="true"></span> -->
 						<i class="fa fa-comments-o  color-bff" aria-hidden="true">&nbsp; 评论</i> 
@@ -62,20 +62,36 @@
 					<div class="list-group-item"  th:each="comment ,stat :${commentList}">
 						<div class="row">
 							<div class="magin-left-20  pull-left" style="min-width: 50px;min-height: 50px">
-								<a href="#"><img  class="img-circle img-size-50 "  alt="" src="/images/default.jpg" th:src="${comment.userImageUrl}"/></a>
+								<a th:href="|/user/${comment.userId}|"><img  class="img-circle img-size-50 "  alt="" src="/images/default.jpg" th:src="${comment.userImageUrl}"/></a>
 							</div>
 							<div class=" pull-left magin-left-10">
-								<p><a href="#"  class="color-black"><strong th:text="${comment.username}">XXXXX</strong></a></p>
+								<p><a th:href="|/user/${comment.userId}|"  class="color-black"><strong th:text="${comment.username}">XXXXX</strong></a></p>
 								<p th:utext="${comment.content}"></p>
 							</div>
 						</div>
 						<div class="row">
 							<p class="pull-right" >
-								<a href="#" class=" color-hui magin-right-25" style="font-size: 13px">
+								<span  class=" color-hui magin-right-25 pointer hover-red" style="font-size: 13px" th:onclick="|removeComment(${comment.id} , this.parentNode)|">
+									<i class="fa fa-trash-o" aria-hidden="true"> 删除</i>
+								</span>
+								<span  class=" color-hui magin-right-25 pointer hover-blue" style="font-size: 13px" th:onclick="|addCommentChild(${article.id},${comment.id} , this)|">
 									<i class="fa fa-comment-o" aria-hidden="true"> 回复</i>
-								</a>
+								</span>
 							</p>
 						</div>
+						<!-- 子回复-->
+						<div class="row" th:each="child : ${comment.commentChildList}">
+							<div class="magin-left-50 border-top">
+								<div class="magin-left-20  pull-left  magin-top-20" style="min-width: 40px;min-height: 40px">
+									<a th:href="|/user/${child.userId}|"><img  class="img-circle img-size-50 "  alt="" src="/images/default.jpg" th:src="${child.userImageUrl}"/></a>
+								</div>
+								<div class=" pull-left magin-left-10 magin-top-20">
+									<p><a th:href="|/user/${child.userId}|"  class="color-black"><strong th:text="${child.username}">XXXXX</strong></a></p>
+									<p th:utext="${child.content}"></p>
+								</div>
+							</div>
+						</div>
+						
 					</div>
 				</div>
 				
@@ -84,7 +100,7 @@
 						<div id="comment-toolbar" class="toolbar pull-left" style="width: 90%">
 						</div>
 				    </div>
-				    <p ><button id="comment-save" class="btn btn-default btn-sm"  th:onclick="|saveComment(${article.id})|">提交评论</button> </p>
+				    <p ><button id="comment-save" class="btn btn-default btn-sm"  th:onclick="|saveComment(${article.id},'-1')|">提交评论</button> </p>
 				    <div id="comment-text" class="text"> <!--可使用 min-height 实现编辑区域自动增加高度-->
 				    </div>
 				</div>
@@ -166,6 +182,7 @@
 
 </body>
 <script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
+<script src="/webjars/sweetalert/2.1.0/sweetalert.min.js"></script>
 <script th:inline="javascript">
 	var id = [[${article.userId}]];
 </script>
@@ -191,19 +208,32 @@
     ]
     editor1.create();
     
-    function saveComment(articleId) {
+    function saveComment(articleId , comId , text , obj) {
     	var content = editor1.txt.html();
+    	var commentId ;
+    	if(comId > 0){
+    		commentId = comId;
+    	}
+    	if(!isEmpty(text)){
+    		content = text;
+    	}
     	$.ajax({
     		  method: "POST",
     		  url: '/user/comment/publish',
     		  data: {
     			  articleId : articleId,
-    			  content : content
+    			  content : content , 
+    			  commentId : commentId
     		  },
     		  success: function(data){
     			  if(data.code == 0){
    				  	successNotify("评论成功!");
-   				 	show(data.result.comment);
+	   				 if(comId > 0){
+	   					showChild(data.result.comment , obj);
+	   				 }else{
+	   				 	show(data.result.comment);
+	   				 }
+   				 	
    				 	editor1.txt.clear()
     			  }else{
     			  	dangerNotify('<strong>上传失败:</strong> ' + data.message);
@@ -228,13 +258,36 @@
 		content +=' 	</div> ';
 		content +=' 	<div class="row"> ';
 		content +=' 		<p class="pull-right" > ';
-		content +=' 			<a href="#" class=" color-hui magin-right-25" style="font-size: 13px"> ';
+		content +='				<span  class=" color-hui magin-right-25 pointer hover-red" style="font-size: 13px" th:onclick="removeComment('+comment.id +' , this.parentNode)">';
+		content +='							<i class="fa fa-trash-o" aria-hidden="true"> 删除</i>';
+		content +='				</span>';
+		content +=' 			<span class=" color-hui magin-right-25  pointer hover-blue" style="font-size: 13px"  th:onclick="addCommentChild('+id+','+comment.id +')"> ';
 		content +=' 				<i class="fa fa-comment-o" aria-hidden="true"> 回复</i> ';
-		content +=' 			</a> ';
+		content +=' 			</span> ';
 		content +=' 		</p> ';
 		content +=' 	</div> ';
 		content +=' </div> ';
-    	$('#editorBox').before(content);
+    	$('#comBox').append(content);
+    }
+    
+
+    
+    function showChild(comment , obj){
+    	var content = '';
+    	
+    	content += '<div class="row">';
+    	content += '<div class="magin-left-50 border-top"> ';
+    	content += '	<div class="magin-left-20  pull-left  magin-top-20" style="min-width: 40px;min-height: 40px">';
+	    content += '			<a href="/user/'+ comment.userId+'"><img  class="img-circle img-size-50 "  alt="" src="'+comment.userImageUrl+'"/></a>';
+	    content += '		</div>';
+	    content += '		<div class=" pull-left magin-left-10 magin-top-20">';
+	    content += '			<p><a href="/user/'+ comment.userId+'"  class="color-black"><strong">'+comment.username+'</strong></a></p>';
+	    content += '			<p>'+comment.content+'</p>';
+	    content += '		</div>';
+	    content += '	</div>';
+	    content += '</div>';
+	    content += '</div>';
+	    $(obj.parentNode.parentNode.parentNode).append(content);
     }
     
     
@@ -267,6 +320,53 @@
   			  }
   		  }
   		});
+	}
+	
+	
+	
+	function addCommentChild(artId ,commentId ,obj){
+		swal({ 
+			  title: "回复", 
+			  buttons: [true, "OK"],
+			  content: {
+				    element: "input",
+				    attributes: {
+				      placeholder: "请输入你的回复:",
+				      type: "text",
+				    },
+				  },
+			}).then((will ) => {
+				  if (will ) {saveComment(artId ,commentId , will , obj);}  
+			});
+	}
+	
+	function removeComment(cid , obj){
+		swal({
+			  title: "是否删除",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  $.ajax({
+					  method: "DELETE",
+					  url: '/user/comment/'+cid,
+					  success: function(data){
+						  if(data.code == 0){
+							  infoNotify(data.message);
+							  obj.parentNode.parentNode.remove();
+						  }else{
+							  dangerNotify('<strong>删除失败:</strong> ' + data.message);
+						  }
+					  },
+					  error :function(data){
+						  dangerNotify(data.responseJSON.message);
+					  }
+					});
+			  } 
+			});
+		
 	}
 </script>
 </html>

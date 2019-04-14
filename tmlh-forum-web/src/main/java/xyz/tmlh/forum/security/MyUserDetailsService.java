@@ -23,6 +23,7 @@ import xyz.tmlh.core.model.AdminModel;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.AdminService;
 import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 
 /**
@@ -61,6 +62,7 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         return new User(username, loginAdmin.getPassword(), true,true,true,true,authorities);
     }
 
+    @SysLog
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
         UserModel user = userService.getOne(new LambdaQueryWrapper<UserModel>()

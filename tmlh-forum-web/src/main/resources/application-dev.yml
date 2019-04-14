@@ -3,9 +3,8 @@ server:
   
 
 spring:
-#去除thymeleaf标签验证
   thymeleaf:
-    cache: false
+    cache: true
   session:
     store-type: none
 

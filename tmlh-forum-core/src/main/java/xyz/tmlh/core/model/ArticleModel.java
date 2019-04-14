@@ -72,6 +72,12 @@ public class ArticleModel implements Serializable {
      * 点击量
      */
     private Integer clickNum;
+    
+    /**
+     * 评论数
+     */
+    @TableField(exist = false)
+    private Long commentCount;
 
     /**
      * 发表时间
@@ -186,6 +192,15 @@ public class ArticleModel implements Serializable {
 
     public void setPublishType(PublishType publishType) {
         this.publishType = publishType;
+    }
+    
+
+    public Long getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentModel>
     private ArticleService articleService;
     
     @Override
-    public List<CommentModel> findAll(Wrapper<CommentModel> wrapper) {
+    public List<CommentDo> findAll(Wrapper<CommentModel> wrapper) {
         return baseMapper.findAll(wrapper);
     }
 
@@ -50,6 +51,24 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, CommentModel>
     @Override
     public IPage<CommentDo> findPage(IPage<CommentModel> page, Wrapper<CommentModel> wapper) {
         return baseMapper.selectCommentDoPage(page, wapper);
+    }
+
+    @Override
+    public void removeCascadeById(Integer id) {
+        LambdaQueryWrapper<CommentModel> wrapper = new LambdaQueryWrapper<CommentModel>();
+        wrapper.eq(CommentModel::getCommentId, id);
+        wrapper.select(CommentModel::getId);
+        List<CommentModel> commentIds= baseMapper.selectList(wrapper);
+        baseMapper.deleteById(id);
+        if(!commentIds.isEmpty()) {
+            int[] ids = commentIds.stream().mapToInt(e -> e.getId()).toArray();
+            ArrayList<Integer> idList = new ArrayList<>();
+            for (int i : ids) {
+                idList.add(i);
+            }
+            baseMapper.deleteBatchIds(idList);
+        }
+        
     }
 
 }

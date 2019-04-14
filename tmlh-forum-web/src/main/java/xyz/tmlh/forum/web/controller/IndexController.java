@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.scope.RequestUtils;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 import xyz.tmlh.security.exception.UserNotFoundException;
@@ -30,6 +31,7 @@ public class IndexController {
     @Autowired
     private UserService userService;
     
+    @SysLog("首页")
     @GetMapping({"/" ,"/index", "/index.html"})
     public String index(Model model) {
         List<UserModel> userList = userService.list();
@@ -37,6 +39,7 @@ public class IndexController {
         return "index";
     }
     
+    @SysLog("登陆页")
     @GetMapping({"/login" , "/user/login"})
     public String login() {
         return "user/login";

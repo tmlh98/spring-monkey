@@ -25,7 +25,12 @@
         </li>
         <li th:class="${active eq 'comment'? 'active treeview':'treeview'}">
           <a href="/admin/comment">
-            <i class="fa fa-book"></i> <span>评论管理</span>
+            <i class="fa fa-commenting-o"></i> <span>评论管理</span>
+          </a>
+        </li>
+        <li th:class="${active eq 'log'? 'active treeview':'treeview'}">
+          <a href="/admin/syslog">
+            <i class="fa fa-eye"></i> <span>日志管理</span>
           </a>
         </li>
         <li th:class="${active eq 'system'? 'active treeview':'treeview'}">

@@ -71,7 +71,7 @@ $('#table').bootstrapTable({
 	queryParams : function(params) {//上传服务器的参数
 		console.log(params);
 		var temp = {//如果是在服务器端实现分页，limit、offset这两个参数是必须的
-			currPage : params.offset, // 每页显示数量
+			currPage : (params.offset / params.limit) + 1, // 每页显示数量
 			pageSize : params.limit, // SQL语句起始索引
 			//page : (params.offset / params.limit) + 1, //当前页码 
  
@@ -101,6 +101,7 @@ $('#table').bootstrapTable({
 	}, {
 		title : '内容',
 		field : 'content',
+		formatter : contentOper
 	}, {
 		title : '文章地址',
 		field : 'articleId',
@@ -130,8 +131,21 @@ $('#search_btn').click(function() {
 	$('#table').bootstrapTable('refresh', {
 		url : '/admin/comment/page'
 	});
-})
-
+});
+function contentOper(value, row, index) {
+	var st='';
+	if(value.length >= 20){
+		st = value.substring(0 , 10);
+	}
+	localStorage.setItem("content" + index,value);
+	st = '<span class="hover-blue pointer"  onclick="show('+index+')"> '+ st +' </span>';
+	return st;
+}
+function show(index){
+	swal({
+		  text: localStorage.getItem("content"+ index)
+		});
+}
 function deleteCom(artId){
 	var url = '/admin/comment/'+artId;
 	deleteModel(artId , url);

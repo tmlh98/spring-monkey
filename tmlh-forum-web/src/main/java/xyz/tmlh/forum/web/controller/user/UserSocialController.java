@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import xyz.tmlh.core.model.SocialModel;
 import xyz.tmlh.core.service.SocialService;
+import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 import xyz.tmlh.security.browser.suport.ResultBean;
 
@@ -35,6 +36,7 @@ public class UserSocialController {
     @Autowired
     private SocialService socialService;
     
+    @SysLog("关注一个用户")
     @ApiOperation(value = "关注一个用户" )
     @PostMapping("/{id}")
     public ResultBean follweUser(@ApiParam("被关注的用户id")@PathVariable("id")Integer id) {
@@ -46,6 +48,7 @@ public class UserSocialController {
         return ResultBean.success("关注成功!");
     }
     
+    @SysLog("取消关注一个用户")
     @ApiOperation(value = "取消关注一个用户" )
     @DeleteMapping("/{id}")
     public ResultBean unFollweUser(@ApiParam("取消关注的用户id")@PathVariable("id")Integer id) {

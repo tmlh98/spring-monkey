@@ -16,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        com.id, user_id, article_id, content, com.create_time, commont_id
+        com.id, user_id, article_id, content, com.create_time, comment_id
     </sql>
     
     <select id="findAll" resultMap="commentMap">
