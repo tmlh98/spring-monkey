@@ -217,6 +217,10 @@
     	if(!isEmpty(text)){
     		content = text;
     	}
+    	if(content.length > 500 ){
+    		dangerNotify('评论过长');
+    		return;
+    	}
     	$.ajax({
     		  method: "POST",
     		  url: '/user/comment/publish',

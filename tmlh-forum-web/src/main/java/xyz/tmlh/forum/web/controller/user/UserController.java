@@ -1,6 +1,7 @@
 package xyz.tmlh.forum.web.controller.user;
 
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -77,6 +78,9 @@ public class UserController {
     @PostMapping("/article/publish")
     public ResultBean questionArticle(String articleStr) {
         ArticleModel article = JsonUtils.jsonToPojo(articleStr, ArticleModel.class);
+        if(StringUtils.isBlank(article.getTitle())) {
+            return ResultBean.fail().msg("标题不能为空!");
+        }
         article.setUser(CurrentUserUtils.getUser());
         articleService.save(article );
         return ResultBean.success().putResult("articleId", article.getId());

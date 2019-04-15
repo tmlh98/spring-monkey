@@ -210,6 +210,8 @@ function getArticlePage(currPage , publishType , contentBox){
 				if(articlePage.records == 0){
 					infoNotify('没有更多了!');
 				}
+				contentBox.empty();
+				showHead(contentBox);
 				$.each(articlePage.records, function(index, article) {
 					meShowArts(article,contentBox);
 			    });

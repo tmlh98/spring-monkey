@@ -26,6 +26,10 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         Object createTime = getFieldValByName("createTime", metaObject);
         if(createTime == null) {
             this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+            Object updateTime = getFieldValByName("updateTime", metaObject);
+            if(updateTime == null) {
+                this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
+            }
         }
     }
     

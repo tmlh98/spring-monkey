@@ -64,7 +64,7 @@ public class BrowserSecurityController {
             }
         }
 
-        return ResultBean.fail("非法操作!");
+        return ResultBean.fail("请先登陆!");
     }
 
     
