@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.util.PrintUtil;
 import xyz.tmlh.security.exception.UserNotFoundException;
 import xyz.tmlh.security.social.qq.api.QQ;
 import xyz.tmlh.security.social.qq.api.QQUserInfo;
@@ -62,8 +63,8 @@ public class MyConnectionSignUp implements ConnectionSignUp {
     
     private UserModel getGitHubUser(String userId, String[] strings, Connection<?> connection) {
         UserProfile userInfo = connection.fetchUserProfile();
-        String username = userInfo.getName();
-        String imageUrl = "https://avatars3.githubusercontent.com/u/" + strings[1];
+        String username = connection.getDisplayName();
+        String imageUrl = connection.getImageUrl();
         String detail = null;
         return new UserModel(userId, username, imageUrl, LocalDateTime.now(), strings[0], detail, null , userInfo.getEmail());
     }
