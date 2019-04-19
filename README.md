@@ -63,7 +63,7 @@
 
 
 
-![structure](images\structure.png)
+![structure](.\images\structure.png)
 
 > spring monkey 采用maven构建，分为四个子工程，每个子工程担任不同的职责。
 
