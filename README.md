@@ -1,7 +1,3 @@
----
-typora-copy-images-to: 系统截图
----
-
 ## 1 作品概述
 
 ### 1.1简介
@@ -67,7 +63,7 @@ typora-copy-images-to: 系统截图
 
 
 
-![structure](C:\Users\tx\Desktop\毕业设计文档\系统截图\structure.png)
+![structure](images\structure.png)
 
 > spring monkey 采用maven构建，分为四个子工程，每个子工程担任不同的职责。
 
@@ -83,7 +79,7 @@ typora-copy-images-to: 系统截图
 
 
 
-![database](C:\Users\tx\Desktop\毕业设计文档\系统截图\database.png)
+![database](images\database.png)
 
 
 
