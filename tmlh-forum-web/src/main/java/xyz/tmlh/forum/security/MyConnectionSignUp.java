@@ -16,7 +16,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.util.PrintUtil;
 import xyz.tmlh.security.exception.UserNotFoundException;
 import xyz.tmlh.security.social.qq.api.QQ;
 import xyz.tmlh.security.social.qq.api.QQUserInfo;
