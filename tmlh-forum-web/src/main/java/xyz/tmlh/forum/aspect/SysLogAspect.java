@@ -97,7 +97,7 @@ public class SysLogAspect {
         sysLog.setUrl(request.getRequestURI());
         
         sysLog.setTime(time);
-        
+ 
         sysLogService.save(sysLog);
 	}
 

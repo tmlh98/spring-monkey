@@ -2,7 +2,6 @@ package xyz.tmlh.security.social.github.connet;
 
 import org.springframework.social.connect.support.OAuth2ConnectionFactory;
 import org.springframework.social.github.api.GitHub;
-import org.springframework.social.github.connect.GitHubAdapter;
 import org.springframework.social.github.connect.GitHubServiceProvider;
 
 /**

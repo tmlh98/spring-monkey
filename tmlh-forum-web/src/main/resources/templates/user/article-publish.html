@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(~{::title},~{},~{})">
+<head th:replace="commons/head::head(~{::title},~{::style},~{})">
 <title>发布</title>
+<style type="text/css">
+     .w-e-text-container{
+   	 	min-height: 300px !important;
+   	 	height:auto !important;
+	}
+	#editor{
+		min-height: 300px;
+		height:auto !important;
+	}
+	.w-e-toolbar{
+		background-color: #ffffff !important;
+	}
+  </style>
 </head>
 
 <body>
@@ -30,7 +43,7 @@
 			    <!-- 文章编辑器组件 -->
 		    <div>
 		        <p class="text-success">友情提示：编辑器支持图片拖动上传或者复制粘贴上传~</p>
-		        <div id="editor">
+		        <div id="editor" >
 		        </div>
 		    </div>
 		</div>
@@ -41,7 +54,6 @@
     <script type="text/javascript">
         var E = window.wangEditor
         var editor = new E('#editor')
-        // 或者 var editor = new E( document.getElementById('editor') )
         editor.create();
         
         function save(publishType) {

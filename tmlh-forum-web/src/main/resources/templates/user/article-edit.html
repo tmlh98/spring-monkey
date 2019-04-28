@@ -1,7 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(~{::title},~{},~{})">
+<head th:replace="commons/head::head(~{::title},~{::style},~{})">
 <title>发布</title>
+<style type="text/css">
+     .w-e-text-container{
+   	 	min-height: 300px !important;
+   	 	height:auto !important;
+	}
+	#editor{
+		min-height: 300px;
+		height:auto !important;
+	}
+	.w-e-toolbar{
+		background-color: #ffffff !important;
+	}
+  </style>
 </head>
 
 <body>

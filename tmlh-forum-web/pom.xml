@@ -9,15 +9,6 @@
 	</parent>
 	<artifactId>tmlh-forum-web</artifactId>
 
-
-	<properties>
-
-		<!-- 覆盖thymeleaf版本依赖 -->
-		<thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
-		<thymeleaf-extras-java8time.version>3.0.0.RELEASE</thymeleaf-extras-java8time.version>
-		<thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
@@ -50,11 +41,13 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
+			<version>3.2.0</version>
 		</dependency>
 		<!-- jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
+			<version>2.1.1</version>
 		</dependency>
 
 		<dependency>
@@ -103,18 +96,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
-			<version>${thymeleaf.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring4</artifactId>
-			<version>${thymeleaf.version}</version>
-		</dependency>
-
 		<!-- 对Thymeleaf添加Spring Security标签支持 -->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
@@ -124,7 +105,6 @@
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
-			<version>${thymeleaf-layout-dialect.version}</version>
 		</dependency>
 
 

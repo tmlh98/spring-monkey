@@ -1,6 +1,6 @@
 body{ color:#333; font-size:13px;}
 input,select,textarea{color:#333;}
-.bg{ width:100%; height:100%; position:absolute; background:url(/images/bg.jpg) }
+.bg{ width:100%; height:100%; position:absolute;   background:url(/images/bg_1.png)  }
 .panel{background:#fff;}
 form .form-group:last-child{padding-bottom:0;}
 .passcode{position:absolute;right:0;bottom:0;height:32px;margin:1px;border-left:solid 1px #ddd;text-align:center;line-height:32px;border-radius:0 4px 4px 0;}

@@ -3,13 +3,10 @@ package xyz.tmlh.security.social;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-import org.springframework.boot.autoconfigure.social.SocialWebAutoConfiguration;
-import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.encrypt.Encryptors;
+import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
@@ -17,6 +14,7 @@ import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.properties.SecurityProperties;
@@ -31,8 +29,6 @@ import xyz.tmlh.security.properties.SecurityProperties;
  */
 @EnableSocial
 @Configuration
-@AutoConfigureBefore(SocialWebAutoConfiguration.class)
-@AutoConfigureAfter(WebMvcAutoConfiguration.class)
 public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired
@@ -55,10 +51,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
         return repository;
     }
 
-//    @Override
-//    public UserIdSource getUserIdSource() {
-//        return new AuthenticationNameUserIdSource();
-//    }
+    @Override
+    public UserIdSource getUserIdSource() {
+        return new AuthenticationNameUserIdSource();
+    }
     
     @Bean
     public SpringSocialConfigurer tmlhSpringSocialConfigurer() {
