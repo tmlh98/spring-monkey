@@ -11,7 +11,7 @@
 		content +='		<a href="/category/2" class="text-white label label-info"> '+article.catalog.name +' </a> ';
 		content +='		<span class="font-weight-light text-secondary ">&nbsp;&nbsp;&nbsp;阅读  ' + article.clickNum;
 		content +='		</span> · <span>评论 '+article.commentCount+' &nbsp; · ';
-		content +='		<span>'+ getInervalHour(article.createTime)+'小时前</span> ';
+		content +='		<span>'+ getdays_(article.createTime)+'小时前</span> ';
 		content +='	</div> ';
 		content +='</div> ';
 		showBox.append(content);
@@ -25,6 +25,17 @@
         if (ms < 0) return 0;
         return Math.floor(ms/1000/60/60);
     }
+	
+	function getdays_(date){
+		var time ='';
+		var day = Math.floor(getInervalHour( date)/24);
+		if(day > 1){
+			time += day + '天';
+		}
+		return time + (getInervalHour( date)%24);
+	}
+	
+	
 	
 	function timeJoin(time){
 		if(time == null | time == ''){

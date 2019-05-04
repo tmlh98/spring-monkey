@@ -53,10 +53,17 @@
  <script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
     <script type="text/javascript">
         var E = window.wangEditor
-        var editor = new E('#editor')
+        var editor = new E('#editor');
+        editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
         editor.create();
         
+        
         function save(publishType) {
+        	var icontent = editor.txt.text();
+        	if(icontent.length == 0 || icontent.trim() == ''){
+        		dangerNotify('请输入内容!');
+        		return;
+        	}
         	
         	var catalogId = $('#catalog-selected').val();
         	var title = $('#title').val();

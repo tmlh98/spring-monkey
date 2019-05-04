@@ -217,6 +217,12 @@
     	if(!isEmpty(text)){
     		content = text;
     	}
+    	
+    	var icontent = editor1.txt.text();
+    	if(icontent.length == 0 || icontent.trim() == ''){
+    		dangerNotify('请输入内容!');
+    		return;
+    	}
     	if(content.length > 500 ){
     		dangerNotify('评论过长');
     		return;
