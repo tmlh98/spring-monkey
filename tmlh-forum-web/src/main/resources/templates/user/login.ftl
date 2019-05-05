@@ -33,17 +33,14 @@
 					扫描加站长QQ</h4>
 				<div class="mt-4 border-secondary pt-4 px-4"
 					style="text-align: center">
-					<a href="#" style="text-decoration-line: none"> <img
-						src="/images/qrcode_1.png"
+					<a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1720213210&website=www.oicqzone.com" style="text-decoration-line: none"> <img
+						src="https://tmlh98.gitee.io/image-repository/img/spring_monkey/qrcode_1.jpg"
 						alt="" style="max-width: 200px; max-height: 200px"/>
 					</a>
 
 				</div>
 
 			</div>
-
-
-
 		</div>
 	</div>
  
