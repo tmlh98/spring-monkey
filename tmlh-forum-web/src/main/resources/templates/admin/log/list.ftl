@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/admin/head::head(~{::title},~{},~{})">
-<title>日志管理</title>
-</head>
+<#import "/layout/admin/inc.ftl" as inc>
+<#import "/layout/admin/nav.ftl" as nav>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<@inc.head '日志管理'></@inc.head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-
-		<header th:replace="commons/admin/header::header"></header>
-
-		<aside th:replace="commons/admin/menu::menu(active='comment')"></aside>
-
-		<div class="content-wrapper">
+		<@nav.topbar></@nav.topbar>
+		<@nav.menu active='comment'></@nav.menu>
+ 
+ 	<div class="content-wrapper">
 			<section class="content-header">
 				<h1>
 					日志管理
@@ -43,18 +42,19 @@
 			
 			</section>
 		</div>
+ 		
+ 
 
 		<!-- /.content-wrapper -->
-		<footer th:replace="commons/admin/footer::footer"></footer>
-
+		<#include "/layout/admin/footer.ftl">
 		<!-- Control Sidebar -->
 
-		<aside th:replace="commons/admin/control-aside::control-bar()"></aside>
+		<@nav.controlBar></@nav.controlBar>
 		<div class="control-sidebar-bg"></div>
 	</div>
 </body>
-<div th:replace="commons/admin/script::scripts()"></div>
-<script type="text/javascript">
+<@inc.script>
+ <script type="text/javascript">
 $('#table').bootstrapTable({
 	method : 'get',
 	url : "/sys/log/page",//请求路径
@@ -160,19 +160,5 @@ function showMethod(index){
 		});
 }
 </script>
+</@inc.script>
 </html>
-
-
-<!--  -->
-
-
-
-
-
-
-
-
-
-
-
-

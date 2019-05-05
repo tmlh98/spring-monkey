@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.core.service.CatalogService;
 import xyz.tmlh.core.service.UserService;
 import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.scope.RequestUtils;
@@ -30,6 +31,9 @@ public class IndexController {
     
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private CatalogService catalogService;
     
     @SysLog("首页")
     @GetMapping({"/" ,"/index", "/index.html"})
@@ -61,6 +65,7 @@ public class IndexController {
         }else {
             model.addAttribute("publishType", PublishType.QUESTION.toString());
         }
+        model.addAttribute("catalogList", catalogService.list());
         return "user/article-publish";
     }
     

@@ -37,7 +37,7 @@
         	<result column="image_url" property="imageUrl"/>
         </association>
         <association  column="catalog" property="catalog">
-        	<id column="catalog_id" property="id"/>
+        	<id column="catalog" property="id"/>
         	<result column="catalog_name" property="name"/>
         </association>
     </resultMap>

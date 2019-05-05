@@ -1,63 +1,43 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/admin/head::head(~{::title},~{},~{})">
-<title>用户管理</title>
-</head>
+<#import "/layout/admin/inc.ftl" as inc>
+<#import "/layout/admin/nav.ftl" as nav>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<@inc.head '接口管理'>
+<style type="text/css">
+#mainFrame{
+	width: 100%; 
+	min-height:600px;
+	height: 100%; 
+	background-color: #ecf0f5;
+	overflow: hidden;
+}
+</style>
+</@inc.head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-
-		<header th:replace="commons/admin/header::header"></header>
-
-		<aside th:replace="commons/admin/menu::menu(active='user')"></aside>
-
-		<div class="content-wrapper">
-			<section class="content-header">
-				<h1>
-					用户管理
-				</h1>
-			</section>
+		<@nav.topbar></@nav.topbar>
+		<@nav.menu active='system'></@nav.menu>
+ 
+ 		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<iframe id="mainFrame" name="mainFrame" scrolling="yes"   frameborder="0"  
+			src ="/swagger-ui.html"></iframe>
 			
-			<section class="content">
-				<div class="panel panel-default">
-				    <div class="panel-heading">
-				        查询条件
-				    </div>
-				    <div class="panel-body form-group" style="margin-bottom:0px;">
-				        <label class="col-sm-1 control-label" style="text-align: right; margin-top:5px">姓名：</label>
-				        <div class="col-sm-2">
-				            <input type="text" class="form-control" name="username" />
-				        </div>
-				        <label class="col-sm-2 control-label" style="text-align: right; margin-top:5px">来源：</label>
-				        <div class="col-sm-2">
-				            <select name="source"   class="form-control">
-				            	<option value="">请选择</option>
-				            	<option value="qq">QQ</option>
-				            	<option value="github">GitHub</option>
-				            </select>
-				        </div>
-				        <div class="col-sm-1 col-sm-offset-4">
-				            <button class="btn btn-primary" id="search_btn">查询</button>
-				        </div>
-				     </div>
-				</div>
-				<div class="panel panel-default">
-					<table id="table"></table>
-				</div>
-			
-			</section>
 		</div>
+ 		
+ 
 
 		<!-- /.content-wrapper -->
-		<footer th:replace="commons/admin/footer::footer"></footer>
-
+		<#include "/layout/admin/footer.ftl">
 		<!-- Control Sidebar -->
 
-		<aside th:replace="commons/admin/control-aside::control-bar()"></aside>
+		<@nav.controlBar></@nav.controlBar>
 		<div class="control-sidebar-bg"></div>
 	</div>
 </body>
-<div th:replace="commons/admin/script::scripts()"></div>
+<@inc.script>
 <script type="text/javascript">
 $('#table').bootstrapTable({
 	method : 'get',
@@ -192,19 +172,5 @@ function freezeUser(id,username , status){
 }
 
 </script>
+</@inc.script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

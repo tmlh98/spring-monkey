@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/admin/head::head(~{::title},~{},~{})">
-<title>后台管理首页</title>
-</head>
+<#import "/layout/admin/inc.ftl" as inc>
+<#import "/layout/admin/nav.ftl" as nav>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<@inc.head '后台管理首页'></@inc.head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
-
-		<header th:replace="commons/admin/header::header"></header>
-
-		<aside th:replace="commons/admin/menu::menu(active='dashboard')"></aside>
+		<@nav.topbar></@nav.topbar>
+		<@nav.menu active='dashboard'></@nav.menu>
 
 		<div class="content-wrapper">
 			<section class="content-header">
@@ -41,9 +40,7 @@
 						<!-- small box -->
 						<div class="small-box bg-green">
 							<div class="inner">
-								<h3  th:text="${userCount}">
-									10
-								</h3>
+								<h3 >${userCount}</h3>
 
 								<p>网站用户数量</p>
 							</div>
@@ -59,7 +56,7 @@
 						<!-- small box -->
 						<div class="small-box bg-yellow">
 							<div class="inner">
-								<h3 th:text="${homeFlux}">44</h3>
+								<h3 >${homeFlux}</h3>
 
 								<p>网站首页访问量</p>
 							</div>
@@ -98,28 +95,12 @@
 		</div>
 
 		<!-- /.content-wrapper -->
-		<footer th:replace="commons/admin/footer::footer"></footer>
-
+		<#include "/layout/admin/footer.ftl">
 		<!-- Control Sidebar -->
 
-		<aside th:replace="commons/admin/control-aside::control-bar()"></aside>
+		<@nav.controlBar></@nav.controlBar>
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<div th:replace="commons/admin/script::scripts()"></div>
 </body>
+	<@inc.script></@inc.script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

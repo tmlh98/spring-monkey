@@ -16,6 +16,9 @@ spring:
     password: tianxin1998
     druid:
       connection-init-sqls: set names utf8mb4;
+  freemarker:
+    settings:
+      classic_compatible: true        
         
 
 #security.basic.enabled = false

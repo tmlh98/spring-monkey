@@ -1,7 +1,11 @@
+<#import "/layout/inc.ftl" as inc>
+<#import "/layout/nav.ftl" as nav>
+
+
+<#macro artAdd>
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="commons/head::head(~{::title},~{::style},~{})">
-<title>发布</title>
+<html lang="en">
+<@inc.head '发布'>
 <style type="text/css">
      .w-e-text-container{
    	 	min-height: 300px !important;
@@ -14,53 +18,53 @@
 	.w-e-toolbar{
 		background-color: #ffffff !important;
 	}
-  </style>
-</head>
-
+</style>
+</@inc.head>
 <body>
-	<nav th:replace="commons/bar::topbar(active='article')"></nav>
-
-	<div class="container">
+	<@nav.topbar active='default'>
+	</@nav.topbar>
+ 	<div class="container">
 
 		<div class="row clearfix" style="margin-top: 25px">
 			<div class="input-group">
 				<span class="input-group-btn"> 
 				<select id="catalog-selected" class="selectpicker show-tick form-control" style=" width: 180px">
-						<option value="1">综合</option>
-						<option value="2">Boot</option>
-						<option value="3">Cloud</option>
-						<option value="4">Framework</option>
-						<option value="5">Security</option>
-						<option value="6">Data</option>
-						<option value="7">Batch</option>
-						<option value="8">AMQP</option>
+			
+					<#list catalogList as catalog>
+						<#if catalog.id==Request.article.catalog.id>
+							<option value="${catalog.id}" selected="selected" >${catalog.name}</option>
+							<#else>
+							<option value="${catalog.id}">${catalog.name}</option>
+						</#if>
+					</#list>
 				</select>
-				</span> <input id="title" type="text" class="form-control" placeholder="标题" th:value="${article.title}"/> <span
+				</span> <input id="title" type="text" class="form-control" placeholder="标题" value="${Request.article.title}"/> <span
 					class="input-group-btn">
-					<button class="btn btn-default " type="button" th:onclick="|save('${article.publishType}')|">发布</button>
+					<button class="btn btn-default " type="button" onclick="save(${Request.publishType})">发布</button>
 				</span>
 			</div>
 			    <!-- 文章编辑器组件 -->
 		    <div>
 		        <p class="text-success">友情提示：编辑器支持图片拖动上传或者复制粘贴上传~</p>
-		        <div id="editor" th:utext="${article.content}">
+		        <div id="editor" >
+		        	<#nested>
 		        </div>
 		    </div>
 		</div>
 	</div>
+ 
+ 
+	<#include "/layout/footer.ftl">
 </body>
-<script th:inline="javascript">
-	var artId = [[${article.id}]];
-</script>
+<@inc.script>
  <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
  <script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
     <script type="text/javascript">
-        var E = window.wangEditor
-        var editor = new E('#editor')
-        // 或者 var editor = new E( document.getElementById('editor') )
+        var E = window.wangEditor;
+        var editor = new E('#editor');
         editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
-
         editor.create();
+        
         
         function save(publishType) {
         	var icontent = editor.txt.text();
@@ -71,21 +75,18 @@
         	
         	var catalogId = $('#catalog-selected').val();
         	var title = $('#title').val();
-        	
         	var content = editor.txt.html();
         	var data = { 
-        		 
       			  "catalog": {
     				  "id" : catalogId
     			  },
-    			  "id" : artId,
     			  "title": title,
     			  "publishType": publishType,
     			  "content": content
     			  };
         	$.ajax({
-        		  method: "PUT",
-        		  url: '/user/article/edit',
+        		  method: "POST",
+        		  url: '/user/article/publish',
         		  data: {
         			  articleStr : JSON.stringify(data)
         		  },
@@ -110,5 +111,6 @@
         }
         
     </script>
+</@inc.script>
 </html>
-
+</#macro>

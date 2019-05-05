@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import xyz.tmlh.core.model.CommentModel;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.model.data.CommentDo;
 import xyz.tmlh.core.service.ArticleService;
+import xyz.tmlh.core.service.CatalogService;
 import xyz.tmlh.core.service.CommentService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
@@ -56,6 +58,9 @@ public class UserController {
     @Autowired
     private SocialService socialService;
     
+    @Autowired
+    private CatalogService catalogService;
+    
     @GetMapping
     public String me(Model model) {
         model.addAttribute("fansCount", socialService.selectFansCount(CurrentUserUtils.getUser().getId()));
@@ -67,8 +72,9 @@ public class UserController {
     }
     
     @GetMapping("/article/{id}")
-    public String editArticle(@PathVariable("id")Integer id ,Model model) {
+    public String editArticle(@PathVariable("id")Integer id ,ModelMap model) {
         model.addAttribute("article", articleService.getById(id));
+        model.addAttribute("catalogList", catalogService.list());
         return "user/article-edit";
     }
     
