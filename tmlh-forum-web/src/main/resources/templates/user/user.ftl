@@ -19,9 +19,9 @@
 							<h4 class="magin-top-40" >${user.username}</h4>
 							<p class="pull-right" id= "relation">
 							<#if isFollow>
-								<button id="unfolwer" class="btn  btn-success sty" >取消关注</button>
+								<button id="unfolwer" class="btn  btn-success" >取消关注</button>
 								<#else>
-								<button id="folwer" class="btn  btn-success sty"  >+关注</button>
+								<button id="folwer" class="btn  btn-success"  >+关注</button>
 							</#if>
 							</p>
 							<a href="#"> <img
@@ -142,7 +142,7 @@
   		  success: function(data){
   			  if(data.code == '0'){
   				infoNotify(data.message);
-  				$('#relation').html('<button id="unfolwer" class="btn  btn-success sty">取消关注</button>');
+  				$('#relation').html('<button id="unfolwer" class="btn  btn-success ">取消关注</button>');
   			  }else{
   				dangerNotify(data.message);
   			  }
@@ -158,7 +158,7 @@
   		  success: function(data){
   			  if(data.code == '0'){
   				infoNotify(data.message);
-  				$('#relation').html('<button id="folwer" class="btn  btn-success sty">+关注</button>');
+  				$('#relation').html('<button id="folwer" class="btn  btn-success">+关注</button>');
   			  }else{
   				dangerNotify(data.message);
   			  }

@@ -25,7 +25,7 @@
 							<b class="d-inline-block pull-left">
 								<span class="glyphicon glyphicon-time color-bff" aria-hidden="true"></span>
 								&nbsp;<span>
-								${(article.createTime?string('yyyy-MM-dd hh:mm:ss'))!} 
+									${article.createTime?number_to_datetime}
 								</span></b> 
 								
 							<b class="d-inline-block   magin-left-20">
@@ -152,9 +152,9 @@
 						<div class="col-md-10 column col-md-offset-1">
 							<div class="col-md-12 column" id="relation">
 							<#if isFollow >
-								<button id="unfolwer" class="btn  btn-success sty btn-primary btn-block"  >取消关注</button>	
+								<button id="unfolwer" class="btn btn-success btn-block" >取消关注</button>	
 								<#else>
-								<button id="folwer" class="btn  btn-success sty btn-primary btn-block" >+关注</button>
+								<button id="folwer" class="btn btn-success btn-block" >+关注</button>
 							</#if>		
 							</div>
 						</div>
@@ -314,7 +314,7 @@
   		  success: function(data){
   			  if(data.code == '0'){
   				infoNotify(data.message);
-  				$('#relation').html('<button id="unfolwer" class="btn  btn-success sty  btn-primary btn-block">取消关注</button>');
+  				$('#relation').html('<button id="unfolwer" class="btn  btn-success btn-block">取消关注</button>');
   			  }else{
   				dangerNotify(data.message);
   			  }
@@ -330,7 +330,7 @@
   		  success: function(data){
   			  if(data.code == '0'){
   				infoNotify(data.message);
-  				$('#relation').html('<button id="folwer" class="btn  btn-success sty  btn-primary btn-block">+关注</button>');
+  				$('#relation').html('<button id="folwer" class="btn  btn-success btn-block">+关注</button>');
   			  }else{
   				dangerNotify(data.message);
   			  }

@@ -8,17 +8,18 @@
 	</ol>
 </section>
 <script type="text/javascript">
-	window.onload =
-		function() {
-			var linkList = window.parent.document.getElementsByTagName("link"); //获取父窗口link标签对象列表
-			var head = document.getElementsByTagName("head").item(0);
-			//外联样式
-			for(var i = 0; i < linkList.length; i++) {
-				var l = document.createElement("link");
-				l.rel = 'stylesheet'
-				l.type = 'text/css';
-				l.href = linkList[i].href;
-				head.appendChild(l);
+	function setIframeHeight(iframe) {
+		if (iframe) {
+			var iframeWin = iframe.contentWindow
+					|| iframe.contentDocument.parentWindow;
+			if (iframeWin.document.body) {
+				iframe.height = iframeWin.document.documentElement.scrollHeight
+						|| iframeWin.document.body.scrollHeight;
 			}
 		}
+	};
+
+	window.onload = function() {
+		setIframeHeight(document.getElementById('external-frame'));
+	};
 </script>

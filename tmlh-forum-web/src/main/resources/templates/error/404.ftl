@@ -3,6 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <@inc.head '404'>
+<style type="text/css">
+.display-1 {
+	font-weight: 300;
+	line-height: 1.2;
+	color: red;
+	font-size: 6rem;
+}
+.d-block {
+	display: block !important;
+	margin-top: 50px;
+}
+</style>
 </@inc.head>
 <body>
 	<@nav.topbar active='default'>	</@nav.topbar>
