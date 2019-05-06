@@ -40,7 +40,7 @@
 				</select>
 				</span> <input id="title" type="text" class="form-control" placeholder="标题" value="${Request.article.title}"/> <span
 					class="input-group-btn">
-					<button class="btn btn-default " type="button" onclick="save(${Request.publishType})">发布</button>
+					<button class="btn btn-default " type="button" onclick="save()">发布</button>
 				</span>
 			</div>
 			    <!-- 文章编辑器组件 -->
@@ -66,7 +66,7 @@
         editor.create();
         
         
-        function save(publishType) {
+        function save() {
         	var icontent = editor.txt.text();
         	if(icontent.length == 0 || icontent.trim() == ''){
         		dangerNotify('请输入内容!');
@@ -76,6 +76,7 @@
         	var catalogId = $('#catalog-selected').val();
         	var title = $('#title').val();
         	var content = editor.txt.html();
+        	var publishType = '${Request.publishType}';
         	var data = { 
       			  "catalog": {
     				  "id" : catalogId
