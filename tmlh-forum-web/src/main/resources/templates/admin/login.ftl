@@ -57,7 +57,11 @@
 
 </body>
 
-<script src="/webjars/jquery/2.1.1/jquery.min.js"></script> 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.1.1/dist/jquery.min.js"></script> 
+<script>window.jQuery || document.write(unescape("%3Cscript src='/webjars/jquery/2.1.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"))</script>
+
+<!-- <script src="/webjars/jquery/2.1.1/jquery.min.js"></script>  -->
 <script src="/webjars/sweetalert/2.1.0/sweetalert.min.js"></script> 
 <script type="text/javascript">
 function login() {

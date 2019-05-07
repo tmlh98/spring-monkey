@@ -18,12 +18,12 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        log.id, log.create_time, log.operation, log.method, log.params, log.time, log.ip, log.user_id , log.url
+        l.id, l.create_time, l.operation, l.method, l.params, l.time, l.ip, l.user_id , l.url
     </sql>
 	
 	<select id="findPage" resultMap="sysLogMap">
 		SELECT <include refid="Base_Column_List"></include> , u.username
-		FROM sys_log log LEFT JOIN tbl_user u ON log.user_id = u.id 
+		FROM sys_log l LEFT JOIN tbl_user u ON l.user_id = u.id 
 		${ew.customSqlSegment}
 	</select>
 </mapper>

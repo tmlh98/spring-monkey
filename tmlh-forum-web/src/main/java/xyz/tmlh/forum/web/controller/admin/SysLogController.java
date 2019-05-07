@@ -1,5 +1,6 @@
 package xyz.tmlh.forum.web.controller.admin;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,13 +42,13 @@ public class SysLogController {
             @RequestParam(defaultValue="10") int pageSize , SysLogModel sysLog) {
         IPage<SysLogModel> page = new Page<>(currPage, pageSize);
         QueryWrapper<SysLogModel> wapper = new QueryWrapper<SysLogModel>();
-        if(sysLog != null && sysLog.getUsername() != null) {
+        if(sysLog != null && StringUtils.isNotBlank(sysLog.getUsername())) {
             wapper.like("u.username", sysLog.getUsername());
         }
-        if(sysLog != null && sysLog.getUrl() != null) {
-            wapper.like("log.url", sysLog.getUrl());
+        if(sysLog != null && StringUtils.isNotBlank(sysLog.getUrl())) {
+            wapper.like("l.url", sysLog.getUrl());
         }
-        wapper.orderByDesc("log.create_time");
+        wapper.orderByDesc("l.create_time");
         
         IPage<SysLogModel> sysLogPage = sysLogService.findPage(page , wapper);
         return ResultBean.success().putResult("sysLogPage", sysLogPage);
