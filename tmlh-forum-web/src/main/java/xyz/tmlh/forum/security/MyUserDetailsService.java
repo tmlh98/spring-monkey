@@ -28,7 +28,7 @@ import xyz.tmlh.forum.util.user.CurrentUserUtils;
 
 /**
  * <p>
- *    MyUserDetailsService
+ *    用户登陆以后的操作
  * </p>
  *
  * @author TianXin

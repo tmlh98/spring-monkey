@@ -1,5 +1,7 @@
 package xyz.tmlh.core.model.data;
 
+import java.io.Serializable;
+
 import xyz.tmlh.core.model.UserModel;
 
 /**
@@ -10,8 +12,10 @@ import xyz.tmlh.core.model.UserModel;
  * @author TianXin
  * @since 2019年4月7日下午1:09:09
  */
-public class SocialDo {
+public class SocialDo implements Serializable{
     
+    private static final long serialVersionUID = 3206365594307891862L;
+
     /**
      * 当前用户
      */

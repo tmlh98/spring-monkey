@@ -1,5 +1,6 @@
 package xyz.tmlh.core.model.data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.BeanUtils;
@@ -17,7 +18,9 @@ import xyz.tmlh.core.model.UserModel;
  * @author TianXin
  * @since 2019年4月6日下午4:07:15
  */
-public class CommentDo {
+public class CommentDo implements Serializable{
+
+    private static final long serialVersionUID = -2557615099998143725L;
 
     /**
      * 主键

@@ -16,12 +16,12 @@
 			<artifactId>tmlh-security-browser</artifactId>
 			<version>${tmlh.security.version}</version>
 		</dependency>
-		
+
 		<dependency>
-	    <groupId>com.fasterxml.jackson.datatype</groupId>
-	    <artifactId>jackson-datatype-jsr310</artifactId>
-	</dependency>
-		
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+
 		<!-- mybatis-plus-boot-starter -->
 		<dependency>
 			<groupId>com.baomidou</groupId>
@@ -40,6 +40,12 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
 			<version>1.1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>

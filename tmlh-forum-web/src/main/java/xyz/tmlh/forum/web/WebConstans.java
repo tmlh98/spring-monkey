@@ -14,4 +14,10 @@ public interface WebConstans {
      * 重定向的前缀
      */
     String REDIRECT_PREFIX = "redirect:/";
+    
+    /**
+     * 消息
+     */
+    String KEY_MESSAGE_QUEUE = "messageQueue";
+    
 }

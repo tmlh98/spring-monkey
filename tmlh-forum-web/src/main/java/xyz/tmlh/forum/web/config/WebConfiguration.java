@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 import xyz.tmlh.core.CoreApplication;
+import xyz.tmlh.core.suport.MessageQueue;
 import xyz.tmlh.forum.util.validate.Captcha;
 import xyz.tmlh.forum.util.validate.GifCaptcha;
 import xyz.tmlh.security.SecurityCoreConfig;
