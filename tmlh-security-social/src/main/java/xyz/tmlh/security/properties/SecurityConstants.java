@@ -57,4 +57,5 @@ public class SecurityConstants {
      */
     public static final String LOGIN_ADMIN = "loginAdmin";
     
+    
 }

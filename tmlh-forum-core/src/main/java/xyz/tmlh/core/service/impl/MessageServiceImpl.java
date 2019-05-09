@@ -17,4 +17,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageServiceImpl extends ServiceImpl<MessageMapper, MessageModel> implements MessageService {
 
+    
+
 }

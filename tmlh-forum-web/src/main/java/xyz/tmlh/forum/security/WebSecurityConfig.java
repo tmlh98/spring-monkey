@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import xyz.tmlh.forum.util.GetMapperUtil;
+import xyz.tmlh.forum.web.WebConstans;
 import xyz.tmlh.security.browser.BrowserSecurityConfig;
 
 /**
@@ -41,6 +42,7 @@ public class WebSecurityConfig extends BrowserSecurityConfig {
         urls.add("/webjars/**");
         urls.add("/asserts/**");
         urls.add("/images/**");
+        urls.add(WebConstans.URL_WEBSOCKET);
 //        urls.add("/admin/**");
         return urls;
     }

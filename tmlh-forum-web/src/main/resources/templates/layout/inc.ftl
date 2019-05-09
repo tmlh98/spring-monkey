@@ -33,8 +33,7 @@
 
 <script src="/webjars/bootstrap-notify/3.1.3-1/bootstrap-notify.min.js"></script>
 <script src="/asserts/js/common.js"></script>
-
-
+<script src="/asserts/js/common-socket.js"></script>
 
 
 <#nested>

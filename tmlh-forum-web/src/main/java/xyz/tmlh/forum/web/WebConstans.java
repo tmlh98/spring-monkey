@@ -20,4 +20,5 @@ public interface WebConstans {
      */
     String KEY_MESSAGE_QUEUE = "messageQueue";
     
+    String URL_WEBSOCKET = "/websocket";
 }

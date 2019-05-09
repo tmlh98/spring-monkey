@@ -14,7 +14,7 @@ import xyz.tmlh.security.exception.UserNotFoundException;
  */
 public class CurrentUserUtils {
     
-    private static final String CURR_LOGIN_USER = "loginUser";
+    public static final String CURR_LOGIN_USER = "loginUser";
     
     /**
      * 获取当前系统用户名
