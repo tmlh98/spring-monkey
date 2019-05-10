@@ -47,7 +47,9 @@ public class MyConnectionSignUp implements ConnectionSignUp {
         if (user == null) {
             if (StringUtils.equalsIgnoreCase(strings[0], "qq")) {
                 user = getQQUser(userId, strings , connection);
-            } else {
+            } else if (StringUtils.equalsIgnoreCase(strings[0], "gitee")){
+                user = getGiteeUser(userId, strings , connection);
+            }else {
                 // github用户
                 user = getGitHubUser(userId, strings , connection);
             }
@@ -60,6 +62,12 @@ public class MyConnectionSignUp implements ConnectionSignUp {
     }
 
     
+    private UserModel getGiteeUser(String userId, String[] strings, Connection<?> connection) {
+        String detail = "profileUrl :" + connection.getProfileUrl();
+        return new UserModel(userId, connection.getDisplayName(), connection.getImageUrl(), LocalDateTime.now(), strings[0] ,detail );
+    }
+
+
     private UserModel getGitHubUser(String userId, String[] strings, Connection<?> connection) {
         UserProfile userInfo = connection.fetchUserProfile();
         String username = connection.getDisplayName();

@@ -1,17 +1,12 @@
 package xyz.tmlh.forum.web.config;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
-import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 import xyz.tmlh.core.CoreApplication;
-import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.forum.util.validate.Captcha;
 import xyz.tmlh.forum.util.validate.GifCaptcha;
 import xyz.tmlh.security.SecurityCoreConfig;
@@ -49,9 +44,9 @@ public class WebAppConfiguration {
     /*
      * WebSocket
      */
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter() {
-        return new ServerEndpointExporter();
-    }
+//    @Bean
+//    public ServerEndpointExporter serverEndpointExporter() {
+//        return new ServerEndpointExporter();
+//    }
 
 }

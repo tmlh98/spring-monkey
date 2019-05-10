@@ -27,6 +27,11 @@
 						src="http://springforall.ufile.ucloud.com.cn/images/icon/github.svg"
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="/auth/gitee" class="ml-4">
+					 	<img src="https://assets.gitee.com/assets/favicon-e87ded4710611ed62adc859698277663.ico"
+						alt="" style="max-width: 64px; max-height: 64px"/>
+					</a>
 				</div>
 
 				<h4 class="row" style="font-size: 16px; color: #7d7d7d; padding-top: 30px">

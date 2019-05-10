@@ -1,6 +1,6 @@
 package xyz.tmlh.security.validate.code;
 
-import xyz.tmlh.security.properties.SecurityConstants;
+import xyz.tmlh.security.suport.SecurityConstants;
 
 /**  
  * 验证码的类型

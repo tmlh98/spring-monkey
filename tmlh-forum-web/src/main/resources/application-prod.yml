@@ -44,6 +44,9 @@ tmlh:
       github:
         app-id: 6161f2cee4ad8fe7e89a
         app-secret: bdef1d6d79a74a555f878c128cfc1eb6cb8482dc
+      gitee:
+        app-id: d32257f38f59d5ee03c6955237950bd04a2c84d56a1fb121a8898b52df4669d0
+        app-secret: 508ae3161a143c74618e55dcca724ecb6d0d5cba5c34e4a3ee9f3c612d36827a        
 
         
 mybatis-plus:

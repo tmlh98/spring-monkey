@@ -107,11 +107,11 @@
 							</div>
 							<div class="row magin-top-10 padding-bottom-20">
 								 <div class="col-md-6">
-								 	<button class="btn btn-info btn-sm pull-right sty"  data-toggle="modal" data-target="#myModal">编辑资料</button>
+								 	<button class="btn btn-info btn-sm pull-right"  data-toggle="modal" data-target="#myModal">编辑资料</button>
 								 </div>
 								 <div class="col-md-6">
 								 <div>
-								  	<button class="btn btn-danger btn-sm sty" onclick="javascript:window.location.href='/logout'">退出登陆</button>
+								  	<button class="btn btn-danger btn-sm" onclick="javascript:window.location.href='/logout'">退出登陆</button>
 								  </div>
 								 </div>
 							</div>

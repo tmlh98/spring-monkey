@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import xyz.tmlh.security.browser.suport.ResultBean;
-import xyz.tmlh.security.properties.LoginType;
 import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.browser.LoginType;
 
 /**
  * 自定义的登陆失败处理 implements 

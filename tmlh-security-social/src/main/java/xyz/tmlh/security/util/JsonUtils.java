@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.util;
+package xyz.tmlh.security.util;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;

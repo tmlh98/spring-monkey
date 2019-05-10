@@ -3,6 +3,10 @@ package xyz.tmlh.security.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import xyz.tmlh.security.properties.browser.BrowserProerties;
+import xyz.tmlh.security.properties.code.ValidateCodeProperties;
+import xyz.tmlh.security.properties.social.SocialProperties;
+
 /**  
  *  Created by TianXin on 2018年12月29日. 
  */

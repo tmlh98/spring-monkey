@@ -11,7 +11,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import xyz.tmlh.core.service.SysLogService;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.web.suport.LoginUsers;
 
 /**
  * <p>
@@ -38,7 +37,7 @@ public class AdminSkipController {
     public String main(Model model) {
         model.addAttribute("homeFlux", sysLogService.findHomeFlux());
         model.addAttribute("userCount", userService.count());
-        model.addAttribute("loginUserCount", LoginUsers.size());
+        model.addAttribute("loginUserCount", "?");
         return "admin/main";
     }
     

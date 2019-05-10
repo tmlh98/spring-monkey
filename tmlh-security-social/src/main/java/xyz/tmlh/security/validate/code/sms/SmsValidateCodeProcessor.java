@@ -8,7 +8,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.properties.SecurityConstants;
+import xyz.tmlh.security.suport.SecurityConstants;
 import xyz.tmlh.security.validate.code.ValidateCode;
 import xyz.tmlh.security.validate.code.impl.AbstractValidateCodeProcessor;
 

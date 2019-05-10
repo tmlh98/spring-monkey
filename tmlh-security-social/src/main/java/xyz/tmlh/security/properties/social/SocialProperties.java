@@ -1,4 +1,4 @@
-package xyz.tmlh.security.properties;
+package xyz.tmlh.security.properties.social;
 
 /**
  * <p>
@@ -15,6 +15,8 @@ public class SocialProperties {
 	private QQProperties qq = new QQProperties();
 	
 	private GitHubProperties github = new GitHubProperties();
+	
+	private GiteeProperties gitee = new GiteeProperties();
 
 	public QQProperties getQq() {
 		return qq;
@@ -38,6 +40,14 @@ public class SocialProperties {
 
     public void setGithub(GitHubProperties github) {
         this.github = github;
+    }
+
+    public GiteeProperties getGitee() {
+        return gitee;
+    }
+
+    public void setGitee(GiteeProperties gitee) {
+        this.gitee = gitee;
     }
 	
 

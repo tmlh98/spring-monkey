@@ -15,8 +15,8 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.authentication.AbstractChannelSecurityConfig;
-import xyz.tmlh.security.properties.SecurityConstants;
 import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.suport.SecurityConstants;
 import xyz.tmlh.security.validate.code.ValidateCodeFilter;
 
 
@@ -35,7 +35,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     private DataSource dataSource;
     
     @Autowired
-    private UserDetailsService myUserDetailsService;
+    private UserDetailsService userDetailsService;
     
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler ;
@@ -65,7 +65,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                     .tokenRepository(persistentTokenRepository())
                     .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                         .and()
-                    .userDetailsService(myUserDetailsService)
+                    .userDetailsService(userDetailsService)
                     .logout().permitAll().invalidateHttpSession(true)
                     .logoutUrl(securityProperties.getBrowser().getLogout())
                     .deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler)

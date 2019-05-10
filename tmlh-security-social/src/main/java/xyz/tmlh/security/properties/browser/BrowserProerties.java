@@ -1,4 +1,4 @@
-package xyz.tmlh.security.properties;
+package xyz.tmlh.security.properties.browser;
 
 /**  
  * @CreateInformation Created by TianXin on 2018年12月29日. 

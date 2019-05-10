@@ -95,6 +95,15 @@ public class UserModel implements Serializable {
         this.id = id;
         this.lastLogin = lastLogin;
     }
+    public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source,String detail) {
+        this.userconnectionId = userconnectionId;
+        this.username = username;
+        this.imageUrl = imageUrl;
+        this.lastLogin = lastLogin;
+        this.source = source;
+        this.detail = detail;
+    }
+    
     public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String gender) {
         super();
         this.userconnectionId = userconnectionId;
@@ -113,7 +122,7 @@ public class UserModel implements Serializable {
         this.lastLogin = lastLogin;
         this.source = source;
         this.detail = detail;
-        this.detail = detail;
+        this.gender = gender;
         this.email = email;
     }
 

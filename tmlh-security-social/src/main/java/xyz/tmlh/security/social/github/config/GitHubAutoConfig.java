@@ -16,8 +16,8 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.github.api.GitHub;
 
-import xyz.tmlh.security.properties.GitHubProperties;
 import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.social.GitHubProperties;
 import xyz.tmlh.security.social.SocialConfig;
 import xyz.tmlh.security.social.github.connet.GitHubConnectionFactory;
 

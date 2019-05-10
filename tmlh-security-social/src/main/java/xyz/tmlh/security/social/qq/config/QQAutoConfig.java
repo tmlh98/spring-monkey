@@ -15,8 +15,8 @@ import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 
-import xyz.tmlh.security.properties.QQProperties;
 import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.social.QQProperties;
 import xyz.tmlh.security.social.SocialConfig;
 import xyz.tmlh.security.social.qq.api.QQ;
 import xyz.tmlh.security.social.qq.connet.QQConnectionFactory;

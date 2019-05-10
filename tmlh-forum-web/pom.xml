@@ -21,10 +21,10 @@
 			<version>${tmlh.security.version}</version>
 		</dependency>
 		<!-- websocket -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

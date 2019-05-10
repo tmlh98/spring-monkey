@@ -1,4 +1,4 @@
-package xyz.tmlh.security.properties;
+package xyz.tmlh.security.properties.code;
 
 /**
  * 验证码配置类  

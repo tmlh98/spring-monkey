@@ -1,4 +1,4 @@
-package xyz.tmlh.security.properties;
+package xyz.tmlh.security.suport;
 
 /** 
  * 用到的常量 

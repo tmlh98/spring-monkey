@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import xyz.tmlh.security.properties.SecurityConstants;
+import xyz.tmlh.security.suport.SecurityConstants;
 
 /**
  * <p>

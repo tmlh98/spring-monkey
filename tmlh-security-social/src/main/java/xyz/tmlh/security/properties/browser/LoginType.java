@@ -1,4 +1,4 @@
-package xyz.tmlh.security.properties;
+package xyz.tmlh.security.properties.browser;
 
 /**
  * 登陆类型json,redirect (同步)
