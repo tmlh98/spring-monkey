@@ -215,7 +215,7 @@
     editor1.create();
     
     function saveComment(articleId , comId , text , obj) {
-    	var content = editor1.txt.html();
+    	var content = editor1.txt.text();
     	var commentId ;
     	if(comId > 0){
     		commentId = comId;
@@ -224,8 +224,7 @@
     		content = text;
     	}
     	
-    	var icontent = editor1.txt.text();
-    	if(icontent.length == 0 || icontent.trim() == ''){
+    	if(content.length == 0 || content.trim() == ''){
     		dangerNotify('请输入内容!');
     		return;
     	}

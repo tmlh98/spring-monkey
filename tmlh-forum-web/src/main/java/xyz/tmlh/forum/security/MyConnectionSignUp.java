@@ -35,54 +35,54 @@ public class MyConnectionSignUp implements ConnectionSignUp {
 
     @Autowired
     private UserService userSrvice;
+    
+    private String userId;
+    
+    private String providerId;
 
     @Override
     public String execute(Connection<?> connection) {
-        
-        String userId = connection.getKey().toString();
-        // 切割出 source 和 openId
-        String[] strings = StringUtils.splitByWholeSeparatorPreserveAllTokens(userId, ":");
+        this.userId = connection.getKey().toString();
+        this.providerId = connection.getKey().getProviderId();
         
         UserModel user = userSrvice.getOne(new LambdaQueryWrapper<UserModel>().eq(UserModel::getUserconnectionId, userId));
         if (user == null) {
-            if (StringUtils.equalsIgnoreCase(strings[0], "qq")) {
-                user = getQQUser(userId, strings , connection);
-            } else if (StringUtils.equalsIgnoreCase(strings[0], "gitee")){
-                user = getGiteeUser(userId, strings , connection);
+            if (StringUtils.equalsIgnoreCase(providerId, "qq")) {
+                user = getQQUser(connection);
+            } else if (StringUtils.equalsIgnoreCase(providerId, "gitee")){
+                user = getGiteeUser(connection);
             }else {
-                // github用户
-                user = getGitHubUser(userId, strings , connection);
+                user = getGitHubUser(connection);
             }
             userSrvice.save(user);
         }
 
-        LOGGER.info("{} 用户 : {} , 注册成功  !", strings[0], connection.getDisplayName());
+        LOGGER.info("用户 : {} , 注册成功  !",connection.getDisplayName());
         // 根据社交用户信息默认创建用户并返回用户唯一标识
-        return connection.getKey().toString();
+        return userId;
     }
 
     
-    private UserModel getGiteeUser(String userId, String[] strings, Connection<?> connection) {
-        String detail = "profileUrl :" + connection.getProfileUrl();
-        return new UserModel(userId, connection.getDisplayName(), connection.getImageUrl(), LocalDateTime.now(), strings[0] ,detail );
+    private UserModel getGiteeUser(Connection<?> connection) {
+        String detail = "getee profileUrl :" + connection.getProfileUrl();
+        return new UserModel(userId, connection.getDisplayName(), connection.getImageUrl(), LocalDateTime.now(), providerId ,detail );
     }
 
-
-    private UserModel getGitHubUser(String userId, String[] strings, Connection<?> connection) {
+    private UserModel getGitHubUser(Connection<?> connection) {
         UserProfile userInfo = connection.fetchUserProfile();
         String username = connection.getDisplayName();
         String imageUrl = connection.getImageUrl();
-        String detail = null;
-        return new UserModel(userId, username, imageUrl, LocalDateTime.now(), strings[0], detail, null , userInfo.getEmail());
+        String detail = "github profileUrl :" + connection.getProfileUrl();
+        return new UserModel(userId, username, imageUrl, LocalDateTime.now(), providerId, detail, null , userInfo.getEmail());
     }
 
-    private UserModel getQQUser(String userId, String[] strings ,Connection<?> connection) {
+    private UserModel getQQUser(Connection<?> connection) {
         QQ qq  = (QQ)connection.getApi();
         QQUserInfo userInfo = qq.getUserInfo();
         if (userInfo == null) {
             throw new UserNotFoundException("无法获取qq用户信息！");
         }
-        return new UserModel(userId, userInfo.getNickname(), userInfo.getFigureurl_qq_2(), LocalDateTime.now(), strings[0], userInfo.getYear() + " " + userInfo
+        return new UserModel(userId, userInfo.getNickname(), userInfo.getFigureurl_qq_2(), LocalDateTime.now(), providerId, userInfo.getYear() + " " + userInfo
             .getProvince() + " " + userInfo.getCity(), userInfo.getGender());
     }
 

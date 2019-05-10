@@ -2,10 +2,9 @@ package xyz.tmlh.forum.web.servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
 
 
-@WebListener
+//@WebListener
 public class ServletStartupListener implements ServletContextListener{
     
     @Override
