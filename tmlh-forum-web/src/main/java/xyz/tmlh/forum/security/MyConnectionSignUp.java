@@ -43,7 +43,7 @@ public class MyConnectionSignUp implements ConnectionSignUp {
     @Override
     public String execute(Connection<?> connection) {
         this.userId = connection.getKey().toString();
-        this.providerId = connection.getKey().getProviderId();
+        this.providerId = connection.getKey().getProviderId(); 
         
         UserModel user = userSrvice.getOne(new LambdaQueryWrapper<UserModel>().eq(UserModel::getUserconnectionId, userId));
         if (user == null) {
@@ -64,7 +64,7 @@ public class MyConnectionSignUp implements ConnectionSignUp {
 
     
     private UserModel getGiteeUser(Connection<?> connection) {
-        String detail = "getee profileUrl :" + connection.getProfileUrl();
+        String detail = "Gitee profileUrl :" + connection.getProfileUrl();
         return new UserModel(userId, connection.getDisplayName(), connection.getImageUrl(), LocalDateTime.now(), providerId ,detail );
     }
 
@@ -72,7 +72,7 @@ public class MyConnectionSignUp implements ConnectionSignUp {
         UserProfile userInfo = connection.fetchUserProfile();
         String username = connection.getDisplayName();
         String imageUrl = connection.getImageUrl();
-        String detail = "github profileUrl :" + connection.getProfileUrl();
+        String detail = "Github profileUrl :" + connection.getProfileUrl();
         return new UserModel(userId, username, imageUrl, LocalDateTime.now(), providerId, detail, null , userInfo.getEmail());
     }
 

@@ -1,5 +1,6 @@
 <#import "/layout/inc.ftl" as inc>
 <#import "/layout/nav.ftl" as nav>
+<#import "./layout/message-js.ftl" as message>
 
 
 <#macro artAdd>
@@ -113,5 +114,7 @@
         
     </script>
 </@inc.script>
+<@message.messageNotify></@message.messageNotify>
+
 </html>
 </#macro>

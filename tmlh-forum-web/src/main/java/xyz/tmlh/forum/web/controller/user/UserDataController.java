@@ -39,6 +39,10 @@ public class UserDataController {
             isFollow = socialService.selectFollow(CurrentUserUtils.getUser().getId() , id);
         }
         model.addAttribute("isFollow", isFollow);
+        
+        model.addAttribute("fansList", socialService.selectFansList(id));
+        model.addAttribute("followList", socialService.selectFollowList(id));
+      
         return "user/user";
     }
     

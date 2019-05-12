@@ -1,11 +1,3 @@
-/*   
- * @Title: ResultBean.java 
- * @Package com.tx.blog.common.entity 
- * @Description: TODO(用一句话描述该文件做什么) 
- * @author A18ccms A18ccms_gmail_com   
- * @date 2018年12月27日 下午7:22:29 
- * @version V1.0   
- */ 
 package xyz.tmlh.security.browser.suport;
 
 import java.util.HashMap;
@@ -50,8 +42,9 @@ public class ResultBean {
         return message;
     }
 
-    public void setMessage(String message) {
+    public ResultBean setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public Integer getCode() {

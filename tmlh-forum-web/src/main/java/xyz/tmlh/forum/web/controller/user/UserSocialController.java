@@ -14,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import xyz.tmlh.core.model.SocialModel;
+import xyz.tmlh.core.service.MessageService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
@@ -36,6 +37,10 @@ public class UserSocialController {
     @Autowired
     private SocialService socialService;
     
+    @Autowired
+    private MessageService messageService;
+
+    
     @SysLog("关注一个用户")
     @ApiOperation(value = "关注一个用户" )
     @PostMapping("/{id}")
@@ -45,6 +50,8 @@ public class UserSocialController {
         }
         SocialModel social = new SocialModel(CurrentUserUtils.getUser().getId(), id);
         socialService.save(social);
+        
+        messageService.handle(social);
         return ResultBean.success("关注成功!");
     }
     

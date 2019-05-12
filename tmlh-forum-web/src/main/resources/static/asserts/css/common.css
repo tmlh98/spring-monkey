@@ -2,7 +2,12 @@ body, html {
     overflow-x: hidden; 
     overflow-y: auto;
 }
-
+.border-none{
+	border:none !important;
+}
+.background-color-none{
+	background-color: inherit !important;
+}
 .img-left{
 	width: 70xp;
 	height: 70px;

@@ -1,6 +1,9 @@
 package xyz.tmlh.core.service;
 
 import xyz.tmlh.core.model.SocialModel;
+import xyz.tmlh.core.model.data.SocialDo;
+
+import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -25,6 +28,7 @@ public interface SocialService extends IService<SocialModel> {
      */
     int selectFollowCount(Integer userId);
     
+    
     /**
      * 用户粉丝的人数
      *
@@ -46,5 +50,25 @@ public interface SocialService extends IService<SocialModel> {
       */
     boolean selectFollow(Integer userId, Integer id);
     
+    
+    /**
+     * 查询用户的关注列表
+      *
+      * @param @param userId
+      * @param @return    参数
+      * @return int    返回类型
+      * @throws
+     */
+    List<SocialDo> selectFollowList(Integer userId);
+    
+    /**
+     * 查询用户的粉丝列表
+      *
+      * @param @param userId
+      * @param @return    参数
+      * @return List<UserModel>    返回类型
+      * @throws
+     */
+    List<SocialDo> selectFansList(Integer userId);
     
 }

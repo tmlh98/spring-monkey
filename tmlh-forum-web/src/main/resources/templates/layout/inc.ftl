@@ -18,8 +18,8 @@
 	<link rel="stylesheet" href="/asserts/css/common.css" />
 	<#nested>
 </head>
+	
 </#macro>
-
 <#macro script>
 
 <#--<script src="/webjars/jquery/2.1.1/jquery.min.js"></script> -->
@@ -30,11 +30,8 @@
 <#-- <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.2.0/dist/js/bootstrap.min.js"></script>
 <script>window.jQuery.fn.modal || document.write(unescape("%3Cscript src='/webjars/bootstrap/3.2.0/js/bootstrap.min.js' type='text/javascript'%3E%3C/script%3E"))</script>
-
 <script src="/webjars/bootstrap-notify/3.1.3-1/bootstrap-notify.min.js"></script>
 <script src="/asserts/js/common.js"></script>
-
-
 <#nested>
 </#macro>
 

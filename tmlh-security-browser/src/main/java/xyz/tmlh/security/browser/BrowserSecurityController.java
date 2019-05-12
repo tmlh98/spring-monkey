@@ -22,8 +22,7 @@ import xyz.tmlh.security.browser.suport.ResultBean;
 import xyz.tmlh.security.properties.SecurityProperties;
 
 /**
- *      配置默认的请求 
- * Created by TianXin on 2018年12月29日.
+ * 配置默认的请求 Created by TianXin on 2018年12月29日.
  */
 @RestController
 public class BrowserSecurityController {
@@ -43,7 +42,6 @@ public class BrowserSecurityController {
     @Autowired
     private SecurityProperties securityProperties;
 
-
     /**
      * 基本请求监听,没有返回401
      * 
@@ -52,21 +50,15 @@ public class BrowserSecurityController {
     @RequestMapping("/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResultBean requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         SavedRequest savedRequest = requestCache.getRequest(request, response);
-
         if (savedRequest != null) {
             String targetUrl = savedRequest.getRedirectUrl();
 
-            LOGGER.info("引发请求的url: {} , 目标url: {}" ,targetUrl,securityProperties.getBrowser().getLoginPage());
-            if(targetUrl.indexOf("/admin") != -1){
-                redirectStrategy.sendRedirect(request, response, securityProperties.getBrowser().getLoginPage());
-            }
+            LOGGER.info("引发请求的url: {} , 目标url: {}", targetUrl, securityProperties.getBrowser().getLoginPage());
+            redirectStrategy.sendRedirect(request, response, securityProperties.getBrowser().getLoginPage());
         }
 
         return ResultBean.fail("请先登陆!");
     }
 
-    
- 
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.tmlh.core.mapper.MessageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="xyz.tmlh.core.model.data.MessageDo">
+        <id column="id" property="id" />
+        <result column="content" property="content" />
+        <result column="sender" property="sender" />
+        <result column="receiver" property="receiver" />
+        <result column="senderName" property="senderName" />
+        <result column="senderImageUrl" property="senderImageUrl" />
+        <result column="receiverName" property="receiverName" />
+        <result column="create_time" property="createTime" />
+        <result column="type" property="type" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List" >
+        m.id, content, sender, receiver,m.`type` , m.create_time,
+        u.image_url as senderImageUrl,u.username as senderName
+    </sql>
+    <select id="selectDoList" resultMap="BaseResultMap"> 
+    	SELECT <include refid="Base_Column_List"></include>
+    	FROM tbl_message m LEFT JOIN tbl_user u ON m.sender = u.id
+    	${ew.customSqlSegment}
+    </select>
+
+</mapper>

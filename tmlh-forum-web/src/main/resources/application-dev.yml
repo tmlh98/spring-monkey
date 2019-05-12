@@ -24,7 +24,7 @@ spring:
 tmlh:
   security:
     browser:
-      login-page: /admin/login
+      login-page: /login
       sign-up-url: /signup
 #图片验证码
     code:

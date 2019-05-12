@@ -66,9 +66,11 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                     .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                         .and()
                     .userDetailsService(userDetailsService)
-                    .logout().permitAll().invalidateHttpSession(true)
+                .logout().permitAll()
+                    .invalidateHttpSession(true)
                     .logoutUrl(securityProperties.getBrowser().getLogout())
-                    .deleteCookies("JSESSIONID").logoutSuccessHandler(logoutSuccessHandler)
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
             .authorizeRequests()
             .antMatchers(
@@ -79,7 +81,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 ).permitAll()//不拦截请求
             .anyRequest()
             .authenticated()
-            .and().csrf().disable();//禁用csrf
+                .and()
+            .csrf().disable();//禁用csrf
         
         //解决bug Refused to display in a frame because it set 'X-Frame-Options' to 'DENY'
         http.headers().frameOptions().disable();

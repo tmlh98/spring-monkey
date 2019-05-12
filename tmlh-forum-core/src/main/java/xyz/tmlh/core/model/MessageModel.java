@@ -3,6 +3,7 @@ package xyz.tmlh.core.model;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import xyz.tmlh.core.enums.MessageStatus;
+import xyz.tmlh.core.enums.MessageType;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -27,6 +28,9 @@ public class MessageModel implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    /**
+     * 内容
+     */
     private String content;
 
     /**
@@ -42,6 +46,11 @@ public class MessageModel implements Serializable {
     /**
      * 0 ：未读，1:以读
      */
+    private MessageType type;
+    
+    /**
+     * 0 ：未读，1:以读
+     */
     private MessageStatus status;
     
     /**
@@ -51,6 +60,30 @@ public class MessageModel implements Serializable {
     private LocalDateTime updateTime;
     
     private LocalDateTime createTime;
+
+    
+    public MessageModel() {
+        super();
+    }
+    public MessageModel(MessageStatus status) {
+        super();
+        this.status = status;
+    }
+
+    public MessageModel(String content, Integer sender, Integer receivere) {
+        super();
+        this.content = content;
+        this.sender = sender;
+        this.receiver = receivere;
+    }
+    
+    public MessageModel(String content, Integer sender, Integer receiver, MessageType type) {
+        super();
+        this.content = content;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.type = type;
+    }
 
     public Integer getId() {
         return id;
@@ -100,4 +133,21 @@ public class MessageModel implements Serializable {
         this.createTime = createTime;
     }
 
+    public MessageType getType() {
+        return type;
+    }
+
+    public void setType(MessageType type) {
+        this.type = type;
+    }
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    
 }

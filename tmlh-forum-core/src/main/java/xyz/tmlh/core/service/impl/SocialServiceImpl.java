@@ -1,11 +1,15 @@
 package xyz.tmlh.core.service.impl;
 
 import xyz.tmlh.core.model.SocialModel;
+import xyz.tmlh.core.model.data.SocialDo;
 import xyz.tmlh.core.mapper.SocialMapper;
 import xyz.tmlh.core.service.SocialService;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,6 +38,16 @@ public class SocialServiceImpl extends ServiceImpl<SocialMapper, SocialModel> im
         wrapper.eq(SocialModel::getUserId, userId);
         wrapper.eq(SocialModel::getFollow, id);
         return baseMapper.selectOne(wrapper ) != null;
+    }
+    
+    @Override
+    public List<SocialDo> selectFollowList(Integer userId) {
+        return baseMapper.selectFollowList(userId);
+    }
+     
+    @Override
+    public List<SocialDo> selectFansList(Integer userId) {
+        return baseMapper.selectFansList(userId);
     }
 
 }

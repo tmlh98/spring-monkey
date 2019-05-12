@@ -87,7 +87,16 @@ function meShowArts(article , showBox){
 	showBox.append(content);
 }
 	
-	
+function appleMsgList(message){
+	var content = '';
+	content +='<div class="panel-body">';
+	content +='	<a href="/user/'+message.sender+'" target="_self"> ';
+	content +='		<img src="'+message.senderImageUrl+'" class="img-thumbnail img-size-50"/>';
+	content +='	</a>';
+	content += message.detail;
+	content +='</div> ';
+	return content;
+}	
 	
 	
 	

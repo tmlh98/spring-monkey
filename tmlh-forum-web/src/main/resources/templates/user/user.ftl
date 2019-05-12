@@ -1,5 +1,6 @@
 <#import "./layout/inc.ftl" as inc>
 <#import "./layout/nav.ftl" as nav>
+<#import "./layout/message-js.ftl" as message>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -70,7 +71,9 @@
 					    	<p id="question-box"></p>
 							<button id="add-question" type="button" class="btn btn-default btn-primary btn-block">点击载入</button>
 					    </div>
-					    <div class="tab-pane fade" id="security">敬请期待!</div>
+					    <div class="tab-pane fade" id="security">
+					    	<#include "/layout/social.ftl">
+					    </div>
 					</div>
 				</div>
 
@@ -169,4 +172,6 @@
 
 </script>
 </@inc.script>
+<@message.messageNotify></@message.messageNotify>
+
 </html>

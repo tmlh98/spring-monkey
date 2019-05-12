@@ -25,6 +25,7 @@ import xyz.tmlh.core.model.data.CommentDo;
 import xyz.tmlh.core.service.ArticleService;
 import xyz.tmlh.core.service.CatalogService;
 import xyz.tmlh.core.service.CommentService;
+import xyz.tmlh.core.service.MessageService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
 import xyz.tmlh.forum.annotation.SysLog;
@@ -61,10 +62,15 @@ public class UserController {
     @Autowired
     private CatalogService catalogService;
     
+    @Autowired
+    private MessageService messageService;
+    
     @GetMapping
     public String me(Model model) {
-        model.addAttribute("fansCount", socialService.selectFansCount(CurrentUserUtils.getUser().getId()));
-        model.addAttribute("followCount", socialService.selectFollowCount(CurrentUserUtils.getUser().getId()));
+        model.addAttribute("fansList", socialService.selectFansList(CurrentUserUtils.getUser().getId()));
+        model.addAttribute("followList", socialService.selectFollowList(CurrentUserUtils.getUser().getId()));
+        
+        
         model.addAttribute("articleCount" , articleService.selectByUser(CurrentUserUtils.getUser().getId(), PublishType.ARTICLE));
         model.addAttribute("questionCount" , articleService.selectByUser(CurrentUserUtils.getUser().getId(), PublishType.QUESTION));
         model.addAttribute("commentCount" , commentService.selectByUser(CurrentUserUtils.getUser().getId()));
@@ -78,8 +84,8 @@ public class UserController {
         return "user/article-edit";
     }
     
-    @SysLog("发布文章及提问")
-    @ApiOperation("发布文章及提问")
+    @SysLog("发布文章或问答")
+    @ApiOperation("发布文章或问答")
     @ResponseBody
     @PostMapping("/article/publish")
     public ResultBean questionArticle(String articleStr) {
@@ -141,6 +147,7 @@ public class UserController {
         UserModel user = CurrentUserUtils.getUser();
         comment.setUserId(user.getId());
         commentService.save(comment);
+        messageService.handle(comment);
         return ResultBean.success().putResult("comment", new CommentDo(comment, user));
     }
    

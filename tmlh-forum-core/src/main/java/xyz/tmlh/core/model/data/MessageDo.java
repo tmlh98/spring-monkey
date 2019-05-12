@@ -2,12 +2,15 @@ package xyz.tmlh.core.model.data;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import xyz.tmlh.core.enums.MessageType;
+import xyz.tmlh.core.suport.CharacterConstans;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * <p>
- *  消息载体
+ * 消息载体
  * </p>
  *
  * @author TianXin
@@ -28,14 +31,19 @@ public class MessageDo implements Serializable {
      * 发送者用户id
      */
     private Integer sender;
-    
+
     /**
      * 发送者用户名
      */
     private String senderName;
 
     /**
-     * 接收者用户id
+     * 发送者用户名
+     */
+    private String senderImageUrl;
+
+    /**
+     * 接收者用户头像
      */
     private Integer receiver;
 
@@ -43,9 +51,11 @@ public class MessageDo implements Serializable {
      * 接收者用户名
      */
     private String receiverName;
-    
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
+
+    private MessageType type;
 
     public Integer getId() {
         return id;
@@ -57,6 +67,18 @@ public class MessageDo implements Serializable {
 
     public String getContent() {
         return content;
+    }
+
+    public String getDetail() {
+        String detail = "";
+        if (type == MessageType.ATTENTION) {
+            detail = CharacterConstans.aLabel("/user/" + sender, senderName) + "关注了你!";
+        } else if (type == MessageType.COMMENT_ARTICLE) {
+            detail = CharacterConstans.aLabel("/user/" + sender, senderName) + "回复了你的文章" + content;
+        } else if (type == MessageType.COMMENT_REPLY) {
+            detail = CharacterConstans.aLabel("/user/" + sender, senderName) + "回复了你的评论" + content;
+        }
+        return detail;
     }
 
     public void setContent(String content) {
@@ -102,5 +124,21 @@ public class MessageDo implements Serializable {
     public void setReceiverName(String receiverName) {
         this.receiverName = receiverName;
     }
-    
+
+    public String getSenderImageUrl() {
+        return senderImageUrl;
+    }
+
+    public void setSenderImageUrl(String senderImageUrl) {
+        this.senderImageUrl = senderImageUrl;
+    }
+
+    public MessageType getType() {
+        return type;
+    }
+
+    public void setType(MessageType type) {
+        this.type = type;
+    }
+
 }

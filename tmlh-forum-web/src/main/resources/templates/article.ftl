@@ -1,5 +1,6 @@
 <#import "/layout/inc.ftl" as inc>
 <#import "/layout/nav.ftl" as nav>
+<#import "./layout/message-js.ftl" as message>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -385,4 +386,6 @@
 	}
 </script>
 </@inc.script>
+<@message.messageNotify></@message.messageNotify>
+
 </html>

@@ -1,5 +1,6 @@
 <#import "./layout/inc.ftl" as inc>
 <#import "./layout/nav.ftl" as nav>
+<#import "./layout/message-js.ftl" as message>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,7 @@
 				     </li>
 				    <li><a id="me-arts" href="#art-list" role="tab" data-toggle="pill">我的文章</a></li>
 				    <li><a id="me-question" href="#question-list" role="tab" data-toggle="pill">我的提问</a></li>
-				    <li><a href="#security" role="tab" data-toggle="pill">喜欢的内容</a></li>
-				    <li><a href="#welfare" role="tab" data-toggle="pill">消息通知</a></li>
+				    <li><a id="me-message" href="#welfare" role="tab" data-toggle="pill">消息通知</a></li>
 				</ul>
 			</div>
 
@@ -29,16 +29,16 @@
 					
 				<!-- 选项卡面板 -->
 				<div id="myTabContent" class="tab-content">
-				    <div class="tab-pane fade in active" id="bulletin">
+				    <div class="tab-pane fade in active" id="bulletin"  style="border:none !important;">
 				    	<!-- 作者信息 -->
-						<div class="panel  panel-primary">
+						<div class="panel  panel-primary" style="border:none !important;">
 							<div class="panel-heading">
 								<h4 class="magin-top-40" >${Session['loginUser'].username}</h4>
 								<a href="user/${Session['loginUser'].id}"> <img class="img-circle" src="${Session['loginUser'].imageUrl}"
 									style="position: absolute; width: 70px; height: 70px; right: 20px; top: 30px;margin-right: 20px" />
 								</a>
 							</div>
-							<div class="row magin-top-30">
+							<div class="panel-body magin-top-30">
 								 <div class="col-md-6">
 								 	<ul class="list-group">
 									  <li class="list-group-item font-weight-bold-18"  style="border: none;">
@@ -91,20 +91,7 @@
 								 
 							</div>
 							
-							<div class="row magin-top-10 padding-bottom-50">
-								 <div class="col-md-6">
-								 	<div style="border-bottom: 1px solid #28a745;">
-									    <span class="magin-left-30">我的关注</span> 
-									    <span class="magin-left-20" >${followCount}</span> 
-								 	</div>
-								 </div>
-								 <div class="col-md-6">
-								 <div style="border-bottom: 1px solid #28a745;">
-								   <span  class="magin-left-30">我的粉丝</span> 
-								   <span  class="magin-left-20" >${fansCount}</span> 
-								   </div>
-								 </div>
-							</div>
+							<#include "/layout/social.ftl">
 							<div class="row magin-top-10 padding-bottom-20">
 								 <div class="col-md-6">
 								 	<button class="btn btn-info btn-sm pull-right"  data-toggle="modal" data-target="#myModal">编辑资料</button>
@@ -134,8 +121,12 @@
 						  </div>
 						</div>
 				    </div>
-				    <div class="tab-pane fade" id="security">敬请期待！</div>
-				    <div class="tab-pane fade" id="welfare">敬请期待！</div>
+				    
+				    
+				    <div class="tab-pane fade" id="welfare">
+				    	<div id="messageBox" class="panel panel-default"  title="question">
+						</div>
+				    </div>
 				</div>
 				 
 			</div>
@@ -188,9 +179,42 @@ $(function(){
 	$('#me-question').click(function(){
 		getArticlePage(1 ,'QUESTION' , $('#question-list .panel-default'));
 	});
+	$('#me-message').click(function(){
+		getMessage();
+		readMessage();
+	});
 	
 });
+function readMessage(){
+$.ajax({
+	  method: "PUT",
+	  url: '/user/message/read',
+	  success: function(data){
+	  
+	  }
+});
+}
+function getMessage(){
+var st = "";
+st += '	<div class="panel-heading" > ';
+st += '	<i class="fa fa-lightbulb-o  fa-1x font-sty" aria-hidden="true">&nbsp;消息通知</i>';
+st += '  </div>';
+$('#messageBox').empty();
+$('#messageBox').append(st);
 
+	$.get("/user/message/list",function(data){
+		if(data.code == '0'){
+			if(data.result.messageList.length > 0){
+				
+				$.each(data.result.messageList, function(index, message) {
+					$('#messageBox').append(appleMsgList(message));
+			    });
+			}
+		}else{
+		 dangerNotify(data.message);
+	   	}
+	});
+}
 function getArticlePage(currPage , publishType , contentBox){
 	$.ajax({
 		  method: "GET",
@@ -279,4 +303,6 @@ function editArt(id){
 }
 </script>
 </@inc.script>
+<@message.messageNotify></@message.messageNotify>
+
 </html>
