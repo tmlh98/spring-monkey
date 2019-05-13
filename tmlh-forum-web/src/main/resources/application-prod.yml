@@ -2,10 +2,6 @@ server:
   port: 80
   
 spring:
-#去除thymeleaf标签验证
-  thymeleaf:
-    content-type: text/html  
-
   session:
     store-type: none
     
@@ -27,7 +23,7 @@ spring:
 tmlh:
   security:
     browser:
-      login-page: /admin/login
+      login-page: /login
       sign-up-url: /signup
 #图片验证码
     code:
