@@ -5,6 +5,7 @@
 > ​	Spring Monkey 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
 >
 > ​	点击查看:http://www.tmlh.xyz
+> ​	主库地址:<https://github.com/tmlh98/spring-monkey>
 
 
 
