@@ -9,6 +9,9 @@
 **.project
 **.iml
 **nohup.out
+**application-dev.yml
+**application-prod.yml
+**application.yml
 # Compiled class file
 *.class
 
