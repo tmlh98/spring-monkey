@@ -14,15 +14,25 @@
 - [x] 详细的代码注释，架构清晰，强扩展性，可配置性
 
 
-- [x] 支持多平台(qq、github)社交账号登陆
+- [x] 支持多平台(qq、github、gitee)社交账号登陆
 
-- [x] spring security 做身份认证 ，权限控制，csrf防御
+- [x] spring security 做身份认证
 
 - [x] 丰富的日志记录，轻松监控网站
 
 - [x] 界面简洁，舒适，良好的交互性
 
       ​
+
+      ​
+
+### 1.3分支说明
+
+- dev-v1    Springboot1.5+Thymeleaf
+- dev-2      Springboot2.0+Thymeleaf
+- master    Springboot2.0+freenmarker
+
+
 
 ## 2 作品用到的相关技术概述
 
