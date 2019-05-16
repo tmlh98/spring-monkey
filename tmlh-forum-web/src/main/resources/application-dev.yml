@@ -8,9 +8,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://tmlh.xyz:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost:3306/tmlh-forum?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true
     username: root
-    password: tianxin1998
+    password:  
     druid:
       connection-init-sqls: set names utf8mb4;
   freemarker:
