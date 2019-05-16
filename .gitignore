@@ -2,13 +2,13 @@
 /.metadata/
 /.metadata/*
 
-# Add by CK
+# Add
 **.settings**
 **.classpath
 **target
 **.project
 **.iml
-
+**nohup.out
 # Compiled class file
 *.class
 
