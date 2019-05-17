@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
-			<artifactId>tmlh-secuity-social</artifactId>
+			<artifactId>tmlh-security-social</artifactId>
 			<version>${tmlh.security.version}</version>
 		</dependency>
 		<dependency>
