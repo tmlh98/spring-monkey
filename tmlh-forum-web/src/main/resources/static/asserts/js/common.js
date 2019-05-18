@@ -21,6 +21,9 @@ function diffTime(startDate) {
     return hours; 
 }    
 
+
+
+/*===========================================*/
 function successNotify(msg){
 	$.notify(
 		{message:msg},
@@ -75,16 +78,6 @@ function dangerNotify(msg){
 function errorHandler(message){
 	dangerNotify(message);
 }
-
-
-
-
-
-
-
-
-
-
 
 //判断字符是否为空的方法
 function isEmpty(obj){

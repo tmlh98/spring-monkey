@@ -20,7 +20,6 @@
 	function getInervalHour( date) {
 		var startDate = new Date();
 		var endDate = new Date(date.replace("-","/"));
-		console.log(endDate)
         var ms = startDate.getTime() - endDate.getTime();
         if (ms < 0) return 0;
         return Math.floor(ms/1000/60/60);

@@ -18,17 +18,17 @@
 					一步之遥，成为社区里的你</div>
 
 				<div class="mt-4  border-secondary pt-4 px-4">
-					<a href="/auth/qq" style="text-decoration-line: none"> <img
+					<a href="http://www.tmlh.xyz/auth/qq" style="text-decoration-line: none"> <img
 						src="http://springforall.ufile.ucloud.com.cn/images/icon/qq.svg"
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a> 
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="/auth/github" class="ml-4"> <img
+					<a href="http://www.tmlh.xyz/auth/github" class="ml-4"> <img
 						src="http://springforall.ufile.ucloud.com.cn/images/icon/github.svg"
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="/auth/gitee" class="ml-4">
+					<a href="http://www.tmlh.xyz/auth/gitee" class="ml-4">
 					 	<img src="https://assets.gitee.com/assets/favicon-e87ded4710611ed62adc859698277663.ico"
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>

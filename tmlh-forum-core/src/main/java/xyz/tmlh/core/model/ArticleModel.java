@@ -90,7 +90,7 @@ public class ArticleModel implements Serializable {
     /**
      * 修改时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime updateTime;
 
     public ArticleModel() {

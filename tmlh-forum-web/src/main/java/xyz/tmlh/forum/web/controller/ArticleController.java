@@ -76,12 +76,12 @@ public class ArticleController {
             wapper.eq(ArticleModel::getPublishType, publishType);
         }
         wapper.orderByDesc(ArticleModel::getUpdateTime);
+        
         IPage<ArticleModel> articlePage = articleService.selectUserPage(page ,wapper);
         articlePage.getRecords().stream().forEach(e -> {
             int count = commentService.count(new LambdaQueryWrapper<CommentModel>().eq(CommentModel::getArticleId, e.getId()));
             e.setCommentCount((long)count);
         });
-        
         
         resultBean.putResult("articlePage", articlePage);
         return resultBean;

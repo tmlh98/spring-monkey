@@ -1,6 +1,8 @@
 package xyz.tmlh.forum.web.controller.user;
 
 
+import java.time.LocalDateTime;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -109,6 +111,7 @@ public class UserController {
         if(articleModel.getUser().getId() != CurrentUserUtils.getUser().getId()) {
             return ResultBean.fail("只能修改自己的文章!");
         }
+        article.setUpdateTime(LocalDateTime.now());
         articleService.updateById(article );
         return ResultBean.success().putResult("articleId", article.getId());
     }

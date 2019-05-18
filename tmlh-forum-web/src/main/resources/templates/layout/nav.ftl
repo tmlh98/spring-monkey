@@ -27,7 +27,9 @@
 						</div>
 						<!-- <button type="submit" class="btn btn-default">Submit</button> -->
 					</form>
+					
 					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/article/1">关于</a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">发布<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
