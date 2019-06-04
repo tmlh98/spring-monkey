@@ -1,8 +1,4 @@
-#my folder
-/.metadata/
-/.metadata/*
-
-# Add
+#add
 **.settings**
 **.classpath
 **target
@@ -12,6 +8,7 @@
 **application-dev.yml
 **application-prod.yml
 **application.yml
+./tmlh-forum-web/src/main/resources/application-prod.yml
 # Compiled class file
 *.class
 
