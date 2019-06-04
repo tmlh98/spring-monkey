@@ -24,6 +24,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import xyz.tmlh.security.exception.ValidateCodeException;
 import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.suport.SecurityConstants;
 
 /**
  * @CreateInformation Created by TianXin on 2018年12月30日.
@@ -63,7 +64,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
             }
         }
         // 登陆的请求一定要验证码
-        urls.add("/authentication/form");
+        urls.add(SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_FORM);
     }
 
     @Override

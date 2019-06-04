@@ -147,6 +147,7 @@
 				}
   				$.each(articlePage.records, function(index, article) {
   					showArts(article,$('#article-list'));
+  					
   					current = articlePage.current + 1;
   			    });
   				  

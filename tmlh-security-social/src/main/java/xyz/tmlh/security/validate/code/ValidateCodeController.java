@@ -31,8 +31,8 @@ public class ValidateCodeController {
      */
     @GetMapping("/code/{type}")
     public void createValidateCode(@PathVariable String type ,  HttpServletRequest request , HttpServletResponse response) throws Exception {
-        LOGGER.info(type + "ValidateCodeProcessor" );
-        validateCodeProcessors.get(type + "ValidateCodeProcessor" ).create(new ServletWebRequest(request , response));
+        LOGGER.info(type + ValidateCodeProcessor.SUFFIX_VALIDATECODE);
+        validateCodeProcessors.get(type + ValidateCodeProcessor.SUFFIX_VALIDATECODE ).create(new ServletWebRequest(request , response));
     }
 
     

@@ -7,6 +7,8 @@ import org.springframework.web.context.request.ServletWebRequest;
  * @CreateInformation Created by TianXin on 2019年1月1日. 
  */
 public interface ValidateCodeProcessor {
+    
+    String SUFFIX_VALIDATECODE = "ValidateCodeProcessor";
 
     /**
      * 验证码放入session时的前缀
