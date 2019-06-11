@@ -48,6 +48,11 @@ public class UserSocialController {
         if(CurrentUserUtils.getUser().getId() == id) {
             return ResultBean.fail("不能关注自己");
         }
+        
+        if(socialService.checkFollwe(id)) {
+            return ResultBean.fail("你已关注当前用户!");
+        }
+        
         SocialModel social = new SocialModel(CurrentUserUtils.getUser().getId(), id);
         socialService.save(social);
         

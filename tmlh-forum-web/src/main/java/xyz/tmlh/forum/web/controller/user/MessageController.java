@@ -43,7 +43,7 @@ public class MessageController {
         LambdaQueryWrapper<MessageModel> wrapper = new LambdaQueryWrapper<MessageModel>();
         wrapper.eq(MessageModel::getReceiver, CurrentUserUtils.getUserId())
                .eq(MessageModel::getStatus, MessageStatus.UNREAD)
-               .orderByDesc(MessageModel::getCreateTime);
+               .orderByAsc(MessageModel::getCreateTime);
         
         int count = messageService.count(wrapper );
         return ResultBean.success("你收到"+count+"条消息!").putResult("length", count);

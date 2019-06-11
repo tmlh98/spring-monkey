@@ -6,6 +6,7 @@ import xyz.tmlh.core.mapper.SocialMapper;
 import xyz.tmlh.core.service.SocialService;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import java.util.List;
@@ -48,6 +49,16 @@ public class SocialServiceImpl extends ServiceImpl<SocialMapper, SocialModel> im
     @Override
     public List<SocialDo> selectFansList(Integer userId) {
         return baseMapper.selectFansList(userId);
+    }
+    
+    @Override
+    public boolean checkFollwe(Integer id) {
+        LambdaQueryWrapper<SocialModel> wrapper = Wrappers.lambdaQuery();
+        SocialModel socialModel = baseMapper.selectOne(wrapper.eq(SocialModel::getFollow, id));
+        if(socialModel == null) {
+            return false;
+        }
+        return true;
     }
 
 }

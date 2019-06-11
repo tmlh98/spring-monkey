@@ -70,5 +70,16 @@ public interface SocialService extends IService<SocialModel> {
       * @throws
      */
     List<SocialDo> selectFansList(Integer userId);
+
+
+    /**
+      * 检查是否已经关注用户
+      *
+      * @param @param id 被关注用户id
+      * @param @return    参数
+      * @return boolean    返回类型
+      * @throws
+      */
+    boolean checkFollwe(Integer id);
     
 }
