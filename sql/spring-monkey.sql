@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : yun_sql
@@ -226,43 +226,4 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='社交登陆中间表'
 
 ;
-
--- ----------------------------
--- Auto increment value for `sys_log`
--- ----------------------------
-ALTER TABLE `sys_log` AUTO_INCREMENT=4745;
-
--- ----------------------------
--- Auto increment value for `tbl_admin`
--- ----------------------------
-ALTER TABLE `tbl_admin` AUTO_INCREMENT=2;
-
--- ----------------------------
--- Auto increment value for `tbl_article`
--- ----------------------------
-ALTER TABLE `tbl_article` AUTO_INCREMENT=27;
-
--- ----------------------------
--- Auto increment value for `tbl_catalog`
--- ----------------------------
-ALTER TABLE `tbl_catalog` AUTO_INCREMENT=12;
-
--- ----------------------------
--- Auto increment value for `tbl_comment`
--- ----------------------------
-ALTER TABLE `tbl_comment` AUTO_INCREMENT=17;
-
--- ----------------------------
--- Auto increment value for `tbl_message`
--- ----------------------------
-ALTER TABLE `tbl_message` AUTO_INCREMENT=8;
-
--- ----------------------------
--- Auto increment value for `tbl_social`
--- ----------------------------
-ALTER TABLE `tbl_social` AUTO_INCREMENT=17;
-
--- ----------------------------
--- Auto increment value for `tbl_user`
--- ----------------------------
-ALTER TABLE `tbl_user` AUTO_INCREMENT=27;
+ 
