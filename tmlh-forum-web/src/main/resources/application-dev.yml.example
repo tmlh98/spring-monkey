@@ -18,7 +18,11 @@ spring:
     druid:
       connection-init-sqls: set names utf8mb4;
         
-
+mybatis-plus:
+    typeEnumsPackage: xyz.tmlh.core.enums  
+    mapper-locations: classpath:mapper/*.xml
+    global-config:
+      banner: false
 #security.basic.enabled = false
 
 #登陆页面
