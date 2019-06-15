@@ -28,8 +28,8 @@
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="http://www.tmlh.xyz/auth/gitee" class="ml-4">
-					 	<img src="https://assets.gitee.com/assets/favicon-e87ded4710611ed62adc859698277663.ico"
+					<a href="/images/gitee.png" class="ml-4">
+					 	<img src="https://gitee.com/assets/no_portrait.png"
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>
 				</div>
