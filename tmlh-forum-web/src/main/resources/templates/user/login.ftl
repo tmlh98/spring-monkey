@@ -3,11 +3,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<@inc.head '授权登陆'>
-</@inc.head>
+
+<@inc.head '授权登陆'></@inc.head>
+
+
 <body>
-	<@nav.topbar active='default'>
-	</@nav.topbar>
+
+	<@nav.topbar active='default'></@nav.topbar>
+	
  <div class="container">
 		<div class="row clearfix" style="margin-top: 25px">
 			<div class="text-center">
@@ -28,9 +31,9 @@
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="/images/gitee.png" class="ml-4">
-					 	<img src="https://gitee.com/assets/no_portrait.png"
-						alt="" style="max-width: 64px; max-height: 64px"/>
+					<a href="http://www.tmlh.xyz/auth/gitee" class="ml-4">
+					 	<img src="/images/gitee.png"
+						alt="" style="max-width: 64px; max-height: 64px;"/>
 					</a>
 				</div>
 
