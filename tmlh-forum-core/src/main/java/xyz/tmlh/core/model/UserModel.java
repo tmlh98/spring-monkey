@@ -84,6 +84,12 @@ public class UserModel implements Serializable {
      *  性别。 如果获取不到则默认返回”男”
      */
     private String gender;
+    
+    /**
+     * 用户的社交主页地址
+     */
+    private String profileUrl;
+    
     public UserModel(Integer id) {
         this.id = id;
     } 
@@ -95,13 +101,14 @@ public class UserModel implements Serializable {
         this.id = id;
         this.lastLogin = lastLogin;
     }
-    public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source,String detail) {
+    public UserModel(String userconnectionId, String username, String imageUrl, String source,String profileUrl) {
+        this.lastLogin = LocalDateTime.now();
+        
         this.userconnectionId = userconnectionId;
         this.username = username;
         this.imageUrl = imageUrl;
-        this.lastLogin = lastLogin;
         this.source = source;
-        this.detail = detail;
+        this.profileUrl = profileUrl;
     }
     
     public UserModel(String userconnectionId, String username, String imageUrl, LocalDateTime lastLogin, String source, String detail, String gender) {
@@ -233,5 +240,13 @@ public class UserModel implements Serializable {
     public void setGender(String gender) {
         this.gender = gender;
     }
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
+    
+    
 
 }

@@ -43,7 +43,7 @@ import xyz.tmlh.security.util.JsonUtils;
  * @author TianXin
  * @since 2019年3月23日下午10:37:59
  */
-@Api("用户自我管理")
+@Api("用户管理")
 @PreAuthorize("hasRole('ROLE_USER')")
 @RequestMapping("/user")
 @Controller

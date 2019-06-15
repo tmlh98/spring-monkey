@@ -42,10 +42,6 @@
 								 <div class="col-md-6">
 								 	<ul class="list-group">
 									  <li class="list-group-item font-weight-bold-18"  style="border: none;">
-									  	<i class="fa fa-exclamation-circle" aria-hidden="true">&nbsp; 信息</i>
-									  	<span class="color-hui-2 font-size-13 magin-left-20" >${Session['loginUser'].detail}</span>
-									  </li>
-									  <li class="list-group-item font-weight-bold-18"  style="border: none;">
 									  	<i class="fa fa-envelope" aria-hidden="true">&nbsp; 邮箱</i>
 									  	<span id="email-span" class="color-hui-2 font-size-13 magin-left-20" >${Session['loginUser'].email}</span>
 									  </li>
@@ -55,7 +51,11 @@
 									  </li>
 									  <li class="list-group-item font-weight-bold-18"  style="border: none;">
 									  	<i class="fa fa-paw" aria-hidden="true">&nbsp; 来源</i>
-									  	<span class="color-hui-2 font-size-13 magin-left-20" th:text="|${session.loginUser.source}用户|">qq</span>
+									  	<span class="color-hui-2 font-size-13 magin-left-20">${Session['loginUser'].source}</span>
+									  </li>
+									  <li class="list-group-item font-weight-bold-18"  style="border: none;">
+									  	<i class="fa fa-exclamation-circle" aria-hidden="true">&nbsp; 主页</i>
+									  	<span class="color-hui-2 font-size-13 magin-left-20" ><a href='${Session['loginUser'].profileUrl}'>${Session['loginUser'].profileUrl}</a></span>
 									  </li>
 									</ul>
 								 </div>
