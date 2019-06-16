@@ -25,7 +25,7 @@ public class GithubUserModelConvertor implements UserModelConvertor{
      * @see xyz.tmlh.forum.security.scoail.UserModelConvertor#convertor(org.springframework.social.connect.Connection) 
      */ 
     @Override
-    public UserModel convertor(Connection<?> connection) {
+    public UserModel conver(Connection<?> connection) {
         String userId = connection.getKey().toString();
         String providerId = connection.getKey().getProviderId(); 
 

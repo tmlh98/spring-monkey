@@ -41,11 +41,11 @@ public class TmlhConnectionSignUp implements ConnectionSignUp {
         
         UserModel user = userSrvice.getOne(new LambdaQueryWrapper<UserModel>().eq(UserModel::getUserconnectionId, userId));
         if (user == null) {
-            UserModel userModel = userModelConvertorMap.get(providerId + UserModelConvertor.SUFFIX_BEANNAME).convertor(connection);
+            UserModel userModel = userModelConvertorMap.get(providerId + UserModelConvertor.SUFFIX_BEANNAME).conver(connection);
             userSrvice.save(userModel);
+            LOGGER.info("用户 : {} , 注册成功  !",connection.getDisplayName());
         }
 
-        LOGGER.info("用户 : {} , 注册成功  !",connection.getDisplayName());
         // 根据社交用户信息默认创建用户并返回用户唯一标识
         return userId;
     }

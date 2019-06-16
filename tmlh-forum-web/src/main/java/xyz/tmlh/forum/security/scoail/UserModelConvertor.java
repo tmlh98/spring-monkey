@@ -24,7 +24,7 @@ public interface UserModelConvertor {
       * @return UserModel    返回类型
       * @throws
      */
-    UserModel convertor(Connection<?> connection);
+    UserModel conver(Connection<?> connection);
     
     
 }
