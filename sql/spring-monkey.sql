@@ -74,6 +74,12 @@ AUTO_INCREMENT=2
 ;
 
 -- ----------------------------
+-- Records of tbl_admin
+-- ----------------------------
+INSERT INTO `tbl_admin` VALUES ('1', '2019-04-13 01:05:28', '管理员', 'admin', '$2a$10$u1bJKP/84vYWmgR0grl/7u0VOq.gb4zyg0C4JB9rGJ3wLmjbN05eW');
+
+
+-- ----------------------------
 -- Table structure for `tbl_article`
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_article`;
