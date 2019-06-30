@@ -6,6 +6,8 @@
 >
 > ​	点击查看:http://www.tmlh.xyz
 >
+> ​   springMonkey后台:http://www.tmlh.xyz/admin  admin/123456
+>
 > ​	主库地址:<https://github.com/tmlh98/spring-monkey>
 
 
@@ -127,5 +129,8 @@
 
 ## 3 使用说明
 
-​	
+- 将tmlh-forum-web里面的application-dev.yml.example重命名为application.yml
+- 导入sql文件并修改配置文件,数据库相关配置
+- 开发时指定spring.profiles.active=dev环境
+
 
