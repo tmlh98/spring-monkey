@@ -77,7 +77,7 @@
 			<div class="col-md-3 column">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h2 class="panel-title">推荐作者</h2>
+						<h2 class="panel-title">最新用户</h2>
 					</div>
 					<div class="panel-footer">
 						<div class="card-body text-center">
@@ -121,7 +121,28 @@
 </body>
 <@inc.script>
 
-<script src="/asserts/js/apple-data.js"></script>
+<!-- <script src="/asserts/js/apple-data.js"></script> -->
+<script src="https://cdn.bootcss.com/mustache.js/3.0.1/mustache.js"></script>
+<script type="text/x-mustache-template" id="template">
+		<div class="list-group-item"> 
+			<a href="/user/{{user.id}}" target="_self">  
+				<img src="{{user.imageUrl}}" class="img-thumbnail img-size-50"/> 
+			</a> 
+			 <a href="/article/{{id}}" target="_blank" class="font-weight-bold ">  
+				&nbsp; {{title}}
+			</a> 
+			<div class="card-text text-dark magin-top">&nbsp; 
+				<a href="#" class="text-white label label-info"> {{catalog.name }} </a>  
+				<span class="font-weight-light text-secondary ">
+					&nbsp;&nbsp;&nbsp;阅读  	{{clickNum}}
+				</span> · 
+				<span>评论 {{commentCount}} &nbsp; ·  
+				<span> {{>date}}小时前</span>  
+			</div>  
+		</div> 
+</script>
+
+
 <script type="text/javascript">
 	var current = 1; 
 	$(function(){
@@ -137,7 +158,7 @@
   		  url: '/article',
   		  data: { 
   			  currPage: currPage,
-  			  pageSize: 10,
+  			  pageSize: 8,
   			  },
   		  success: function(data){
   			  if(data.code == '0'){
@@ -147,7 +168,6 @@
 				}
   				$.each(articlePage.records, function(index, article) {
   					showArts(article,$('#article-list'));
-  					
   					current = articlePage.current + 1;
   			    });
   				  
@@ -158,6 +178,11 @@
   		});
 	}
 	
+	function showArts( data ,obj){
+	    var partials = {date: getdays_(data.createTime)}
+		var content = Mustache.render($('#template').html(),data,partials);
+		obj.append(content);
+	}
 
 </script>
 </@inc.script>

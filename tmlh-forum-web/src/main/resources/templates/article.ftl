@@ -191,8 +191,50 @@
 	<#include "/layout/footer.ftl">
 </body>
 <@inc.script>
- <script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
+<script src="/webjars/wangEditor/3.1.1/release/wangEditor.min.js"></script>
 <script src="/webjars/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script src="https://cdn.bootcss.com/mustache.js/3.0.1/mustache.js"></script>
+
+<script type="text/x-mustache-template" id="commentTemplate">
+		<div class="list-group-item">  
+			<div class="row">  
+				<div class="magin-left-20  pull-left" style="min-width: 50px;min-height: 50px">  
+					<a href="/user/{{userId}}"><img  class="img-circle img-size-50 "  alt="" src="{{comment.userImageUrl}}" /></a>  
+				</div>  
+				<div class=" pull-left magin-left-10">  
+					<p><a href="#"  class="color-black"><strong>{{username}}</strong></a></p>  
+					<p><span>{{content}}</span></p>  
+				</div>  
+			</div>  
+			<div class="row">  
+				<p class="pull-right" > 
+					<span  class=" color-hui magin-right-25 pointer hover-red" style="font-size: 13px" onclick="removeComment({{id}} , this.parentNode)"> 
+								<i class="fa fa-trash-o" aria-hidden="true"> 删除</i>';
+					</span> 
+					<span class=" color-hui magin-right-25  pointer hover-blue" style="font-size: 13px" onclick="addCommentChild(${article.id},{{id}})">  
+						<i class="fa fa-comment-o" aria-hidden="true"> 回复</i>  
+					</span>  
+				</p> 
+			</div>  
+		</div> 
+</script>
+
+<script type="text/x-mustache-template" id="commentChildTemplate">
+		<div class="row"> 
+    	<div class="magin-left-50 border-top">  
+    		<div class="magin-left-20  pull-left  magin-top-20" style="min-width: 40px;min-height: 40px"> 
+	    			<a href="/user/{{userId}}"><img  class="img-circle img-size-50 "  alt="" src=" {{userImageUrl}} "/></a> 
+	    		</div> 
+	    		<div class=" pull-left magin-left-10 magin-top-20"> 
+	    			<p><a href="/user/{{userId}}"  class="color-black"><strong">{{username}}</strong></a></p> 
+	    			<p> {{content}} </p> 
+	    		</div> 
+	    	</div> 
+	    </div> 
+	    </div> 
+</script>
+
+
 <script type="text/javascript">
 	var id = ${article.userId};
 	$("#relation").on("click"," #folwer",function(){
@@ -245,9 +287,9 @@
     			  if(data.code == 0){
    				  	successNotify("评论成功!");
 	   				 if(comId > 0){
-	   					showChild(data.result.comment , obj);
+	   					$(obj.parentNode.parentNode.parentNode).append(Mustache.render($('#commentChildTemplate').html(),data.result.comment))
 	   				 }else{
-	   				 	show(data.result.comment);
+	   					$('#comBox').append(Mustache.render($('#commentTemplate').html(),data.result.comment));
 	   				 }
    				 	
    				 	editor1.txt.clear()
@@ -259,51 +301,6 @@
     			  warningNotify(data.responseJSON.message , '/login');
     		  }
     		});
-    }
-    function show(comment){
-    	var content = '';
-    	content +=' <div class="list-group-item"> ';
-		content +=' 	<div class="row"> ';
-		content +=' 		<div class="magin-left-20  pull-left" style="min-width: 50px;min-height: 50px"> ';
-		content +=' 			<a href="/user/'+comment.userId +'"><img  class="img-circle img-size-50 "  alt="" src="'+comment.userImageUrl +'" /></a> ';
-		content +=' 		</div> ';
-		content +=' 		<div class=" pull-left magin-left-10"> ';
-		content +=' 			<p><a href="#"  class="color-black"><strong>'+comment.username +'</strong></a></p> ';
-		content +=' 			<p><span>'+comment.content +'</span></p> ';
-		content +=' 		</div> ';
-		content +=' 	</div> ';
-		content +=' 	<div class="row"> ';
-		content +=' 		<p class="pull-right" > ';
-		content +='				<span  class=" color-hui magin-right-25 pointer hover-red" style="font-size: 13px" th:onclick="removeComment('+comment.id +' , this.parentNode)">';
-		content +='							<i class="fa fa-trash-o" aria-hidden="true"> 删除</i>';
-		content +='				</span>';
-		content +=' 			<span class=" color-hui magin-right-25  pointer hover-blue" style="font-size: 13px"  th:onclick="addCommentChild('+id+','+comment.id +')"> ';
-		content +=' 				<i class="fa fa-comment-o" aria-hidden="true"> 回复</i> ';
-		content +=' 			</span> ';
-		content +=' 		</p> ';
-		content +=' 	</div> ';
-		content +=' </div> ';
-    	$('#comBox').append(content);
-    }
-    
-
-    
-    function showChild(comment , obj){
-    	var content = '';
-    	
-    	content += '<div class="row">';
-    	content += '<div class="magin-left-50 border-top"> ';
-    	content += '	<div class="magin-left-20  pull-left  magin-top-20" style="min-width: 40px;min-height: 40px">';
-	    content += '			<a href="/user/'+ comment.userId+'"><img  class="img-circle img-size-50 "  alt="" src="'+comment.userImageUrl+'"/></a>';
-	    content += '		</div>';
-	    content += '		<div class=" pull-left magin-left-10 magin-top-20">';
-	    content += '			<p><a href="/user/'+ comment.userId+'"  class="color-black"><strong">'+comment.username+'</strong></a></p>';
-	    content += '			<p>'+comment.content+'</p>';
-	    content += '		</div>';
-	    content += '	</div>';
-	    content += '</div>';
-	    content += '</div>';
-	    $(obj.parentNode.parentNode.parentNode).append(content);
     }
     
     

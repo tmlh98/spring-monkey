@@ -22,6 +22,37 @@ function diffTime(startDate) {
 }    
 
 
+function getInervalHour( date) {
+	var startDate = new Date();
+	var endDate = new Date(date.replace("-","/"));
+    var ms = startDate.getTime() - endDate.getTime();
+    if (ms < 0) return 0;
+    return Math.floor(ms/1000/60/60);
+}
+
+function getdays_(date){
+	var time ='';
+	var day = Math.floor(getInervalHour( date)/24);
+	if(day > 1){
+		time += day + '天';
+	}
+	return time + (getInervalHour( date)%24);
+}
+
+function timeJoin(time){
+	if(time == null | time == ''){
+		return '';
+	}
+	var year = time.year;
+	var monthValue = time.monthValue;
+	var dayOfMonth = time.dayOfMonth;
+	var hour = time.hour;
+	var minute = time.minute;
+	var second = time.second;
+	return diffTime(year + '/'+monthValue+'/'+dayOfMonth +' ' + hour+':'+''+minute+':'+second);
+}
+
+
 
 /*===========================================*/
 function successNotify(msg){
