@@ -1,5 +1,6 @@
 package xyz.tmlh.forum.web.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -8,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.UserModel;
@@ -38,7 +43,8 @@ public class IndexController {
     @SysLog("首页")
     @GetMapping({"/" ,"/index", "/index.html"})
     public String index(Model model) {
-        List<UserModel> userList = userService.list();
+        IPage<UserModel> page = new Page<UserModel>(1 , 20).setDesc("create_time");
+        List<UserModel> userList = userService.page(page).getRecords();
         model.addAttribute("userList", userList);
         return "index";
     }

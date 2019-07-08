@@ -20,7 +20,7 @@ public class ResultBean {
      */
     private Integer code;
     
-    private Map<String, Object> result = new HashMap<>();
+    private Map<String, Object> result = new HashMap<>(1);
 
     public ResultBean() {
         this.code = 0;
