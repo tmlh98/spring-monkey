@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.validate.code.ImageCode;
 import xyz.tmlh.security.validate.code.ValidateCodeGenerator;
 
@@ -25,7 +25,7 @@ public class ImageValidateCodeGenerator implements ValidateCodeGenerator {
      * 系统配置
      */
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties securityProperties;
 
     @Override
     public ImageCode generate(ServletWebRequest request) {

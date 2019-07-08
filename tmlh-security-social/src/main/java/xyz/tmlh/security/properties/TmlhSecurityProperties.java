@@ -12,7 +12,7 @@ import xyz.tmlh.security.properties.social.SocialProperties;
  */
 @Configuration
 @ConfigurationProperties(prefix = "tmlh.security")
-public class SecurityProperties {
+public class TmlhSecurityProperties {
 
     private BrowserProerties browser = new BrowserProerties();
     

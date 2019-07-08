@@ -15,7 +15,7 @@ import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.properties.social.QQProperties;
 import xyz.tmlh.security.social.SocialConfig;
 import xyz.tmlh.security.social.qq.api.QQ;
@@ -47,7 +47,7 @@ public class QQAutoConfig  extends SocialConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(QQAutoConfig.class);
     
     @Autowired
-    protected SecurityProperties securityProperties;
+    protected TmlhSecurityProperties tmlhSecurityProperties;
     
     @Bean
     @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
@@ -59,7 +59,7 @@ public class QQAutoConfig  extends SocialConfig {
     @Override
     public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer, Environment environment) {
          super.addConnectionFactories(connectionFactoryConfigurer, environment);
-         QQProperties qq = securityProperties.getSocial().getQq();
+         QQProperties qq = tmlhSecurityProperties.getSocial().getQq();
          QQConnectionFactory qqConnectionFactory = new QQConnectionFactory(qq.getProviderId(), qq.getAppId(), qq.getAppSecret());
          connectionFactoryConfigurer.addConnectionFactory(qqConnectionFactory);
          LOGGER.info("社交登陆qq配置成功!"); 

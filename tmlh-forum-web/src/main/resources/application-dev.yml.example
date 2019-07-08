@@ -41,8 +41,6 @@ tmlh:
       qq:
         app-id: 101559281
         app-secret: c8b086c46dae6ba951e07bcf00d7a662
-#        app-id: 101564529
-#        app-secret: 79c879ffc9e01c19a63b674bc9eb91b9
       github:
         app-id: 6161f2cee4ad8fe7e89a
         app-secret: bdef1d6d79a74a555f878c128cfc1eb6cb8482dc

@@ -12,13 +12,17 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import xyz.tmlh.forum.util.validate.Captcha;
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.validate.code.ImageCode;
 import xyz.tmlh.security.validate.code.impl.AbstractValidateCodeProcessor;
 
-/**  
- * 重写图片验证码处理器
- * Created by TianXin on 2019年1月18日下午5:55:53. 
+/**
+ * <p>
+ *   重写图片验证码处理器
+ * </p>
+ *
+ * @author TianXin
+ * @since 2019年1月18日下午5:55:53
  */
 @Component
 public class ImageValidateCodeProcessor extends AbstractValidateCodeProcessor<ImageCode>{
@@ -29,7 +33,7 @@ public class ImageValidateCodeProcessor extends AbstractValidateCodeProcessor<Im
     private Captcha captcha;
     
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
     
     @Override
     protected void send(ServletWebRequest request, ImageCode validateCode) throws IOException, ServletRequestBindingException {
@@ -42,7 +46,7 @@ public class ImageValidateCodeProcessor extends AbstractValidateCodeProcessor<Im
             // 输出
             captcha.out(response.getOutputStream());
             
-            save(request , new ImageCode(captcha.text().toLowerCase(),securityProperties.getCode().getImage().getExpireIn()));
+            save(request , new ImageCode(captcha.text().toLowerCase(),tmlhSecurityProperties.getCode().getImage().getExpireIn()));
             
         } catch (Exception e) {
             LOGGER.error("获取验证码异常：" + e.getMessage() , e);

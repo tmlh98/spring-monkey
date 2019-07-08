@@ -23,7 +23,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import xyz.tmlh.security.exception.ValidateCodeException;
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.suport.SecurityConstants;
 
 /**
@@ -43,7 +43,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
      * 系统配置信息
      */
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
 
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
@@ -56,7 +56,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
      */
     @Override
     public void afterPropertiesSet() throws ServletException {
-        String url = securityProperties.getCode().getImage().getUrl();
+        String url = tmlhSecurityProperties.getCode().getImage().getUrl();
         if (StringUtils.isNotBlank(url)) {
             String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(url, ",");
             for (String configUrl : configUrls) {
@@ -94,7 +94,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
      */
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
         ImageCode codeInSession = (ImageCode)sessionStrategy.getAttribute(request, ValidateCodeProcessor.SESSION_KEY_PREFIX + ValidateCodeType.IMAGE.toString());
-        String codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), "imageCode");
+        String codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), SecurityConstants.DEFAULT_PARAMETER_NAME_CODE_IMAGE);
         if (StringUtils.isBlank(codeInRequest)) {
             throw new ValidateCodeException("验证码的值不能为空");
         }
@@ -117,12 +117,12 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     }
 
-    public SecurityProperties getSecurityProperties() {
-        return securityProperties;
+    public TmlhSecurityProperties getSecurityProperties() {
+        return tmlhSecurityProperties;
     }
 
-    public void setSecurityProperties(SecurityProperties securityProperties) {
-        this.securityProperties = securityProperties;
+    public void setSecurityProperties(TmlhSecurityProperties securityProperties) {
+        this.tmlhSecurityProperties = securityProperties;
     }
 
     public Set<String> getUrls() {

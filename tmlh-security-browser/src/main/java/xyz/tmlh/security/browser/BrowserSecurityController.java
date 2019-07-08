@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import xyz.tmlh.security.browser.suport.ResultBean;
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 
 /**
  * 配置默认的请求 Created by TianXin on 2018年12月29日.
@@ -40,7 +40,7 @@ public class BrowserSecurityController {
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
 
     /**
      * 基本请求监听,没有返回401
@@ -54,8 +54,8 @@ public class BrowserSecurityController {
         if (savedRequest != null) {
             String targetUrl = savedRequest.getRedirectUrl();
 
-            LOGGER.info("引发请求的url: {} , 目标url: {}", targetUrl, securityProperties.getBrowser().getLoginPage());
-            redirectStrategy.sendRedirect(request, response, securityProperties.getBrowser().getLoginPage());
+            LOGGER.info("引发请求的url: {} , 目标url: {}", targetUrl, tmlhSecurityProperties.getBrowser().getLoginPage());
+            redirectStrategy.sendRedirect(request, response, tmlhSecurityProperties.getBrowser().getLoginPage());
         }
 
         return ResultBean.fail("请先登陆!");

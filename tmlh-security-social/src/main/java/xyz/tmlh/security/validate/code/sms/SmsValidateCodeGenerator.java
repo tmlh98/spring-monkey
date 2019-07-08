@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.validate.code.ValidateCode;
 import xyz.tmlh.security.validate.code.ValidateCodeGenerator;
 
@@ -17,7 +17,7 @@ import xyz.tmlh.security.validate.code.ValidateCodeGenerator;
 public class SmsValidateCodeGenerator implements ValidateCodeGenerator{
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
 
     
     /* (非 Javadoc) 
@@ -29,8 +29,8 @@ public class SmsValidateCodeGenerator implements ValidateCodeGenerator{
      */ 
     @Override
     public ValidateCode generate(ServletWebRequest request) {
-        String code = RandomStringUtils.randomNumeric(securityProperties.getCode().getSms().getLength());
-        return new ValidateCode(code, securityProperties.getCode().getSms().getExpireIn());
+        String code = RandomStringUtils.randomNumeric(tmlhSecurityProperties.getCode().getSms().getLength());
+        return new ValidateCode(code, tmlhSecurityProperties.getCode().getSms().getExpireIn());
 
     }
 

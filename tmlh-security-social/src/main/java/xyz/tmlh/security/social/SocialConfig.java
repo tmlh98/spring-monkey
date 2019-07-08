@@ -17,7 +17,7 @@ import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.social.security.SpringSocialConfigurer;
 
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 
 /**
  * <p>
@@ -32,7 +32,7 @@ import xyz.tmlh.security.properties.SecurityProperties;
 public class SocialConfig extends SocialConfigurerAdapter {
 
     @Autowired
-    protected SecurityProperties securityProperties;
+    protected TmlhSecurityProperties tmlhSecurityProperties;
 
     @Autowired
     private DataSource dataSource;
@@ -58,9 +58,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     
     @Bean
     public SpringSocialConfigurer tmlhSpringSocialConfigurer() {
-        String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
+        String filterProcessesUrl = tmlhSecurityProperties.getSocial().getFilterProcessesUrl();
         TmlhSpringSocialConfigurer configurer = new TmlhSpringSocialConfigurer(filterProcessesUrl);
-        configurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
+        configurer.signupUrl(tmlhSecurityProperties.getBrowser().getSignUpUrl());
         return configurer;
     }
     

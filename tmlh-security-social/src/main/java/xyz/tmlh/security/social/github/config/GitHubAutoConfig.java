@@ -16,7 +16,7 @@ import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.github.api.GitHub;
 
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.properties.social.GitHubProperties;
 import xyz.tmlh.security.social.SocialConfig;
 import xyz.tmlh.security.social.github.connet.GitHubConnectionFactory;
@@ -38,7 +38,7 @@ public class GitHubAutoConfig extends SocialConfig{
     private static final Logger LOGGER = LoggerFactory.getLogger(GitHubAutoConfig.class);
 
     @Autowired
-    protected SecurityProperties securityProperties;
+    protected TmlhSecurityProperties tmlhSecurityProperties;
     
     @Bean
     @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
@@ -50,7 +50,7 @@ public class GitHubAutoConfig extends SocialConfig{
     @Override
     public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer, Environment environment) {
         super.addConnectionFactories(connectionFactoryConfigurer, environment);
-        GitHubProperties github = securityProperties.getSocial().getGithub();
+        GitHubProperties github = tmlhSecurityProperties.getSocial().getGithub();
         GitHubConnectionFactory gitHubConnectionFactory = new GitHubConnectionFactory(github.getProviderId(), github.getAppId(), github.getAppSecret());
         connectionFactoryConfigurer.addConnectionFactory(gitHubConnectionFactory);
         LOGGER.info("社交登陆github配置成功!");

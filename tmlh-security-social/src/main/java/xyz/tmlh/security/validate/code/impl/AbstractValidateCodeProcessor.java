@@ -11,6 +11,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import xyz.tmlh.security.exception.ValidateCodeException;
+import xyz.tmlh.security.suport.SecurityConstants;
 import xyz.tmlh.security.validate.code.ValidateCode;
 import xyz.tmlh.security.validate.code.ValidateCodeGenerator;
 import xyz.tmlh.security.validate.code.ValidateCodeProcessor;
@@ -81,7 +82,7 @@ public abstract class AbstractValidateCodeProcessor<C extends ValidateCode> impl
      * @return
      */
     private ValidateCodeType getValidateCodeType(ServletWebRequest request) {
-        String type = StringUtils.substringBefore(getClass().getSimpleName(), "ValidateCodeProcessor");
+        String type = StringUtils.substringBefore(getClass().getSimpleName(),  ValidateCodeProcessor.SUFFIX_VALIDATECODE);
         return ValidateCodeType.valueOf(type.toUpperCase());
     }
 

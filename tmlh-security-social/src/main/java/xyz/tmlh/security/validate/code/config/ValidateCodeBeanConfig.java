@@ -9,7 +9,7 @@ import xyz.tmlh.security.validate.code.image.ImageValidateCodeGenerator;
 import xyz.tmlh.security.validate.code.sms.SmsValidateCodeGenerator;
 
 /**
- * @CreateInformation Created by TianXin on 2018年12月30日.
+ * 用户可重新图形验证码逻辑
  */
 @Configuration
 public class ValidateCodeBeanConfig {

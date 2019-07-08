@@ -2,7 +2,7 @@ package xyz.tmlh.security.suport;
 
 /**
  * <p>
- *    
+ *    SocialUserInfo
  * </p>
  *
  * @author TianXin

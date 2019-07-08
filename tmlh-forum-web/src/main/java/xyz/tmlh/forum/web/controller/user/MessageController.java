@@ -54,7 +54,7 @@ public class MessageController {
     public ResultBean list() {
         LambdaQueryWrapper<MessageModel> wrapper = new LambdaQueryWrapper<MessageModel>();
         wrapper.eq(MessageModel::getReceiver, CurrentUserUtils.getUserId())
-               .orderByAsc(MessageModel::getCreateTime);
+               .orderByDesc(MessageModel::getCreateTime);
         
         List<MessageDo> messageList = messageService.findList(wrapper );
         

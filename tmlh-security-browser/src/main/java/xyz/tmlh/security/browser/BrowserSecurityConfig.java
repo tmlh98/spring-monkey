@@ -15,15 +15,22 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.authentication.AbstractChannelSecurityConfig;
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.suport.SecurityConstants;
 import xyz.tmlh.security.validate.code.ValidateCodeFilter;
 
-
+/**
+ * <p>
+ *      默认的实现web配置实现
+ * </p>
+ *
+ * @author TianXin
+ * @since 2019年4月8日下午4:29:50
+ */
 public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
     
     @Autowired
     private ValidateCodeFilter validateCodeFilter;
@@ -57,18 +64,18 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.httpBasic()//使用httpBasic登陆
+ 
         http.apply(tmlhSpringSocialConfigurer);
         applyPasswordAuthenticationConfig(http);
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                     .rememberMe()
                     .tokenRepository(persistentTokenRepository())
-                    .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
+                    .tokenValiditySeconds(tmlhSecurityProperties.getBrowser().getRememberMeSeconds())
                         .and()
                     .userDetailsService(userDetailsService)
                 .logout().permitAll()
                     .invalidateHttpSession(true)
-                    .logoutUrl(securityProperties.getBrowser().getLogout())
+                    .logoutUrl(tmlhSecurityProperties.getBrowser().getLogout())
                     .deleteCookies("JSESSIONID")
                     .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
@@ -76,8 +83,8 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
             .antMatchers(
                 SecurityConstants.DEFAULT_UNAUTHENTICATION_URL ,
                 SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*" ,
-                securityProperties.getBrowser().getLoginPage(),
-                securityProperties.getBrowser().getSignUpUrl()
+                tmlhSecurityProperties.getBrowser().getLoginPage(),
+                tmlhSecurityProperties.getBrowser().getSignUpUrl()
                 ).permitAll()//不拦截请求
             .anyRequest()
             .authenticated()

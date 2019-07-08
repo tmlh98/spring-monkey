@@ -13,19 +13,22 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import xyz.tmlh.security.browser.suport.ResultBean;
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.properties.browser.LoginType;
+import xyz.tmlh.security.util.JsonUtils;
 
 /**
- * 自定义的登陆失败处理 implements 
+ * 
+ * <p>
+ *     自定义的登陆失败处理 implements 
  *          AuthenticationFailureHandler 
  *  Override 
  *          onAuthenticationFailure()
- * 
- * @CreateInformation Created by TianXin on 2018年12月29日.
+ * </p>
+ *
+ * @author TianXin
+ * @since 2018年12月29日下午4:57:34
  */
 @Component
 public class TmlhAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
@@ -33,19 +36,16 @@ public class TmlhAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
     private static final Logger LOGGER = LoggerFactory.getLogger(TmlhAuthenticationFailureHandler.class);
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException,
         ServletException {
         LOGGER.info("----login in failure----");
-        if (LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
+        if (LoginType.JSON.equals(tmlhSecurityProperties.getBrowser().getLoginType())) {
             response.setContentType("application/json;charset=UTF-8");
-            String jsonResult = objectMapper.writeValueAsString(ResultBean.fail(exception.getMessage()).putResult("exception", exception));
-            response.getWriter().write(jsonResult);
+            ResultBean result = ResultBean.fail(exception.getMessage()).putResult("exception", exception);
+            response.getWriter().write(JsonUtils.objectToJson(result));
         } else {
             super.onAuthenticationFailure(request, response, exception);
         }

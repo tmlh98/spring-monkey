@@ -11,7 +11,7 @@ import xyz.tmlh.forum.util.validate.Captcha;
 import xyz.tmlh.forum.util.validate.GifCaptcha;
 import xyz.tmlh.security.SecurityCoreConfig;
 import xyz.tmlh.security.browser.BrowserSecurityConfig;
-import xyz.tmlh.security.properties.SecurityProperties;
+import xyz.tmlh.security.properties.TmlhSecurityProperties;
 
 /**
  * Created by TianXin on 2019年1月18日下午6:10:27.
@@ -21,13 +21,13 @@ import xyz.tmlh.security.properties.SecurityProperties;
 public class WebAppConfiguration {
 
     @Autowired
-    private SecurityProperties securityProperties;
+    private TmlhSecurityProperties tmlhSecurityProperties;
 
     @Bean
     public Captcha captcha() {
-        int width = securityProperties.getCode().getImage().getWidth();
-        int height = securityProperties.getCode().getImage().getHeight();
-        int len = securityProperties.getCode().getImage().getLength();
+        int width = tmlhSecurityProperties.getCode().getImage().getWidth();
+        int height = tmlhSecurityProperties.getCode().getImage().getHeight();
+        int len = tmlhSecurityProperties.getCode().getImage().getLength();
         return new GifCaptcha(width, height, len);
     }
 
