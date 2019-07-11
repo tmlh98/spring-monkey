@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import xyz.tmlh.core.exception.ServiceException;
-import xyz.tmlh.core.exception.ValidateException;
+import xyz.tmlh.forum.core.exception.ServiceException;
+import xyz.tmlh.forum.core.exception.ValidateException;
 import xyz.tmlh.forum.web.WebConstans;
 import xyz.tmlh.security.browser.suport.ResultBean;
 import xyz.tmlh.security.core.exception.UserNotFoundException;

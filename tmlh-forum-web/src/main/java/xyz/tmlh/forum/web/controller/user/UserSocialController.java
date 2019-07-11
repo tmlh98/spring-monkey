@@ -13,10 +13,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import xyz.tmlh.core.model.SocialModel;
-import xyz.tmlh.core.service.MessageService;
-import xyz.tmlh.core.service.SocialService;
-import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.forum.core.model.SocialModel;
+import xyz.tmlh.forum.core.service.MessageService;
+import xyz.tmlh.forum.core.service.SocialService;
+import xyz.tmlh.forum.web.util.user.CurrentUserUtils;
 import xyz.tmlh.security.browser.log.SysLog;
 import xyz.tmlh.security.browser.suport.ResultBean;
 

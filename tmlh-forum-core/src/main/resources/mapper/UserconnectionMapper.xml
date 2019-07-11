@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="xyz.tmlh.core.mapper.UserconnectionMapper">
+<mapper namespace="xyz.tmlh.forum.core.mapper.UserconnectionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="xyz.tmlh.core.model.UserconnectionModel">
+    <resultMap id="BaseResultMap" type="xyz.tmlh.forum.core.model.UserconnectionModel">
         <id column="userId" property="userId" />
         <result column="providerId" property="providerId" />
         <result column="providerUserId" property="providerUserId" />

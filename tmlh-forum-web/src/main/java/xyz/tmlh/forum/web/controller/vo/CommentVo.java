@@ -1,7 +1,6 @@
 package xyz.tmlh.forum.web.controller.vo;
 
-import xyz.tmlh.core.model.data.CommentDo;
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.io.Serializable;
+import xyz.tmlh.forum.core.model.data.CommentDo;
 
 /**
  * <p>

@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import xyz.tmlh.core.enums.PublishType;
-import xyz.tmlh.core.model.UserModel;
-import xyz.tmlh.core.service.CatalogService;
-import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.util.scope.RequestUtils;
-import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.forum.core.enums.PublishType;
+import xyz.tmlh.forum.core.model.UserModel;
+import xyz.tmlh.forum.core.service.CatalogService;
+import xyz.tmlh.forum.core.service.UserService;
+import xyz.tmlh.forum.web.util.scope.RequestUtils;
+import xyz.tmlh.forum.web.util.user.CurrentUserUtils;
 import xyz.tmlh.security.browser.log.SysLog;
 import xyz.tmlh.security.core.exception.UserNotFoundException;
 

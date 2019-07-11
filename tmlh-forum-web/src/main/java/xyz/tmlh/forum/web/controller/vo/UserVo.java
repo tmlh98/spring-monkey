@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import xyz.tmlh.core.enums.StatusEnum;
-import xyz.tmlh.core.model.UserModel;
+import xyz.tmlh.forum.core.enums.StatusEnum;
+import xyz.tmlh.forum.core.model.UserModel;
 
 /**
  * <p>

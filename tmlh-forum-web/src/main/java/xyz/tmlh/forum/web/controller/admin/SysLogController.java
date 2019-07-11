@@ -14,8 +14,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import xyz.tmlh.core.model.SysLogModel;
-import xyz.tmlh.core.service.SysLogService;
+import xyz.tmlh.forum.core.model.SysLogModel;
+import xyz.tmlh.forum.core.service.SysLogService;
 import xyz.tmlh.security.browser.suport.ResultBean;
 
 /**

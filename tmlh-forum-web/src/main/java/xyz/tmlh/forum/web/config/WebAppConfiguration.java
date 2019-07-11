@@ -6,17 +6,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
-import xyz.tmlh.core.CoreApplication;
-import xyz.tmlh.forum.util.validate.Captcha;
-import xyz.tmlh.forum.util.validate.GifCaptcha;
-import xyz.tmlh.security.browser.BrowserSecurityConfig;
-import xyz.tmlh.security.core.SecurityCoreConfig;
+import xyz.tmlh.forum.web.util.validate.Captcha;
+import xyz.tmlh.forum.web.util.validate.GifCaptcha;
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 
 /**
  * Created by TianXin on 2019年1月18日下午6:10:27.
  */
-@ComponentScan(basePackageClasses = {BrowserSecurityConfig.class, SecurityCoreConfig.class, CoreApplication.class})
+@ComponentScan(basePackages= {"xyz.tmlh.security.core" , "xyz.tmlh.security.browser"})
 @Configuration
 public class WebAppConfiguration {
 

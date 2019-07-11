@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import xyz.tmlh.core.model.UserModel;
-import xyz.tmlh.core.service.SocialService;
-import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.forum.core.model.UserModel;
+import xyz.tmlh.forum.core.service.SocialService;
+import xyz.tmlh.forum.core.service.UserService;
+import xyz.tmlh.forum.web.util.user.CurrentUserUtils;
 
 /**
  * <p>

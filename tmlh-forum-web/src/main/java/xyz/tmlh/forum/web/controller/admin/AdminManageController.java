@@ -25,16 +25,16 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import xyz.tmlh.core.enums.PublishType;
-import xyz.tmlh.core.enums.StatusEnum;
-import xyz.tmlh.core.model.ArticleModel;
-import xyz.tmlh.core.model.CommentModel;
-import xyz.tmlh.core.model.UserModel;
-import xyz.tmlh.core.model.data.CommentDo;
-import xyz.tmlh.core.service.ArticleService;
-import xyz.tmlh.core.service.CommentService;
-import xyz.tmlh.core.service.SocialService;
-import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.core.enums.PublishType;
+import xyz.tmlh.forum.core.enums.StatusEnum;
+import xyz.tmlh.forum.core.model.ArticleModel;
+import xyz.tmlh.forum.core.model.CommentModel;
+import xyz.tmlh.forum.core.model.UserModel;
+import xyz.tmlh.forum.core.model.data.CommentDo;
+import xyz.tmlh.forum.core.service.ArticleService;
+import xyz.tmlh.forum.core.service.CommentService;
+import xyz.tmlh.forum.core.service.SocialService;
+import xyz.tmlh.forum.core.service.UserService;
 import xyz.tmlh.forum.web.controller.vo.UserVo;
 import xyz.tmlh.security.browser.suport.ResultBean;
 

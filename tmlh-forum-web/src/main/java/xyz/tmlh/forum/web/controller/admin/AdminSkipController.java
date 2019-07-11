@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import xyz.tmlh.core.service.SysLogService;
-import xyz.tmlh.core.service.UserService;
+import xyz.tmlh.forum.core.service.SysLogService;
+import xyz.tmlh.forum.core.service.UserService;
 
 /**
  * <p>
