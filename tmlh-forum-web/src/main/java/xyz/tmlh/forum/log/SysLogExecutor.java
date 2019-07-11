@@ -43,8 +43,6 @@ public class SysLogExecutor implements LocalLogExecutor{
         log.setParams(sysLog.getParams());
         
         sysLogMapper.insert(log);
-        
-        System.out.println(sysLog);
     }
 
 }
