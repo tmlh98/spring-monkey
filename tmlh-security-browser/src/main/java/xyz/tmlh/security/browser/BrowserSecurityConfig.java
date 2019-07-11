@@ -1,98 +1,49 @@
 package xyz.tmlh.security.browser;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.social.security.SpringSocialConfigurer;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import xyz.tmlh.security.authentication.AbstractChannelSecurityConfig;
-import xyz.tmlh.security.properties.TmlhSecurityProperties;
-import xyz.tmlh.security.suport.SecurityConstants;
-import xyz.tmlh.security.validate.code.ValidateCodeFilter;
+import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
+import xyz.tmlh.security.core.properties.browser.BrowserProerties;
+import xyz.tmlh.security.core.suport.SecurityConstants;
 
 /**
  * <p>
- *      默认的实现web配置实现
+ *    WebSecurity配置
  * </p>
  *
  * @author TianXin
- * @since 2019年4月8日下午4:29:50
+ * @since 2019年3月25日下午4:34:57
  */
-public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
+public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private TmlhSecurityProperties tmlhSecurityProperties;
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
     
     @Autowired
-    private ValidateCodeFilter validateCodeFilter;
+    private AuthenticationFailureHandler authenticationFailureHandler;
     
-    @Autowired
-    private SpringSocialConfigurer tmlhSpringSocialConfigurer;
+    @Autowired 
+    protected TmlhSecurityProperties tmlhSecurityProperties;
     
-    @Autowired
-    private DataSource dataSource;
-    
-    @Autowired
-    private UserDetailsService userDetailsService;
-    
-    @Autowired
-    private LogoutSuccessHandler logoutSuccessHandler ;
-    
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-    
-    /**
-     * 记住我实现
-     */
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl = new JdbcTokenRepositoryImpl();
-        jdbcTokenRepositoryImpl.setDataSource(dataSource);
-        jdbcTokenRepositoryImpl.setCreateTableOnStartup(true);
-        return jdbcTokenRepositoryImpl;
-    }
-    
-    @Override
+	@Override
     protected void configure(HttpSecurity http) throws Exception {
- 
-        http.apply(tmlhSpringSocialConfigurer);
-        applyPasswordAuthenticationConfig(http);
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                    .rememberMe()
-                    .tokenRepository(persistentTokenRepository())
-                    .tokenValiditySeconds(tmlhSecurityProperties.getBrowser().getRememberMeSeconds())
-                        .and()
-                    .userDetailsService(userDetailsService)
-                .logout().permitAll()
-                    .invalidateHttpSession(true)
-                    .logoutUrl(tmlhSecurityProperties.getBrowser().getLogout())
-                    .deleteCookies("JSESSIONID")
-                    .logoutSuccessHandler(logoutSuccessHandler)
-                .and()
-            .authorizeRequests()
-            .antMatchers(
-                SecurityConstants.DEFAULT_UNAUTHENTICATION_URL ,
-                SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*" ,
-                tmlhSecurityProperties.getBrowser().getLoginPage(),
-                tmlhSecurityProperties.getBrowser().getSignUpUrl()
-                ).permitAll()//不拦截请求
-            .anyRequest()
-            .authenticated()
-                .and()
-            .csrf().disable();//禁用csrf
-        
-        //解决bug Refused to display in a frame because it set 'X-Frame-Options' to 'DENY'
-        http.headers().frameOptions().disable();
+	    applyPasswordAuthenticationConfig(http);
     }
 
+    private void applyPasswordAuthenticationConfig(HttpSecurity http) throws Exception {
+	    BrowserProerties browser = tmlhSecurityProperties.getBrowser();
+	    
+		http.formLogin()
+			.loginPage(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
+			.loginProcessingUrl(browser.getLoginProcessingUrl())
+			.usernameParameter(browser.getUsernameParameter())
+			.passwordParameter(browser.getPasswordParameter())
+			.successHandler(authenticationSuccessHandler)
+			.failureHandler(authenticationFailureHandler);
+	}
+	
 }

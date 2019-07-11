@@ -16,7 +16,7 @@ import xyz.tmlh.core.exception.ServiceException;
 import xyz.tmlh.core.exception.ValidateException;
 import xyz.tmlh.forum.web.WebConstans;
 import xyz.tmlh.security.browser.suport.ResultBean;
-import xyz.tmlh.security.exception.UserNotFoundException;
+import xyz.tmlh.security.core.exception.UserNotFoundException;
 
 
 /**

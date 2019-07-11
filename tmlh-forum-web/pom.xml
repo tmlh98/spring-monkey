@@ -13,12 +13,12 @@
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
 			<artifactId>tmlh-forum-core</artifactId>
-			<version>${tmlh.security.version}</version>
+			<version>${tmlh.platform.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
 			<artifactId>tmlh-security-browser</artifactId>
-			<version>${tmlh.security.version}</version>
+			<version>${tmlh.platform.version}</version>
 		</dependency>
 		<!-- websocket -->
 		<!-- <dependency>
@@ -31,11 +31,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-		</dependency>
+	
 
 		<!-- Bootstrap webjars -->
 		<dependency>

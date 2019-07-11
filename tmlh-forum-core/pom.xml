@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>xyz.tmlh.security</groupId>
 			<artifactId>tmlh-security-browser</artifactId>
-			<version>${tmlh.security.version}</version>
+			<version>${tmlh.platform.version}</version>
 		</dependency>
 
 		<dependency>

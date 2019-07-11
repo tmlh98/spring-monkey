@@ -12,9 +12,9 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import xyz.tmlh.forum.util.validate.Captcha;
-import xyz.tmlh.security.properties.TmlhSecurityProperties;
-import xyz.tmlh.security.validate.code.ImageCode;
-import xyz.tmlh.security.validate.code.impl.AbstractValidateCodeProcessor;
+import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
+import xyz.tmlh.security.core.validate.code.AbstractValidateCodeProcessor;
+import xyz.tmlh.security.core.validate.code.suport.ImageCode;
 
 /**
  * <p>

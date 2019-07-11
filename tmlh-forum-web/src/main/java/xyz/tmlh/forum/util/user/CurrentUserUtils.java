@@ -2,7 +2,7 @@ package xyz.tmlh.forum.util.user;
 
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.forum.util.scope.SessionUtil;
-import xyz.tmlh.security.exception.UserNotFoundException;
+import xyz.tmlh.security.core.exception.UserNotFoundException;
 
 /**
  * <p>

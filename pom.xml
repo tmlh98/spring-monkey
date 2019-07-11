@@ -8,7 +8,7 @@
 
 
 	<properties>
-		<tmlh.security.version>0.0.1-SNAPSHOT</tmlh.security.version>
+		<tmlh.platform.version>0.0.1-SNAPSHOT</tmlh.platform.version>
 		<platform-bom.version>Cairo-SR2</platform-bom.version>
 		<spring-cloud-dependencies.version>Finchley.SR3</spring-cloud-dependencies.version>
 		<spring-seesion.version>1.3.5.RELEASE</spring-seesion.version>

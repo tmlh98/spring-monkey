@@ -19,10 +19,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import xyz.tmlh.security.browser.suport.ResultBean;
-import xyz.tmlh.security.properties.TmlhSecurityProperties;
+import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
+import xyz.tmlh.security.core.suport.SecurityConstants;
 
 /**
- * 配置默认的请求 Created by TianXin on 2018年12月29日.
+ * <p>
+ *   配置默认的请求
+ * </p>
+ *
+ * @author TianXin
+ * @since 2019年7月10日下午1:52:04
  */
 @RestController
 public class BrowserSecurityController {
@@ -47,7 +53,7 @@ public class BrowserSecurityController {
      * 
      * @throws IOException
      */
-    @RequestMapping("/authentication/require")
+    @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ResultBean requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SavedRequest savedRequest = requestCache.getRequest(request, response);
@@ -57,7 +63,7 @@ public class BrowserSecurityController {
             LOGGER.info("引发请求的url: {} , 目标url: {}", targetUrl, tmlhSecurityProperties.getBrowser().getLoginPage());
             redirectStrategy.sendRedirect(request, response, tmlhSecurityProperties.getBrowser().getLoginPage());
         }
-
+        
         return ResultBean.fail("请先登陆!");
     }
 

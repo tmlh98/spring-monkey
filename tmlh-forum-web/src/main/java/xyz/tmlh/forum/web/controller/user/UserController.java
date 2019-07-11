@@ -30,10 +30,10 @@ import xyz.tmlh.core.service.CommentService;
 import xyz.tmlh.core.service.MessageService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.security.browser.log.SysLog;
 import xyz.tmlh.security.browser.suport.ResultBean;
-import xyz.tmlh.security.util.JsonUtils;
+import xyz.tmlh.security.core.util.JsonUtils;
 
 /**
  * <p>

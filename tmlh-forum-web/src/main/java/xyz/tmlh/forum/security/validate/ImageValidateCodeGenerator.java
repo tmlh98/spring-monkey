@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.properties.TmlhSecurityProperties;
-import xyz.tmlh.security.validate.code.ImageCode;
-import xyz.tmlh.security.validate.code.ValidateCode;
-import xyz.tmlh.security.validate.code.ValidateCodeGenerator;
+import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
+import xyz.tmlh.security.core.validate.code.ValidateCodeGenerator;
+import xyz.tmlh.security.core.validate.code.suport.ImageCode;
+import xyz.tmlh.security.core.validate.code.suport.ValidateCode;
 
 /**
  * <p>

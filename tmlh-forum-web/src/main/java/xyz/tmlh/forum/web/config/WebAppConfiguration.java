@@ -9,9 +9,9 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 import xyz.tmlh.core.CoreApplication;
 import xyz.tmlh.forum.util.validate.Captcha;
 import xyz.tmlh.forum.util.validate.GifCaptcha;
-import xyz.tmlh.security.SecurityCoreConfig;
 import xyz.tmlh.security.browser.BrowserSecurityConfig;
-import xyz.tmlh.security.properties.TmlhSecurityProperties;
+import xyz.tmlh.security.core.SecurityCoreConfig;
+import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 
 /**
  * Created by TianXin on 2019年1月18日下午6:10:27.

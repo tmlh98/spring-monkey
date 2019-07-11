@@ -16,8 +16,8 @@ import io.swagger.annotations.ApiParam;
 import xyz.tmlh.core.model.SocialModel;
 import xyz.tmlh.core.service.MessageService;
 import xyz.tmlh.core.service.SocialService;
-import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.security.browser.log.SysLog;
 import xyz.tmlh.security.browser.suport.ResultBean;
 
 /**

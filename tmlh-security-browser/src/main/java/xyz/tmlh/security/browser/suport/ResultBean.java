@@ -3,9 +3,14 @@ package xyz.tmlh.security.browser.suport;
 import java.util.HashMap;
 import java.util.Map;
 
-/** 
- * 结果bean 
- * Created by TianXin on 2018年12月27日. 
+/**
+ * 
+ * <p>
+ *      默认的返回结果集容器
+ * </p>
+ *
+ * @author TianXin
+ * @since 2018年12月27日上午9:44:29
  */
 public class ResultBean {
 
@@ -18,17 +23,15 @@ public class ResultBean {
     /**
      * 0√  1×
      */
-    private Integer code;
+    private Integer code = 0;
     
-    private Map<String, Object> result = new HashMap<>(1);
+    private Map<String, Object> result = null;
 
     public ResultBean() {
-        this.code = 0;
         this.message = CODE_SUCCESS;
     }
     
     public ResultBean(String message) {
-        this.code = 0;
         this.message = message;
     }
     
@@ -85,6 +88,9 @@ public class ResultBean {
     }
     
     public ResultBean putResult(String key, Object value) {
+        if(result == null) {
+            result = new HashMap<>(1);
+        }
         this.result.put(key, value);
         return this;
     }

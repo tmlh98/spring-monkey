@@ -23,8 +23,8 @@ import xyz.tmlh.core.model.AdminModel;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.AdminService;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
+import xyz.tmlh.security.browser.log.SysLog;
 
 /**
  * <p>

@@ -6,9 +6,9 @@ import org.springframework.social.connect.Connection;
 import org.springframework.stereotype.Component;
 
 import xyz.tmlh.core.model.UserModel;
-import xyz.tmlh.security.exception.UserNotFoundException;
-import xyz.tmlh.security.social.qq.api.QQ;
-import xyz.tmlh.security.social.qq.api.QQUserInfo;
+import xyz.tmlh.security.core.exception.UserNotFoundException;
+import xyz.tmlh.security.core.social.qq.api.QQ;
+import xyz.tmlh.security.core.social.qq.api.QQUserInfo;
 
 /**
  * <p>

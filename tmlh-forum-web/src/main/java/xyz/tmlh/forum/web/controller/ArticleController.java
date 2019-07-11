@@ -29,10 +29,10 @@ import xyz.tmlh.core.service.CommentService;
 import xyz.tmlh.core.service.SocialService;
 import xyz.tmlh.core.service.UserService;
 import xyz.tmlh.core.suport.SqlPrefix;
-import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
 import xyz.tmlh.forum.web.controller.vo.CommentVo;
 import xyz.tmlh.forum.web.vo.ArticleVo;
+import xyz.tmlh.security.browser.log.SysLog;
 import xyz.tmlh.security.browser.suport.ResultBean;
 
 /**

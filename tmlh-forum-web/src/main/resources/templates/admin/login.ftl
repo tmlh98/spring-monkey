@@ -76,7 +76,7 @@ function login() {
 			"imageCode" : vcode 
 		},
 		dataType : "json",
-		url : "/authentication/form",
+		url : "/security/login",
 		success : function(result) {
 			if (result.code == '0') {
 				swal({

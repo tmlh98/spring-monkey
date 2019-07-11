@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 import xyz.tmlh.forum.util.GetMapperUtil;
 import xyz.tmlh.forum.web.WebConstans;
-import xyz.tmlh.security.browser.BrowserSecurityConfig;
+import xyz.tmlh.security.browser.BrowserSecurityConfigAdapter;
 
 /**
  * <p>
@@ -23,7 +23,7 @@ import xyz.tmlh.security.browser.BrowserSecurityConfig;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
-public class WebSecurityConfig extends BrowserSecurityConfig {
+public class WebSecurityConfig extends BrowserSecurityConfigAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {

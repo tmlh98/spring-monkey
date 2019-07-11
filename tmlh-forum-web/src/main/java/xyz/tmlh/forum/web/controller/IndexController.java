@@ -1,6 +1,5 @@
 package xyz.tmlh.forum.web.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -11,17 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import xyz.tmlh.core.enums.PublishType;
 import xyz.tmlh.core.model.UserModel;
 import xyz.tmlh.core.service.CatalogService;
 import xyz.tmlh.core.service.UserService;
-import xyz.tmlh.forum.annotation.SysLog;
 import xyz.tmlh.forum.util.scope.RequestUtils;
 import xyz.tmlh.forum.util.user.CurrentUserUtils;
-import xyz.tmlh.security.exception.UserNotFoundException;
+import xyz.tmlh.security.browser.log.SysLog;
+import xyz.tmlh.security.core.exception.UserNotFoundException;
 
 /**
  * <p>
