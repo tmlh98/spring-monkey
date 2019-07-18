@@ -9,8 +9,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SpringSocialConfigurer;
 
+import xyz.tmlh.security.core.properties.session.SessionProperties;
 import xyz.tmlh.security.core.suport.SecurityConstants;
 import xyz.tmlh.security.core.validate.code.ValidateCodeFilter;
 
@@ -22,7 +24,7 @@ import xyz.tmlh.security.core.validate.code.ValidateCodeFilter;
  * @author TianXin
  * @since 2019年4月8日下午4:29:50
  */
-public class BrowserSecurityConfigAdapter extends BrowserSecurityConfig {
+public class BrowserSecurityConfigAdapter extends BrowserLoginSecurityConfig {
     
     @Autowired
     private ValidateCodeFilter validateCodeFilter;
@@ -38,6 +40,9 @@ public class BrowserSecurityConfigAdapter extends BrowserSecurityConfig {
     
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler ;
+    
+    @Autowired
+    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy ;
     
     /**
      * 记住我实现
@@ -55,12 +60,21 @@ public class BrowserSecurityConfigAdapter extends BrowserSecurityConfig {
  
         http.apply(tmlhSpringSocialConfigurer);
         
+        SessionProperties session = tmlhSecurityProperties.getSession();
+        
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
                     .rememberMe()
                     .tokenRepository(persistentTokenRepository())
                     .tokenValiditySeconds(tmlhSecurityProperties.getBrowser().getRememberMeSeconds())
                         .and()
                     .userDetailsService(userDetailsService)
+                        .sessionManagement()
+                        .invalidSessionUrl(SecurityConstants.DEFAULT_SESSION_INVALID_URL)
+                        .maximumSessions(session.getMaximumSessions())//最大的并发数
+                        .maxSessionsPreventsLogin(session.isMaxSessionsPreventsLogin())//之后的登录是否踢掉之前的登录
+                        .expiredSessionStrategy(sessionInformationExpiredStrategy)
+                    .and()
+                    .and()
                 .logout().permitAll()
                     .invalidateHttpSession(true)
                     .logoutUrl(tmlhSecurityProperties.getBrowser().getLogout())
@@ -68,8 +82,8 @@ public class BrowserSecurityConfigAdapter extends BrowserSecurityConfig {
                     .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
             .authorizeRequests()
-            
             .antMatchers(
+                SecurityConstants.DEFAULT_SESSION_INVALID_URL,
                 SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                 SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*" ,
                 tmlhSecurityProperties.getBrowser().getLoginPage(),

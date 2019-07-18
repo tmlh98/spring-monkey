@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import xyz.tmlh.security.core.properties.browser.BrowserProerties;
 import xyz.tmlh.security.core.properties.code.ValidateCodeProperties;
+import xyz.tmlh.security.core.properties.session.SessionProperties;
 import xyz.tmlh.security.core.properties.social.SocialProperties;
 
 /**  
@@ -19,6 +20,8 @@ public class TmlhSecurityProperties {
     private ValidateCodeProperties code = new ValidateCodeProperties();
     
     private SocialProperties social = new SocialProperties();
+    
+    private SessionProperties session = new SessionProperties();
 
     public BrowserProerties getBrowser() {
         return browser;
@@ -44,7 +47,14 @@ public class TmlhSecurityProperties {
         this.social = social;
     }
 
+    public SessionProperties getSession() {
+        return session;
+    }
 
-    
+    public void setSession(SessionProperties session) {
+        this.session = session;
+    }
+
+
     
 }

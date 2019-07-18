@@ -18,7 +18,7 @@ import xyz.tmlh.security.core.suport.SecurityConstants;
  * @author TianXin
  * @since 2019年3月25日下午4:34:57
  */
-public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+public class BrowserLoginSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthenticationSuccessHandler authenticationSuccessHandler;

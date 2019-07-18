@@ -14,6 +14,7 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,4 +68,18 @@ public class BrowserSecurityController {
         return ResultBean.fail("请先登陆!");
     }
 
+    /**
+     * session 失效后的策略
+      *
+      * @param @return    参数
+      * @return ResultBean    返回类型
+      * @throws
+     */
+    @GetMapping(SecurityConstants.DEFAULT_SESSION_INVALID_URL)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResultBean sessionInvalid() {
+        LOGGER.info("session失效");
+        return ResultBean.fail("session失效");
+    }
+    
 }

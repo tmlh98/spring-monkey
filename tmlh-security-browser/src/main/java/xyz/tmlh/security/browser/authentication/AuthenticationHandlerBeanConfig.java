@@ -8,10 +8,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SocialUserDetailsService;
 
 import xyz.tmlh.security.browser.authentication.suport.DefaultAuthenticationFailureHandler;
 import xyz.tmlh.security.browser.authentication.suport.DefaultAuthenticationSuccessHandler;
+import xyz.tmlh.security.browser.authentication.suport.DefaultExpiredSessionStrategy;
 import xyz.tmlh.security.browser.authentication.suport.DefaultLogoutSuccessHandler;
 import xyz.tmlh.security.browser.authentication.suport.DefaultSocialUserDetailsService;
 
@@ -53,6 +55,12 @@ public class AuthenticationHandlerBeanConfig {
     @ConditionalOnMissingBean
     public SocialUserDetailsService socialUserDetailsService() {
         return new DefaultSocialUserDetailsService();
+    }
+    
+    @Bean 
+    @ConditionalOnMissingBean
+    public SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
+        return new DefaultExpiredSessionStrategy();
     }
     
 }

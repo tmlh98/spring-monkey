@@ -2,6 +2,7 @@ package xyz.tmlh.forum.core.config;
 import java.util.Properties;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -41,7 +42,7 @@ public class MybatisPlusConfig {
      * @created 2019年2月23日 上午10:53:20
      * @return
      */
-    @Bean
+//    @Bean
     @Profile("dev")
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();

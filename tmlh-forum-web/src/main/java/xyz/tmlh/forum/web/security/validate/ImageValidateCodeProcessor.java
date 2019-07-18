@@ -46,7 +46,7 @@ public class ImageValidateCodeProcessor extends AbstractValidateCodeProcessor<Im
             // 输出
             captcha.out(response.getOutputStream());
             
-            save(request , new ImageCode(captcha.text().toLowerCase(),tmlhSecurityProperties.getCode().getImage().getExpireIn()));
+            super.save(request , new ImageCode(captcha.text().toLowerCase(),tmlhSecurityProperties.getCode().getImage().getExpireIn()));
             
         } catch (Exception e) {
             LOGGER.error("获取验证码异常：" + e.getMessage() , e);

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
  */
 public class ImageCode extends ValidateCode{
     
+    private static final long serialVersionUID = 5684365345770761441L;
     /**
      * 图片
      */

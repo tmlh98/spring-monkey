@@ -52,13 +52,13 @@ public class SysLogAspect {
             // @ControllerAdvice 的异常不处理
             sysLog.setExMsg(e.getMessage());
             sysLog.setExDetail(LogUtil.getStackTrace(e));
+        }finally {
+            long time = System.currentTimeMillis() - startTime.get();
+            sysLog.setExecuteTime(time);
+            
+            genSysLogDetail(point, time , sysLog);
+            applicationContext.publishEvent(new SysLogEvent(sysLog));
         }
-		
-	    long time = System.currentTimeMillis() - startTime.get();
-	    sysLog.setExecuteTime(time);
-	    
-	    genSysLogDetail(point, time , sysLog);
-		applicationContext.publishEvent(new SysLogEvent(sysLog));
 		return result;
 	}
 
