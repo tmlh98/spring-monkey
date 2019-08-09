@@ -61,14 +61,15 @@ public class BrowserSecurityController {
         if (savedRequest != null) {
             String targetUrl = savedRequest.getRedirectUrl();
 
-            LOGGER.info("引发请求的url: {} , 目标url: {}", targetUrl, tmlhSecurityProperties.getBrowser().getLoginPage());
-            redirectStrategy.sendRedirect(request, response, tmlhSecurityProperties.getBrowser().getLoginPage());
+            LOGGER.info("引发请求的url: {}  ", targetUrl );
+            redirectStrategy.sendRedirect(request, response, tmlhSecurityProperties.getBrowser().getRedirectUrl());
         }
         
         return ResultBean.fail("请先登陆!");
     }
 
     /**
+     * @throws IOException 
      * session 失效后的策略
       *
       * @param @return    参数
@@ -77,9 +78,8 @@ public class BrowserSecurityController {
      */
     @GetMapping(SecurityConstants.DEFAULT_SESSION_INVALID_URL)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ResultBean sessionInvalid() {
-        LOGGER.info("session失效");
-        return ResultBean.fail("session失效");
+    public void sessionInvalid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        redirectStrategy.sendRedirect(request, response, tmlhSecurityProperties.getBrowser().getRedirectUrl());
     }
     
 }

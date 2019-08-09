@@ -85,7 +85,7 @@ public class ControllerExceptionHandler {
         return WebConstans.REDIRECT_PREFIX + "login";
     }
     
-    @ResponseBody
+    @ResponseBody 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(ServiceException.class)
     public ResultBean serviceException(ServiceException ex ) {

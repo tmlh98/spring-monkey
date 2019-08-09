@@ -30,6 +30,10 @@ public class BrowserProerties {
     private String logout = "/logout";
     
     /**
+     * 当出现错误的请求时 , 跳转的策略(首页或者登陆页)
+     */
+    private String redirectUrl = "/";
+    /**
      * 登陆类型,默认使用json
      */
     private LoginType loginType = LoginType.JSON;
@@ -100,4 +104,12 @@ public class BrowserProerties {
         this.loginProcessingUrl = loginProcessingUrl;
     }
 
+    public String getRedirectUrl() {
+        return redirectUrl;
+    }
+
+    public void setRedirectUrl(String redirectUrl) {
+        this.redirectUrl = redirectUrl;
+    }
+    
 }

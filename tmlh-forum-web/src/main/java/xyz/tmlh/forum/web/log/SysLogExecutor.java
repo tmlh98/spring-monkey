@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 import xyz.tmlh.forum.core.mapper.SysLogMapper;
 import xyz.tmlh.forum.core.model.SysLogModel;
 import xyz.tmlh.forum.web.util.ip.IPUtils;
@@ -43,6 +44,7 @@ public class SysLogExecutor implements LocalLogExecutor{
         log.setParams(sysLog.getParams());
         
         sysLogMapper.insert(log);
+        
     }
 
 }
