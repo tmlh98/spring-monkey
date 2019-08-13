@@ -5,7 +5,7 @@
 **.project
 **.iml
 **nohup.out
-
+**.factorypath
 tmlh-forum-web/src/main/resources/application-dev.yml
 tmlh-forum-web/src/main/resources/application-prod.yml
 tmlh-forum-web/src/main/resources/application.yml
