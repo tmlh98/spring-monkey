@@ -38,6 +38,9 @@ tmlh:
         height: 33
 #社交
     social:
+    social:
+      table-prefix: tbl_
+      
       qq:
         app-id: 101559281
         app-secret: c8b086c46dae6ba951e07bcf00d7a662

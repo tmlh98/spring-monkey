@@ -17,10 +17,12 @@ import org.springframework.social.connect.ConnectionRepository;
 
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.social.QQProperties;
-import xyz.tmlh.security.core.social.SocialConfig;
+import xyz.tmlh.security.core.social.SocialAutoConfiguration;
 import xyz.tmlh.security.core.social.qq.api.QQ;
 import xyz.tmlh.security.core.social.qq.connet.QQConnectionFactory;
 
+
+import static xyz.tmlh.security.core.suport.PropertiesParam.*;
 /*
  * 需要预先建立表 create table UserConnection (userId varchar(255) not null, providerId varchar(255) not null, providerUserId
  * varchar(255), rank int not null, displayName varchar(255), profileUrl varchar(512), imageUrl varchar(512),
@@ -39,12 +41,12 @@ import xyz.tmlh.security.core.social.qq.connet.QQConnectionFactory;
  * @since 2019年3月22日上午11:41:29
  */
 @EnableSocial
-@ConditionalOnClass(SocialConfig.class)
+@ConditionalOnClass(SocialAutoConfiguration.class)
 @Configuration
-@ConditionalOnProperty(prefix = "tmlh.security.social.qq", name = "app-id")
-public class QQAutoConfig  extends SocialConfig {
+@ConditionalOnProperty(prefix = PREFIX_SOCIAL_QQ, name = PARAM_APP_ID)
+public class QQAutoConfiguration  extends SocialAutoConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(QQAutoConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QQAutoConfiguration.class);
     
     @Autowired
     protected TmlhSecurityProperties tmlhSecurityProperties;

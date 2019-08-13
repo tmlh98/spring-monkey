@@ -9,8 +9,13 @@ package xyz.tmlh.security.core.properties.social;
  * @since 2019年3月22日上午11:39:40
  */
 public class SocialProperties {
-	
+    
 	private String filterProcessesUrl = "/auth";
+	
+	/**
+	 * 生成userconnection表的前缀
+	 */
+	private String tablePrefix;
 
 	private QQProperties qq = new QQProperties();
 	
@@ -49,6 +54,14 @@ public class SocialProperties {
     public void setGitee(GiteeProperties gitee) {
         this.gitee = gitee;
     }
-	
 
+    public String getTablePrefix() {
+        return tablePrefix;
+    }
+
+    public void setTablePrefix(String tablePrefix) {
+        this.tablePrefix = tablePrefix;
+    }
+
+    
 }

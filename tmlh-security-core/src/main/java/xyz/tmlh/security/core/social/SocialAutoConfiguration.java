@@ -18,7 +18,6 @@ import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
-
 /**
  * <p>
  * 社交配置主类
@@ -29,7 +28,7 @@ import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
  */
 @EnableSocial
 @Configuration
-public class SocialConfig extends SocialConfigurerAdapter {
+public class SocialAutoConfiguration extends SocialConfigurerAdapter {
 
     @Autowired
     protected TmlhSecurityProperties tmlhSecurityProperties;
@@ -38,14 +37,18 @@ public class SocialConfig extends SocialConfigurerAdapter {
     private DataSource dataSource;
 
     @Autowired(required = false)
-    private ConnectionSignUp myConnectionSignUp;
+    private ConnectionSignUp connectionSignUp;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator factoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource, factoryLocator, Encryptors.noOpText());
-        repository.setTablePrefix("tbl_");
-        if (myConnectionSignUp != null) {
-            repository.setConnectionSignUp(myConnectionSignUp);
+        
+        if(tmlhSecurityProperties.getSocial().getTablePrefix() != null) {
+            repository.setTablePrefix(tmlhSecurityProperties.getSocial().getTablePrefix());
+        }
+        
+        if (connectionSignUp != null) {
+            repository.setConnectionSignUp(connectionSignUp);
         }
 
         return repository;
@@ -63,7 +66,6 @@ public class SocialConfig extends SocialConfigurerAdapter {
         configurer.signupUrl(tmlhSecurityProperties.getBrowser().getSignUpUrl());
         return configurer;
     }
-    
     
 
     /**

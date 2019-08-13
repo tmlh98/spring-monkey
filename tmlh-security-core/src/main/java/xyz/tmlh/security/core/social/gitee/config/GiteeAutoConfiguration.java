@@ -12,8 +12,10 @@ import org.springframework.social.config.annotation.EnableSocial;
 
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.social.GiteeProperties;
-import xyz.tmlh.security.core.social.SocialConfig;
+import xyz.tmlh.security.core.social.SocialAutoConfiguration;
 import xyz.tmlh.security.core.social.gitee.connet.GiteeConnectionFactory;
+
+import static xyz.tmlh.security.core.suport.PropertiesParam.*;
 
 /*
   需要预先建立表 create table UserConnection (userId varchar(255) not null, providerId varchar(255) not null, providerUserId
@@ -32,12 +34,12 @@ import xyz.tmlh.security.core.social.gitee.connet.GiteeConnectionFactory;
  * @since 2019年3月22日上午11:41:29
  */
 @EnableSocial
-@ConditionalOnClass(SocialConfig.class)
+@ConditionalOnClass(SocialAutoConfiguration.class)
 @Configuration
-@ConditionalOnProperty(prefix = "tmlh.security.social.gitee", name = "app-id")
-public class GiteeAutoConfig  extends SocialConfig {
+@ConditionalOnProperty(prefix = PREFIX_SOCIAL_GITEE, name = PARAM_APP_ID)
+public class GiteeAutoConfiguration extends SocialAutoConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GiteeAutoConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GiteeAutoConfiguration.class);
     
     @Autowired
     protected TmlhSecurityProperties tmlhSecurityProperties;

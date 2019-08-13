@@ -78,7 +78,7 @@ public class BrowserSecurityConfigAdapter extends BrowserLoginSecurityConfig {
                 .logout().permitAll()
                     .invalidateHttpSession(true)
                     .logoutUrl(tmlhSecurityProperties.getBrowser().getLogout())
-                    .deleteCookies("JSESSIONID")
+                    .deleteCookies(SecurityConstants.JSESSIONID)
                     .logoutSuccessHandler(logoutSuccessHandler)
                 .and()
             .authorizeRequests()
