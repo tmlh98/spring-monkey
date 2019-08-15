@@ -38,7 +38,6 @@ tmlh:
         height: 33
 #社交
     social:
-    social:
       table-prefix: tbl_
       
       qq:
