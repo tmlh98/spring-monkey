@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SocialUserDetailsService;
 
+import xyz.tmlh.security.browser.authentication.mamage.BrowserAuthorizeConfigProvider;
 import xyz.tmlh.security.browser.authentication.suport.DefaultAuthenticationFailureHandler;
 import xyz.tmlh.security.browser.authentication.suport.DefaultAuthenticationSuccessHandler;
 import xyz.tmlh.security.browser.authentication.suport.DefaultExpiredSessionStrategy;
@@ -61,6 +62,11 @@ public class AuthenticationHandlerBeanConfig {
     @ConditionalOnMissingBean
     public SessionInformationExpiredStrategy sessionInformationExpiredStrategy() {
         return new DefaultExpiredSessionStrategy();
+    }
+    
+    @Bean
+    public BrowserAuthorizeConfigProvider browserAuthorizeConfigProvider() {
+        return new BrowserAuthorizeConfigProvider();
     }
     
 }

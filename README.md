@@ -2,13 +2,11 @@
 
 ### 1.1简介
 
-> ​	Spring Monkey 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
->
-> ​	点击查看:http://www.tmlh.xyz
+>    [Spring Monkey](http://www.tmlh.xyz) 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
 >
 > ​   springMonkey后台: http://www.tmlh.xyz/admin  admin/123456
 >
-> ​	主库地址:<https://github.com/tmlh98/spring-monkey>
+> ​   主库地址:<https://github.com/tmlh98/spring-monkey>
 
 
 
@@ -32,8 +30,8 @@
 
 ### 1.3分支说明
 
-- dev-v1    Springboot1.5.x + Thymeleaf
-- dev-2     Springboot2.0.x + Thymeleaf
+- ~~dev-v1    Springboot1.5.x + Thymeleaf~~
+- ~~dev-2     Springboot2.0.x + Thymeleaf~~
 - master    Springboot2.0.x + Freemarker
 
 

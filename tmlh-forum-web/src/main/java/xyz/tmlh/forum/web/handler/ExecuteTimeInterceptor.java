@@ -34,7 +34,7 @@ public class ExecuteTimeInterceptor implements HandlerInterceptor {
         long currentTime = System.currentTimeMillis();
         long executeTime = currentTime - startTimeThreadLocal.get();
 
-        LOGGER.info("请求：{} 执行了 {} 毫秒", request.getRequestURI(), executeTime);
+        LOGGER.info("请求：[{}] 执行了 [{}]毫秒", request.getRequestURI(), executeTime);
     }
 
 }
