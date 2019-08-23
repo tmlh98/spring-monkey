@@ -18,7 +18,7 @@ import xyz.tmlh.forum.core.model.MessageModel;
 import xyz.tmlh.forum.core.model.data.MessageDo;
 import xyz.tmlh.forum.core.service.MessageService;
 import xyz.tmlh.forum.web.util.user.CurrentUserUtils;
-import xyz.tmlh.security.browser.suport.ResultBean;
+import xyz.tmlh.security.browser.support.ResultBean;
 
 /**
  * <p>

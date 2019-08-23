@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.core.suport;
+package xyz.tmlh.forum.core.support;
 
 /**
  * <p>

@@ -24,9 +24,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import xyz.tmlh.security.core.exception.ValidateCodeException;
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
-import xyz.tmlh.security.core.suport.SecurityConstants;
-import xyz.tmlh.security.core.validate.code.suport.ImageCode;
-import xyz.tmlh.security.core.validate.code.suport.ValidateCodeType;
+import xyz.tmlh.security.core.support.SecurityConstants;
+import xyz.tmlh.security.core.validate.code.support.ImageCode;
+import xyz.tmlh.security.core.validate.code.support.ValidateCodeType;
 
 /**
  * <p>

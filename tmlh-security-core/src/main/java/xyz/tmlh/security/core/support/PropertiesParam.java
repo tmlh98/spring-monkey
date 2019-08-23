@@ -1,4 +1,4 @@
-package xyz.tmlh.security.core.suport;
+package xyz.tmlh.security.core.support;
 
 /**
  * <p>

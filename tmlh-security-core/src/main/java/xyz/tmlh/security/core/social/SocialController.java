@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.core.suport.SocialUserInfo;
+import xyz.tmlh.security.core.support.SocialUserInfo;
 
 
 /**

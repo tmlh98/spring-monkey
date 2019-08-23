@@ -1,4 +1,4 @@
-package xyz.tmlh.security.browser.suport;
+package xyz.tmlh.security.browser.support;
 
 import java.util.HashMap;
 import java.util.Map;

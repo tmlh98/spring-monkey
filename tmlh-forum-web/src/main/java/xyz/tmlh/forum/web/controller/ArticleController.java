@@ -28,12 +28,12 @@ import xyz.tmlh.forum.core.service.ArticleService;
 import xyz.tmlh.forum.core.service.CommentService;
 import xyz.tmlh.forum.core.service.SocialService;
 import xyz.tmlh.forum.core.service.UserService;
-import xyz.tmlh.forum.core.suport.SqlPrefix;
+import xyz.tmlh.forum.core.support.SqlPrefix;
 import xyz.tmlh.forum.web.controller.vo.ArticleVo;
 import xyz.tmlh.forum.web.controller.vo.CommentVo;
 import xyz.tmlh.forum.web.util.user.CurrentUserUtils;
 import xyz.tmlh.security.browser.log.SysLog;
-import xyz.tmlh.security.browser.suport.ResultBean;
+import xyz.tmlh.security.browser.support.ResultBean;
 
 /**
  * <p>

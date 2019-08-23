@@ -1,4 +1,4 @@
-package xyz.tmlh.security.browser.authentication.suport;
+package xyz.tmlh.security.browser.authentication.support;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.social.security.SocialUserDetails;

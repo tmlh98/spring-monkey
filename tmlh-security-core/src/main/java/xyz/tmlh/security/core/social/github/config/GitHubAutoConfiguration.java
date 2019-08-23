@@ -1,5 +1,7 @@
 package xyz.tmlh.security.core.social.github.config;
 
+import static xyz.tmlh.security.core.support.PropertiesParam.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,6 @@ import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.social.GitHubProperties;
 import xyz.tmlh.security.core.social.SocialAutoConfiguration;
 import xyz.tmlh.security.core.social.github.connet.GitHubConnectionFactory;
-
-import static xyz.tmlh.security.core.suport.PropertiesParam.*;
 /**
  * <p>
  *  github 的自动配置类    

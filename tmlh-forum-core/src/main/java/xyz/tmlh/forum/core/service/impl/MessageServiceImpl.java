@@ -10,7 +10,7 @@ import xyz.tmlh.forum.core.model.data.MessageDo;
 import xyz.tmlh.forum.core.service.ArticleService;
 import xyz.tmlh.forum.core.service.CommentService;
 import xyz.tmlh.forum.core.service.MessageService;
-import xyz.tmlh.forum.core.suport.CharacterConstans;
+import xyz.tmlh.forum.core.support.CharacterConstans;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

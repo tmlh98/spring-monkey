@@ -3,6 +3,7 @@ package xyz.tmlh.security.browser;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -13,7 +14,7 @@ import org.springframework.security.web.session.SessionInformationExpiredStrateg
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.core.properties.session.SessionProperties;
-import xyz.tmlh.security.core.suport.SecurityConstants;
+import xyz.tmlh.security.core.support.SecurityConstants;
 import xyz.tmlh.security.core.validate.code.ValidateCodeFilter;
 
 /**
@@ -63,12 +64,12 @@ public class BrowserSecurityConfigAdapter extends BrowserLoginSecurityConfig {
         SessionProperties session = tmlhSecurityProperties.getSession();
         
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                    .rememberMe()
+                .rememberMe()
                     .tokenRepository(persistentTokenRepository())
                     .tokenValiditySeconds(tmlhSecurityProperties.getBrowser().getRememberMeSeconds())
                         .and()
                     .userDetailsService(userDetailsService)
-                        .sessionManagement()
+                    .sessionManagement()
                         .invalidSessionUrl(SecurityConstants.DEFAULT_SESSION_INVALID_URL)
                         .maximumSessions(session.getMaximumSessions())//最大的并发数
                         .maxSessionsPreventsLogin(session.isMaxSessionsPreventsLogin())//之后的登录是否踢掉之前的登录

@@ -36,7 +36,7 @@ import xyz.tmlh.forum.core.service.CommentService;
 import xyz.tmlh.forum.core.service.SocialService;
 import xyz.tmlh.forum.core.service.UserService;
 import xyz.tmlh.forum.web.controller.vo.UserVo;
-import xyz.tmlh.security.browser.suport.ResultBean;
+import xyz.tmlh.security.browser.support.ResultBean;
 
 /**
  * <p>

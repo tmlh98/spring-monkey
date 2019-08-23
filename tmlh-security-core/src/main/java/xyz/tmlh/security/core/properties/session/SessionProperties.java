@@ -1,6 +1,6 @@
 package xyz.tmlh.security.core.properties.session;
 
-import xyz.tmlh.security.core.suport.SecurityConstants;
+import xyz.tmlh.security.core.support.SecurityConstants;
 
 /**
  * <p>

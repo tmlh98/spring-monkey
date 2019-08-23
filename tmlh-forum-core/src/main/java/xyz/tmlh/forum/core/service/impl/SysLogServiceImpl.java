@@ -3,7 +3,7 @@ package xyz.tmlh.forum.core.service.impl;
 import xyz.tmlh.forum.core.mapper.SysLogMapper;
 import xyz.tmlh.forum.core.model.SysLogModel;
 import xyz.tmlh.forum.core.service.SysLogService;
-import xyz.tmlh.forum.core.suport.SysUrlConstans;
+import xyz.tmlh.forum.core.support.SysUrlConstans;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;

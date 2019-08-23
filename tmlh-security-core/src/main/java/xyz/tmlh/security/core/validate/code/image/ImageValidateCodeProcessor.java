@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import xyz.tmlh.security.core.validate.code.AbstractValidateCodeProcessor;
-import xyz.tmlh.security.core.validate.code.suport.ImageCode;
+import xyz.tmlh.security.core.validate.code.support.ImageCode;
 
 /**
  * 

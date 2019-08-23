@@ -1,4 +1,4 @@
-package xyz.tmlh.security.browser.authentication.suport;
+package xyz.tmlh.security.browser.authentication.support;
 
 import java.io.IOException;
 
