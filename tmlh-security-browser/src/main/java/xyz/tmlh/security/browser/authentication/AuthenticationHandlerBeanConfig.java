@@ -11,19 +11,12 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SocialUserDetailsService;
 
-<<<<<<< HEAD
+import xyz.tmlh.security.browser.authentication.manage.BrowserAuthorizeConfigProvider;
 import xyz.tmlh.security.browser.authentication.support.DefaultAuthenticationFailureHandler;
 import xyz.tmlh.security.browser.authentication.support.DefaultAuthenticationSuccessHandler;
 import xyz.tmlh.security.browser.authentication.support.DefaultExpiredSessionStrategy;
 import xyz.tmlh.security.browser.authentication.support.DefaultLogoutSuccessHandler;
 import xyz.tmlh.security.browser.authentication.support.DefaultSocialUserDetailsService;
-=======
-import xyz.tmlh.security.browser.authentication.mamage.BrowserAuthorizeConfigProvider;
-import xyz.tmlh.security.browser.authentication.suport.DefaultAuthenticationFailureHandler;
-import xyz.tmlh.security.browser.authentication.suport.DefaultAuthenticationSuccessHandler;
-import xyz.tmlh.security.browser.authentication.suport.DefaultExpiredSessionStrategy;
-import xyz.tmlh.security.browser.authentication.suport.DefaultLogoutSuccessHandler;
-import xyz.tmlh.security.browser.authentication.suport.DefaultSocialUserDetailsService;
 
 /**
  * <p>

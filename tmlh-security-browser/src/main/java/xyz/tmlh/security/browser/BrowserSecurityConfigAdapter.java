@@ -14,7 +14,7 @@ import org.springframework.social.security.SpringSocialConfigurer;
 
 import xyz.tmlh.security.browser.authentication.manage.AuthorizeConfigManager;
 import xyz.tmlh.security.core.properties.session.SessionProperties;
-import xyz.tmlh.security.core.suport.SecurityConstants;
+import xyz.tmlh.security.core.support.SecurityConstants;
 import xyz.tmlh.security.core.validate.code.ValidateCodeFilter;
 
 /**
