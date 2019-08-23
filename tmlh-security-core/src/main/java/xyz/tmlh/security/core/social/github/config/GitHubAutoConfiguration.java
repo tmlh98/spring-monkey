@@ -18,9 +18,10 @@ import org.springframework.social.github.api.GitHub;
 
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.social.GitHubProperties;
-import xyz.tmlh.security.core.social.SocialConfig;
+import xyz.tmlh.security.core.social.SocialAutoConfiguration;
 import xyz.tmlh.security.core.social.github.connet.GitHubConnectionFactory;
 
+import static xyz.tmlh.security.core.suport.PropertiesParam.*;
 /**
  * <p>
  *  github 的自动配置类    
@@ -31,11 +32,11 @@ import xyz.tmlh.security.core.social.github.connet.GitHubConnectionFactory;
  */
 @EnableSocial
 @Configuration
-@ConditionalOnClass(SocialConfig.class)
-@ConditionalOnProperty(prefix = "tmlh.security.social.github", name = "app-id")
-public class GitHubAutoConfig extends SocialConfig{
+@ConditionalOnClass(SocialAutoConfiguration.class)
+@ConditionalOnProperty(prefix = PREFIX_SOCIAL_GITHUB, name = PARAM_APP_ID)
+public class GitHubAutoConfiguration extends SocialAutoConfiguration{
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GitHubAutoConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GitHubAutoConfiguration.class);
 
     @Autowired
     protected TmlhSecurityProperties tmlhSecurityProperties;

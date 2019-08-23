@@ -5,7 +5,8 @@
 **.project
 **.iml
 **nohup.out
-
+**.factorypath
+**.springBeans
 tmlh-forum-web/src/main/resources/application-dev.yml
 tmlh-forum-web/src/main/resources/application-prod.yml
 tmlh-forum-web/src/main/resources/application.yml

@@ -3,7 +3,6 @@ package xyz.tmlh.security.browser.log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.event.EventListener;
-import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +23,10 @@ public class SysLogListener {
     private LocalLogExecutor localLogExecutor;
     
     @Async
-    @Order
     @EventListener(SysLogEvent.class)
     public void saveSysLog(SysLogEvent event) {
         ISysLogTemplate sysLog = (ISysLogTemplate)event.getSource();
         localLogExecutor.saveLog(sysLog);
     }
+    
 }

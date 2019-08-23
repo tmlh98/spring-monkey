@@ -7,20 +7,39 @@ import xyz.tmlh.security.core.properties.browser.BrowserProerties;
 import xyz.tmlh.security.core.properties.code.ValidateCodeProperties;
 import xyz.tmlh.security.core.properties.session.SessionProperties;
 import xyz.tmlh.security.core.properties.social.SocialProperties;
+import xyz.tmlh.security.core.suport.PropertiesParam;
 
-/**  
- *  Created by TianXin on 2018年12月29日. 
+/**
+ * 
+ * <p>
+ *    yml配置
+ * </p>
+ *
+ * @author TianXin
+ * @since 2018年12月29日
  */
 @Configuration
-@ConfigurationProperties(prefix = "tmlh.security")
+@ConfigurationProperties(prefix = PropertiesParam.PREFIX_SECURITY)
 public class TmlhSecurityProperties {
 
+    /**
+     * 浏览器
+     */
     private BrowserProerties browser = new BrowserProerties();
     
+    /**
+     * 验证码
+     */
     private ValidateCodeProperties code = new ValidateCodeProperties();
     
+    /**
+     * 第三方登录
+     */
     private SocialProperties social = new SocialProperties();
     
+    /**
+     * session 管理
+     */
     private SessionProperties session = new SessionProperties();
 
     public BrowserProerties getBrowser() {

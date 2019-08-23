@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SpringSocialConfigurer;
 
+import xyz.tmlh.security.browser.authentication.mamage.AuthorizeConfigManager;
 import xyz.tmlh.security.core.properties.session.SessionProperties;
 import xyz.tmlh.security.core.suport.SecurityConstants;
 import xyz.tmlh.security.core.validate.code.ValidateCodeFilter;
@@ -44,6 +45,9 @@ public class BrowserSecurityConfigAdapter extends BrowserLoginSecurityConfig {
     @Autowired
     private SessionInformationExpiredStrategy sessionInformationExpiredStrategy ;
     
+    @Autowired
+    private AuthorizeConfigManager authorizeConfigManager ;
+    
     /**
      * 记住我实现
      */
@@ -63,41 +67,25 @@ public class BrowserSecurityConfigAdapter extends BrowserLoginSecurityConfig {
         SessionProperties session = tmlhSecurityProperties.getSession();
         
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                    .rememberMe()
+                .rememberMe()
                     .tokenRepository(persistentTokenRepository())
                     .tokenValiditySeconds(tmlhSecurityProperties.getBrowser().getRememberMeSeconds())
                         .and()
                     .userDetailsService(userDetailsService)
-                        .sessionManagement()
-                        .invalidSessionUrl(SecurityConstants.DEFAULT_SESSION_INVALID_URL)
-                        .maximumSessions(session.getMaximumSessions())//最大的并发数
-                        .maxSessionsPreventsLogin(session.isMaxSessionsPreventsLogin())//之后的登录是否踢掉之前的登录
-                        .expiredSessionStrategy(sessionInformationExpiredStrategy)
-                    .and()
-                    .and()
-                .logout().permitAll()
+                .sessionManagement()
+                    .invalidSessionUrl(SecurityConstants.DEFAULT_SESSION_INVALID_URL)
+                    .maximumSessions(session.getMaximumSessions())//最大的并发数
+                    .maxSessionsPreventsLogin(session.isMaxSessionsPreventsLogin())//之后的登录是否踢掉之前的登录
+                    .expiredSessionStrategy(sessionInformationExpiredStrategy)
+                        .and()
+                        .and()
+                .logout()
                     .invalidateHttpSession(true)
                     .logoutUrl(tmlhSecurityProperties.getBrowser().getLogout())
-                    .deleteCookies("JSESSIONID")
-                    .logoutSuccessHandler(logoutSuccessHandler)
-                .and()
-            .authorizeRequests()
-            .antMatchers(
-                SecurityConstants.DEFAULT_SESSION_INVALID_URL,
-                SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
-                SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX + "/*" ,
-                tmlhSecurityProperties.getBrowser().getLoginPage(),
-                tmlhSecurityProperties.getBrowser().getLoginProcessingUrl(),
-                tmlhSecurityProperties.getBrowser().getSignUpUrl()
-                ).permitAll()//不拦截请求
-            
-            .anyRequest()
-            .authenticated()
-                .and()
-            .csrf().disable();//禁用csrf
-        
-        //解决bug Refused to display in a frame because it set 'X-Frame-Options' to 'DENY'
-        http.headers().frameOptions().disable();
+                    .deleteCookies(SecurityConstants.JSESSIONID)
+                    .logoutSuccessHandler(logoutSuccessHandler);
+             
+        authorizeConfigManager.config(http.authorizeRequests());
     }
 
 }

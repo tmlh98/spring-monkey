@@ -4,7 +4,6 @@ import xyz.tmlh.security.core.suport.SecurityConstants;
 
 /**  
  * 验证码的类型
- * @CreateInformation Created by TianXin on 2019年1月2日. 
  */
 public enum ValidateCodeType {
     

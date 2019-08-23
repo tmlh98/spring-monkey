@@ -28,9 +28,11 @@ public class WebSecurityConfig extends BrowserSecurityConfigAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers(getUrls())
-            .permitAll()//不拦截请求
-        .anyRequest(); 
+            .permitAll();//不拦截请求
         
+        //解决bug Refused to display in a frame because it set 'X-Frame-Options' to 'DENY'
+        http.headers().frameOptions().disable();
+        http.csrf().disable();//禁用csrf
         super.configure(http);
     }
     

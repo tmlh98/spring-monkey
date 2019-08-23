@@ -5,7 +5,7 @@ import org.springframework.social.security.SpringSocialConfigurer;
 
 /**
  * <p>
- *  定制filterProcessesUrl
+ *      定制filterProcessesUrl
  * </p>
  *
  * @author TianXin

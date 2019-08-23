@@ -23,6 +23,9 @@ public class BrowserProerties {
      */
     private String passwordParameter = "password";
     
+    /**
+     * 认证的url
+     */
     private String loginProcessingUrl = "/security/login";
     
     private String signUpUrl = "/signup";

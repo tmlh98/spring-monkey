@@ -59,7 +59,7 @@
 		<dependency>
 			<groupId>org.springframework.social</groupId>
 			<artifactId>spring-social-github</artifactId>
-			<version>1.0.0.M4</version>
+			<version>${social.github.version}</version>
 		</dependency>
 
 
