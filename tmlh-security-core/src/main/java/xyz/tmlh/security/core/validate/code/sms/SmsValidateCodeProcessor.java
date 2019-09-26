@@ -8,9 +8,9 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
-import xyz.tmlh.security.core.suport.SecurityConstants;
+import xyz.tmlh.security.core.support.SecurityConstants;
 import xyz.tmlh.security.core.validate.code.AbstractValidateCodeProcessor;
-import xyz.tmlh.security.core.validate.code.suport.ValidateCode;
+import xyz.tmlh.security.core.validate.code.support.ValidateCode;
 
 /**  
  * 短信验证码处理器

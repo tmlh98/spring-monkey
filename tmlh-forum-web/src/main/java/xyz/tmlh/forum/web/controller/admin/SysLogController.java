@@ -16,7 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import xyz.tmlh.forum.core.model.SysLogModel;
 import xyz.tmlh.forum.core.service.SysLogService;
-import xyz.tmlh.security.browser.suport.ResultBean;
+import xyz.tmlh.security.browser.support.ResultBean;
 
 /**
  * <p>

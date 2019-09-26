@@ -8,7 +8,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.browser.BrowserProerties;
-import xyz.tmlh.security.core.suport.SecurityConstants;
+import xyz.tmlh.security.core.support.SecurityConstants;
 
 /**
  * <p>

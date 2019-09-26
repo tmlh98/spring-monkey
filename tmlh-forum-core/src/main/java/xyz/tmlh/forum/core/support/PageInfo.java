@@ -1,4 +1,4 @@
-package xyz.tmlh.forum.core.suport;
+package xyz.tmlh.forum.core.support;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 

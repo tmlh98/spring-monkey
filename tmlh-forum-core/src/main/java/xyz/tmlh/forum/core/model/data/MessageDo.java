@@ -3,7 +3,7 @@ package xyz.tmlh.forum.core.model.data;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import xyz.tmlh.forum.core.enums.MessageType;
-import xyz.tmlh.forum.core.suport.CharacterConstans;
+import xyz.tmlh.forum.core.support.CharacterConstans;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

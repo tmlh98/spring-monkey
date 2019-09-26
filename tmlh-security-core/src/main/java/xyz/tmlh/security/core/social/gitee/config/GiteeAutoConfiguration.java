@@ -1,5 +1,7 @@
 package xyz.tmlh.security.core.social.gitee.config;
 
+import static xyz.tmlh.security.core.support.PropertiesParam.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,6 @@ import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.social.GiteeProperties;
 import xyz.tmlh.security.core.social.SocialAutoConfiguration;
 import xyz.tmlh.security.core.social.gitee.connet.GiteeConnectionFactory;
-
-import static xyz.tmlh.security.core.suport.PropertiesParam.*;
 
 /*
   需要预先建立表 create table UserConnection (userId varchar(255) not null, providerId varchar(255) not null, providerUserId

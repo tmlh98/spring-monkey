@@ -1,4 +1,4 @@
-package xyz.tmlh.security.browser.authentication.suport;
+package xyz.tmlh.security.browser.authentication.support;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import xyz.tmlh.security.browser.suport.ResultBean;
+import xyz.tmlh.security.browser.support.ResultBean;
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.properties.browser.LoginType;
 import xyz.tmlh.security.core.util.JsonUtils;

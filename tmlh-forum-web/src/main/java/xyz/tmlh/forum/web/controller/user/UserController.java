@@ -32,7 +32,7 @@ import xyz.tmlh.forum.core.service.SocialService;
 import xyz.tmlh.forum.core.service.UserService;
 import xyz.tmlh.forum.web.util.user.CurrentUserUtils;
 import xyz.tmlh.security.browser.log.SysLog;
-import xyz.tmlh.security.browser.suport.ResultBean;
+import xyz.tmlh.security.browser.support.ResultBean;
 import xyz.tmlh.security.core.util.JsonUtils;
 
 /**

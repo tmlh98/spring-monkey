@@ -6,8 +6,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 
 import xyz.tmlh.security.core.properties.TmlhSecurityProperties;
 import xyz.tmlh.security.core.validate.code.ValidateCodeGenerator;
-import xyz.tmlh.security.core.validate.code.suport.ImageCode;
-import xyz.tmlh.security.core.validate.code.suport.ValidateCode;
+import xyz.tmlh.security.core.validate.code.support.ImageCode;
+import xyz.tmlh.security.core.validate.code.support.ValidateCode;
 
 /**
  * <p>

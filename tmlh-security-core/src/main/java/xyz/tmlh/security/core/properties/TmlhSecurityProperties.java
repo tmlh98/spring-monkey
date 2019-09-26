@@ -7,7 +7,7 @@ import xyz.tmlh.security.core.properties.browser.BrowserProerties;
 import xyz.tmlh.security.core.properties.code.ValidateCodeProperties;
 import xyz.tmlh.security.core.properties.session.SessionProperties;
 import xyz.tmlh.security.core.properties.social.SocialProperties;
-import xyz.tmlh.security.core.suport.PropertiesParam;
+import xyz.tmlh.security.core.support.PropertiesParam;
 
 /**
  * 

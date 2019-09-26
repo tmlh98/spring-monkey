@@ -1,4 +1,4 @@
-package xyz.tmlh.security.core.validate.code.suport;
+package xyz.tmlh.security.core.validate.code.support;
 
 import java.awt.image.BufferedImage;
 
