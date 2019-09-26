@@ -1,12 +1,12 @@
-## 1 作品概述
+1 作品概述
 
 ### 1.1简介
 
->    [Spring Monkey](http://www.tmlh.xyz) 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
+>    [~~Spring Monkey~~](http://www.tmlh.xyz) 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
 >
-> ​   springMonkey后台: http://www.tmlh.xyz/admin  admin/123456
+>    ​   springMonkey后台: ~~http://www.tmlh.xyz/admin~~  admin/123456
 >
-> ​   主库地址:<https://github.com/tmlh98/spring-monkey>
+>    ​   主库地址:<~~https://github.com/tmlh98/spring-monkey~~>
 
 
 
@@ -125,10 +125,48 @@
 
  
 
-## 3 使用说明
+## 4 使用说明
 
-- 将tmlh-forum-web里面的application-dev.yml.example重命名为application.yml
-- 导入sql文件并修改配置文件,数据库相关配置
-- 开发时指定spring.profiles.active=dev环境
+### 4.1更改配置文件
+
+1. 将tmlh-forum-web里面的application-dev.yml.example重命名为application.yml
+2. 导入sql文件并修改配置文件,数据库相关配置
+3. 开发时指定spring.profiles.active=dev环境
+4. 修改host文件
+
+
+   - windows下打开目录C:\Windows\System32\drivers\etc
+   - 以管理员的权限打开hosts文件
+   - 在最后一行加入 ``127.0.0.1       www.tmlh.xyz``
+5. 启动项目并打开浏览器访问  www.tmlh.xyz
+
+### 4.2 关于社交登录
+
+这里以码云登录为例
+
+- [x] 打开 Setting -> Developer setting -> OAuth apps
+
+![img-1](images/img-1.png)
+
+
+
+- [x] 点击 new OAuth App
+
+![img-2](images/img-2.png)
+
+- [x] 填入相关信息,这里注意callback URL 格式(域名/auth/github) 如下：
+
+![img-3](images/img-3.png)
+
+
+
+
+
+
+
+### 4.3关于配置application.yml可配置
+
+请参考代码 xyz.tmlh.security.core.properties 下的类
+
 
 
