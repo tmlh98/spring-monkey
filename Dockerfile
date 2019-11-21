@@ -1,14 +1,19 @@
 FROM openjdk:8-jdk-alpine
 
-ENV dir  /home/www/spring-monkey
+ENV BASE_DIR  /home/www/forum/spring-monkey
 
-WORKDIR ${dir}
+ENV JAVA_OPTS="\
+-Dspring.profiles.active=prod \
+-Dserver.port=8888 \
+-server -Xms1024m -Xmx1024m"
 
+
+WORKDIR ${BASE_DIR}
 
 MAINTAINER tianmolunhui
 
-ADD ./tmlh-forum-web/target/forum.jar  ${dir}/jar/forum.jar
+ADD ./tmlh-forum-web/target/forum.jar  ${BASE_DIR}/forum.jar
 
 EXPOSE  8888
 
-ENTRYPOINT ["java" ,"-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=prod" , "-Dserver.port=8888", "-jar","./jar/forum.jar"]
+ENTRYPOINT java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar ./forum.jar
