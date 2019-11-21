@@ -1,6 +1,6 @@
 CONTAINER_NAME=forum
 
-docker build -t $CONTAINER_NAME:lastest .
+docker build -t $CONTAINER_NAME:latest .
 
 is_exist=`docker ps | grep $CONTAINER_NAME` 
 if [ ! -z "$is_exist" ] ;then	         
@@ -15,4 +15,4 @@ fi
 
 
 
-docker run -d -p 8888:8888 --name=$CONTAINER_NAME $CONTAINER_NAME:lastest
+docker run -d -p 8888:8888 --name=$CONTAINER_NAME $CONTAINER_NAME:latest
