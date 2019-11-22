@@ -15,4 +15,4 @@ fi
 
 
 
-docker run -d -p 8888:8888 --name=$CONTAINER_NAME -t $CONTAINER_NAME:latest
+docker run -d -p 8888:8888 --name=$CONTAINER_NAME --network=bridge-user -t $CONTAINER_NAME:latest
