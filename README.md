@@ -2,9 +2,9 @@
 
 ### 1.1简介
 
->    [~~Spring Monkey~~](http://www.tmlh.xyz) 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
+>    [~~Spring Monkey~~](http://39.108.156.110:8080) 是一个是一款基于最新技术开发的多人在线、简洁的博客社区系统。
 >
->    ​   springMonkey后台: ~~http://www.tmlh.xyz/admin~~  admin/123456
+>    ​   springMonkey后台: ~~http://39.108.156.110:8080/admin~~  admin/123456
 >
 >    ​   主库地址:https://github.com/tmlh98/spring-monkey
 
