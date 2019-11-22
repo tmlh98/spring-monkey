@@ -71,6 +71,11 @@ public class QQUserInfo {
 	 * 	性别。 如果获取不到则默认返回”男”
 	 */
 	private String gender;
+	
+	/**
+	 * 新增字段
+	 */
+	private String gender_type;
 	/**
 	 * 	标识用户是否为黄钻用户（0：不是；1：是）。
 	 */
@@ -242,6 +247,13 @@ public class QQUserInfo {
         this.figureurl_type = figureurl_type;
     }
      
+    public String getGender_type() {
+        return gender_type;
+    }
+    
+    public void setGender_type(String gender_type) {
+        this.gender_type = gender_type;
+    }
     @Override
     public String toString() {
         return "QQUserInfo [ret=" + ret + ", msg=" + msg + ", openId=" + openId + ", is_lost=" + is_lost + ", province=" + province + ", city=" + city

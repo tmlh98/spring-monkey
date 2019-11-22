@@ -31,7 +31,7 @@
 						alt="" style="max-width: 64px; max-height: 64px"/>
 					</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="http://www.tmlh.xyz/auth/gitee" class="ml-4">
+					<a href="http://39.108.156.110:8080/auth/gitee" class="ml-4">
 					 	<img src="/images/gitee.png"
 						alt="" style="max-width: 64px; max-height: 64px;"/>
 					</a>
