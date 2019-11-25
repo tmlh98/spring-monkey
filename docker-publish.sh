@@ -15,4 +15,8 @@ fi
 
 
 
-docker run -d -p 80:80 --name=$CONTAINER_NAME --network=bridge-user -t $CONTAINER_NAME:latest
+docker run -d -p 80:80 \
+--name=$CONTAINER_NAME \
+--network=bridge-user \
+-v /home/www/forum/logs:/home/www/forum/logs \
+-t $CONTAINER_NAME:latest
