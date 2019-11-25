@@ -1,5 +1,9 @@
 server:
   port: 80
+
+logging:
+  file: ../logs/sboot.log  
+
   
 spring:
   freemarker:
